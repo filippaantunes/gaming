@@ -9,12 +9,12 @@ body::-webkit-scrollbar,
 }
 
 body, .modal-overlay, .modal-content, .pergaminho-bento {
-    -ms-overflow-style: none !important;  /* IE/Edge */
-    scrollbar-width: none !important;     /* Firefox */
+    -ms-overflow-style: none !important;
+    scrollbar-width: none !important;
 }
 
 /* ==========================================================
-   1. CONFIGURAÇÃO GERAL E CONTENTOR
+   1. CONFIGURACAO GERAL E CONTENTOR
    ========================================================== */
 .scroll-container {
     width: 95%;
@@ -105,18 +105,18 @@ body, .modal-overlay, .modal-content, .pergaminho-bento {
 .scroll-content-wrapper {
     display: flex;
     justify-content: center; 
-    align-items: flex-start;
+    align-items: center;
     gap: 20px; 
     padding: 20px 0;
+    flex-wrap: wrap; /* CRITICO: Permite que os itens saltem para baixo se nao couberem */
 }
 
 .cards-column {
     display: flex;
     flex-direction: column;
     gap: 15px;
-    width: 110px;
+    width: 100px;
     align-items: center;
-    flex: 0 0 110px; 
 }
 
 .game-card {
@@ -151,15 +151,16 @@ body, .modal-overlay, .modal-content, .pergaminho-bento {
 }
 
 .avatar-column {
-    flex: 0 0 auto; 
     display: flex;
     justify-content: center;
+    align-items: center;
     min-width: 250px;
+    flex: 1; /* Faz o video ocupar o espaco central */
+    max-width: 300px;
 }
 
 .avatar-video {
     width: 100%;
-    max-width: 280px; 
     height: auto; 
     border-radius: 15px; 
     border: 5px solid #D4AF37; 
@@ -168,7 +169,7 @@ body, .modal-overlay, .modal-content, .pergaminho-bento {
 }
 
 /* ==========================================================
-   5. O SELO DE CERA (WAX SEAL)
+   5. O SELO DE CERA (WAX SEAL) - CORRECAO VERA
    ========================================================== */
 .seal-container {
     width: 100%;
@@ -177,11 +178,14 @@ body, .modal-overlay, .modal-content, .pergaminho-bento {
     align-items: center;
     margin-top: 15px;
     margin-bottom: 10px;
+    position: relative;
+    z-index: 5; /* Garante que nao fique por cima do modal */
 }
 
 .special-card-seal {
-    width: 85px;
-    height: 85px;
+    /* Tamanho controlado para nao tapar a arte principal */
+    width: clamp(75px, 8vw, 95px); 
+    height: clamp(75px, 8vw, 95px);
     background: radial-gradient(circle, #8B0000 0%, #680e20 50%, #8B0000 100%);
     border-radius: 50%;
     border: 4px solid #D4AF37;
@@ -190,97 +194,63 @@ body, .modal-overlay, .modal-content, .pergaminho-bento {
     align-items: center;
     justify-content: center;
     transition: all 0.3s ease;
-    box-shadow: 0 0 20px rgba(212, 175, 55, 0.6),
-                inset 0 0 15px rgba(0, 0, 0, 0.5);
-    margin: 0 auto;
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.6), inset 0 0 15px rgba(0, 0, 0, 0.5);
 }
 
 .special-card-seal:hover {
-    transform: scale(1.1) rotate(10deg);
-    box-shadow: 0 0 30px rgba(212, 175, 55, 0.9);
+    transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(212, 175, 55, 0.8);
 }
 
-.special-card-seal img {
-    width: 60%;
-    height: auto;
-    display: block;
-    margin: auto;
-}
-
-/* CSS para o Novo Botão da Deusa (será usado no Modal) */
-.special-action-btn img {
-    width: 120px; /* Tamanho equilibrado, nem muito grande nem pequeno */
-    transition: transform 0.3s ease, filter 0.3s ease;
-    filter: drop-shadow(0px 0px 8px rgba(255, 215, 0, 0.5));
-}
-
-.special-action-btn:hover img {
-    transform: scale(1.1);
-    filter: drop-shadow(0px 0px 15px rgba(255, 215, 0, 0.9)) brightness(1.2);
-}
 /* ==========================================================
-   6. MODAL (O SUB-CARD INTERATIVO) - REFORMULADO
+   6. MODAL (O SUB-CARD INTERATIVO) - CORRECAO DO X
    ========================================================== */
 .modal-overlay {
     display: none;
     position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    /* FUNDO VIDRO: Suave e elegante */
-    background: rgba(0, 0, 0, 0.45); 
+    top: 0; 
+    left: 0;
+    width: 100%; 
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7); /* Fundo um pouco mais escuro para o X brilhar */
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    z-index: 1000;
-    
+    z-index: 2000; /* Aumentado para ficar acima de tudo */
     justify-content: center;
     align-items: flex-start; 
     padding: 5vh 0;
     overflow-y: auto; 
-    
-    scrollbar-width: none;
-    -ms-overflow-style: none;
 }
 
 .modal-content {
     width: 90%;
     max-width: 900px;
-    margin-bottom: 5vh; 
     position: relative;
     background: transparent !important;
-    border: none !important;
-    box-shadow: none !important;
-    animation: surgindo 0.4s ease-out;
+    margin: 0 auto;
 }
 
-@keyframes surgindo {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* ESTILO PARA PROJETOS SIMPLES (Adamastor, Passe, Selo) */
-.modal-content:not(:has(.pergaminho-bento)) {
-    background: url('foto_gaming/meiobeje.jpg') repeat !important;
-    border: 3px solid #D4AF37 !important;
-    border-radius: 15px;
-    box-shadow: 0 0 40px rgba(0, 0, 0, 0.8) !important;
-    padding: 30px;
-    margin-top: 5vh; 
-}
-
+/* REGRA PARA O BOTAO DE FECHAR (X) */
 .close-btn {
-    position: fixed; 
-    top: 20px;
-    right: 30px;
-    font-size: 45px;
+    position: fixed; /* Fica preso no canto do ecra */
+    top: 25px;
+    right: 35px;
+    font-size: 50px;
     font-weight: bold;
-    color: #fdf5e6; 
+    color: #D4AF37; /* Cor dourada para combinar */
     cursor: pointer;
-    z-index: 1100;
-    text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+    z-index: 3000; /* Valor mais alto para garantir visibilidade */
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
+    line-height: 1;
+    transition: transform 0.3s ease;
 }
 
+.close-btn:hover {
+    transform: scale(1.2);
+    color: #fdf5e6;
+}
 /* ==========================================================
-   7. RODAPÉ E RESPONSIVIDADE
+   7. RODAPE E RESPONSIVIDADE (AJUSTADA)
    ========================================================== */
 .scroll-bottom {
     background: #2b241b;
@@ -296,22 +266,29 @@ body, .modal-overlay, .modal-content, .pergaminho-bento {
 
 @media (max-width: 768px) {
     .scroll-content-wrapper { 
-        gap: 8px;
-        flex-wrap: wrap; 
+        gap: 15px;
+        flex-direction: column; /* No telemovel, empilha os itens */
+        align-items: center;
     }
+    
+    .cards-column { 
+        flex-direction: row; /* Cards ficam lado a lado no telemovel */
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
     .game-card { width: 75px; height: 75px; }
-    .avatar-video { max-width: 200px; }
-    .cards-column { width: 85px; }
+    .avatar-video { max-width: 250px; }
     .special-card-seal { width: 70px; height: 70px; }
 }
 
 /* ==========================================================
-   8. NAVEGAÇÃO INTERNA DO MODAL
+   8. NAVEGACAO E BENTO (RESTANTE DO CODIGO)
    ========================================================== */
 .navegacao-modal {
     display: flex;
     justify-content: center;
-    align-items: center;
     gap: 20px;
     margin: 15px 0;
 }
@@ -323,13 +300,34 @@ body, .modal-overlay, .modal-content, .pergaminho-bento {
     padding: 5px 15px;
     border-radius: 5px;
     cursor: pointer;
-    font-family: 'Open Sans', sans-serif;
     font-weight: bold;
+}
+
+.pergaminho-bento {
+    background: url('foto_gaming/meiobeje.jpg') repeat; 
+    border: 2px solid #b99b11; 
+    border-radius: 25px;       
+    padding: 25px;
+    width: 92%;                
+    margin: 0 auto 45px auto;
+}
+
+.deusa-btn-container {
+    display: flex;
+    justify-content: flex-end; 
+    padding-right: 15%;        
+    margin-top: -10px;         
+}
+
+.special-action-btn img {
+    width: 80px !important;    
+    height: auto;
+    cursor: pointer;
     transition: 0.3s;
 }
 
 /* ==========================================================
-   9. ESTILO PARA CONTEÚDOS BENTO (MODAL)
+   9. ESTILO PARA CONTEUDOS BENTO (MODAL)
    ========================================================== */
 .modal-intro-header-bento {
     text-align: center;
@@ -362,6 +360,7 @@ body, .modal-overlay, .modal-content, .pergaminho-bento {
     width: 92%;                
     margin-left: auto;
     margin-right: auto;
+    max-width: 800px; /* Garante que nao estica demais em ecras gigantes */
 }
 
 .bento-card-title {
@@ -387,6 +386,7 @@ body, .modal-overlay, .modal-content, .pergaminho-bento {
     width: 100%;
     height: auto;
     display: block;
+    object-fit: cover;
 }
 
 .bento-navigation-bento {
@@ -426,25 +426,38 @@ body, .modal-overlay, .modal-content, .pergaminho-bento {
    ========================================================== */
 .pergaminho-compacto {
     max-width: 600px !important; 
-    padding: 15px !important;    
-    margin-top: 10vh;             
+    padding: 20px !important;    
+    margin: 5vh auto !important; /* Centraliza no ecra */            
 }
 
 /* ==========================================================
-   11. BOTÂO DOURADO
+   11. BOTAO DOURADO DA DEUSA
    ========================================================== */
-
-/* --- NOVO CÓDIGO PARA O BOTÃO DA DEUSA --- */
 .deusa-btn-container {
     display: flex;
-    justify-content: flex-end; /* Empurra para a direita */
-    padding-right: 15%;        /* Margem para não colar na borda */
-    margin-top: -10px;         /* Ajuste de altura para subir um pouco */
+    justify-content: flex-end; 
+    padding-right: 10%;        
+    margin-top: -10px;         
+    width: 100%;
 }
 
 .special-action-btn img {
-    width: 80px !important;    /* Tamanho pequeno e elegante */
+    width: clamp(60px, 10vw, 85px) !important; /* Tamanho inteligente para todos os ecras */
     height: auto;
     cursor: pointer;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, filter 0.3s ease;
+    filter: drop-shadow(0px 0px 8px rgba(255, 215, 0, 0.5));
+}
+
+.special-action-btn:hover img {
+    transform: scale(1.1) rotate(5deg);
+    filter: drop-shadow(0px 0px 15px rgba(255, 215, 0, 0.9));
+}
+
+/* Ajuste final para Mobile */
+@media (max-width: 600px) {
+    .deusa-btn-container {
+        justify-content: center; /* Centraliza no telemovel para nao fugir */
+        padding-right: 0;
+    }
 }
