@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evony - Concept Art & World Building</title>
+    <link rel="stylesheet" href="css_gaming.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="scroll-container">
+        
+       <div class="scroll-top">
+            <h2 class="game-title">Concept Art & World Building</h2>
+            <a href="index.html" class="scroll-key-link" title="Voltar ao CV Interativo">
+                <img src="foto_gaming/chave1removebg-preview.png" class="scroll-key" alt="Chave de Retorno">
+            </a>
+        </div>
+
+        <div class="scroll-body">
+            
+            <div class="intro-text">
+                <p>
+                    As an **Evony player for nearly 6 years**, I have always been driven to innovate within the game. For too long, these high-level strategy and feature concepts remained as mental notes.
+                </p>
+                <p>
+                    Over the last 2 years, I have dedicated myself to professional **Digital Design and Multimedia (FAD) training**. This journey discovered my passion for creating **user-centric UI/UX and visual assets** for game environments. Merging my deep gameplay knowledge with this new technical expertise, I finally gained the skills to transform strategic concepts into concrete, professional visual assets and **Game Design proposals**.
+                </p>
+                <p>
+                    Today, I am proud to present my vision for the strategic and aesthetic evolution of Evony. This page documents my journey of creativity, development, and official submission of ideas to the development team.
+                </p>
+            </div>
+
+            <hr style="border: 0; border-top: 1px solid #b99b11; margin: 30px 0; opacity: 0.3;">
+
+            <div class="scroll-content-wrapper">
+                
+                <div class="cards-column">
+                    <div class="game-card" onclick="abrirProjeto('adamastor')">
+                        <div class="card-frame">
+                            <img src="foto_gaming/adamastor_sem _fundo.png" class="icon-center" alt="Adamastor">
+                        </div>
+                    </div>
+                    <div class="game-card" onclick="abrirProjeto('monstro')">
+                        <div class="card-frame">
+                            <img src="foto_gaming/monstro_diamante-removebg-preview.png" class="icon-center" alt="Monstro de Cristal">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="avatar-column">
+                    <video autoplay muted loop class="avatar-video">
+                        <source src="vid_gaming/avatarVA.mp4" type="video/mp4">
+                    </video>
+                </div>
+                
+                <div class="cards-column">
+                    <div class="game-card" onclick="abrirProjeto('svs')">
+                        <div class="card-frame">
+                            <img src="foto_gaming/bandeirasvs.png" class="icon-center" alt="Bandeira SvS">
+                        </div>
+                    </div>
+
+                    <div class="game-card" onclick="abrirProjeto('passe')">
+                        <div class="card-frame">
+                            <img src="foto_gaming/cartão verde(1).png" class="icon-center" alt="Passe Verde">
+                        </div>
+                    </div>
+                    
+                    <div class="seal-container">
+                        <div class="special-card-seal" onclick="abrirProjeto('ticket-evony')">
+                            <div class="seal-inner">
+                                <img src="foto_gaming/selo.png" alt="Selo Oficial">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div> </div> <div class="scroll-bottom">
+            <div class="footer-content">
+                <p><strong>© 2026 | Vera Antunes</strong></p>
+                
+                <p class="credits">
+                    <strong>Original Concept & Visual Creation:</strong> All game design proposals, UI/UX layouts, and visual assets were 100% conceived and designed by me.
+                </p>
+
+                <p class="ia-note">
+                    Visual concepts and code structure developed by me with the creative support of <strong>Artificial Intelligence</strong>.
+                </p>
+
+                <p style="font-size: 11px; opacity: 0.5; margin-top: 15px; font-style: italic;">
+                    *This is a non-commercial fan project. "Evony" and its assets are trademarks of Top Games Inc. 
+                    These original ideas were shared as professional suggestions for the game's evolution.
+                </p>
+            </div>
+        </div>
+
+    <div id="projeto-modal" class="modal-overlay" onclick="fecharModal()">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <span class="close-btn" onclick="fecharModal()">&times;</span>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <script>
+    const conteudos = {
+        'adamastor': {
+            titulo: 'Adamastor: The Sea Giant',
+            introducao: "An epic Boss proposal inspired by Portuguese epic poetry 'Os Lusíadas'. This concept merges rock and ocean elements to create a formidable high-level challenge for top-tier alliances, blending cultural heritage with fantasy game design.",
+            imagem: 'foto_gaming/moodboard_document.png'
+        },
+        'monstro': {
+            titulo: 'THE CRYSTAL VEINS: A NEW ERA OF WARFARE', 
+            introducao: "A strategic World Event concept focusing on alliance coordination, resource competition, and tactical engagement within the ecosystem.",
+            imagensCarrossel: [
+                'foto_gaming/1-ke.png', 'foto_gaming/2-ke.png', 'foto_gaming/3-ke.png', 
+                'foto_gaming/4-ke.png', 'foto_gaming/5-ke.png', 'foto_gaming/6-ke.png'
+            ],
+            indiceAtual: 0
+        },
+        'svs': {
+            titulo: 'The Ancestral Banner Rescue',
+            introducao: "A strategic SVS redesign focusing on team inclusivity and psychological engagement. By transforming the Alliance Castle's perimeter from a 'visual void' into a glowing trophy, it encourages players of all levels to participate in high-stakes escort missions across enemy territory.",
+            imagensCarrossel: [
+                'foto_gaming/1svs.png', 'foto_gaming/2svs.png', 'foto_gaming/3svs.png', 
+                'foto_gaming/4svs.png', 'foto_gaming/5svs.png', 'foto_gaming/6svs.png'
+            ],
+            indiceAtual: 0
+        },
+        'passe': {
+            titulo: 'Royal Scout Pass: Impact Proposal',
+            introducao: "A strategic framework designed to revitalize the game's ecosystem. It focuses on rewarding active scouting and providing a clear progression path for mid-level players to acquire essential materials, ensuring long-term engagement and server vitality.",
+            imagens: [
+                'foto_gaming/1.png', 'foto_gaming/2.png', 'foto_gaming/3.png', 
+                'foto_gaming/4.png', 'foto_gaming/5.png', 'foto_gaming/6.png'
+            ],
+            indiceAtual: 0 
+        },
+        'ticket-evony': {
+            titulo: 'Official Support Seal',
+            introducao: "Documentation and official recognition of concepts submitted to the development team. This seal validates the proactive bridge between advanced player experience and professional game design contribution.",
+            videoTicket: 'vid_gaming/tiket_evony2.mp4',
+            moldura: 'foto_gaming/pergaminho_rolo1.png',
+            selo: 'foto_gaming/selo.png'
+        }
+    };
+
+    function abrirProjeto(id) {
+        const modal = document.getElementById('projeto-modal');
+        const body = document.getElementById('modal-body');
+        const data = conteudos[id];
+
+        if (!data) return;
+
+        // Limpar classes antigas do modal
+        modal.classList.remove('modal-largo');
+
+        let conteudoHTML = `
+            <div class="modal-intro-header-bento">
+                <h2>${data.titulo}</h2>
+            </div>
+        `;
+
+        // 0. LÓGICA PARA O ADAMASTOR (Layout de Imagem Única no Pergaminho)
+        if (id === 'adamastor') {
+            modal.classList.add('modal-largo');
+            conteudoHTML += `
+                <div class="modal-intro-header-bento">
+                    <p>${data.introducao}</p>
+                </div>
+                
+                <div class="pergaminho-bento" style="max-width: 600px; margin: 0 auto;">
+                    <span class="bento-card-title">Concept Art & Moodboard</span>
+                    <div class="bento-image-frame">
+                        <img src="${data.imagem}" class="bento-img-content" style="width: 100%; height: auto;">
+                    </div>
+                </div>
+
+                <div style="height: 30px;"></div>
+            `;
+        }
+
+      // 1. LÓGICA ESPECIAL PARA O MONSTRO DE CRISTAL
+        if (id === 'monstro') {
+            modal.classList.add('modal-largo');
+            conteudoHTML += `
+                <div class="modal-intro-header-bento" style="margin-top: 10px; text-align: justify;">
+                    <p>${data.introducao}</p>
+                </div>
+
+                <div class="pergaminho-bento">
+                    <span class="bento-card-title">Concept & Moodboard</span>
+                    <div class="bento-image-frame">
+                        <img id="img-carrossel-exibicao" src="${data.imagensCarrossel[0]}" class="bento-img-content">
+                    </div>
+                    <div class="bento-navigation-bento">
+                        <button class="bento-btn-bento" onclick="mudarPaginaCarrossel('${id}', -1)">❮ Previous</button>
+                        <span id="contador-carrossel" class="bento-counter-bento">1 / ${data.imagensCarrossel.length}</span>
+                        <button class="bento-btn-bento" onclick="mudarPaginaCarrossel('${id}', 1)">Next ❯</button>
+                    </div>
+                </div>
+                
+                <div class="deusa-btn-container">
+                    <button class="special-action-btn" onclick="abrirImagemEspecial('foto_gaming/storyboard-ke.png')" style="background:none; border:none; padding:0; cursor:pointer;">
+                        <img src="foto_gaming/deusa.png" alt="Deusa">
+                    </button>
+                </div>
+            `;
+        }
+        // 2. LÓGICA PARA SVS (Carrossel Reduzido com Botão em baixo)
+        else if (id === 'svs') {
+            modal.classList.add('modal-largo');
+            conteudoHTML += `
+                <div class="modal-intro-header-bento"><p>${data.introducao}</p></div>
+                
+                <div class="pergaminho-bento" style="max-width: 450px; margin: 0 auto 30px auto;">
+                    <span class="bento-card-title">Concept & Moodboard</span>
+                    <div class="bento-image-frame">
+                        <img id="img-carrossel-exibicao" src="${data.imagensCarrossel[0]}" class="bento-img-content">
+                    </div>
+                    <div class="bento-navigation-bento">
+                        <button class="bento-btn-bento" onclick="mudarPaginaCarrossel('${id}', -1)">❮ Previous</button>
+                        <span id="contador-carrossel" class="bento-counter-bento">1 / ${data.imagensCarrossel.length}</span>
+                        <button class="bento-btn-bento" onclick="mudarPaginaCarrossel('${id}', 1)">Next ❯</button>
+                    </div>
+                </div>
+
+                <div class="deusa-btn-container" style="text-align: center; margin-top: 20px;">
+                    <button class="special-action-btn" onclick="abrirImagemEspecial('foto_gaming/storyboard-svs.png')" style="background:none; border:none; padding:0; cursor:pointer;">
+                        <img src="foto_gaming/deusa.png" alt="Deusa">
+                    </button>
+                </div>
+            `;
+        }
+        // 3. LÓGICA PARA O PASSE (Carrossel Compacto)
+        else if (data.imagens) {
+            conteudoHTML += `
+                <div class="modal-intro-header-bento"><p>${data.introducao}</p></div>
+                <div class="pergaminho-bento pergaminho-compacto">
+                    <div class="bento-image-frame">
+                        <img id="img-modal-exibicao" src="${data.imagens[0]}" class="bento-img-content">
+                    </div>
+                    <div class="bento-navigation-bento">
+                        <button class="bento-btn-bento" onclick="mudarPagina('${id}', -1)">❮ Previous</button>
+                        <span id="contador-paginas" class="bento-counter-bento">1 / ${data.imagens.length}</span>
+                        <button class="bento-btn-bento" onclick="mudarPagina('${id}', 1)">Next ❯</button>
+                    </div>
+                </div>
+            `;
+        } 
+        /// 4. LÓGICA PARA O TICKET EVONY (Texto no topo + Pergaminho de fundo + Rolo com Vídeo)
+        else if (id === 'ticket-evony') {
+            modal.classList.add('modal-largo');
+            conteudoHTML += `
+                <div class="modal-intro-header-bento">
+                    <p>${data.introducao}</p>
+                </div>
+                
+                <div class="pergaminho-bento" style="max-width: 450px; margin: 0 auto; padding: 20px; position: relative;">
+                    
+                    <div style="position: relative; width: 100%;">
+                        
+                        <img src="${data.moldura}" style="width: 100%; display: block;">
+                        
+                        <div style="position: absolute; top: 12%; left: 16%; width: 68%; height: 75%; overflow: hidden;">
+                            <video autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: cover; border-radius: 5px;">
+                                <source src="${data.videoTicket}" type="video/mp4">
+                            </video>
+                        </div>
+
+                        <img src="${data.selo}" style="position: absolute; bottom: 5%; right: 5%; width: 55px; filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5)); pointer-events: none;">
+                    </div>
+                </div>
+
+                <div style="height: 20px;"></div>
+            `;
+        }
+
+        body.innerHTML = conteudoHTML;
+        modal.style.display = 'flex';
+    }
+
+    function mudarPaginaCarrossel(id, direcao) {
+        const data = conteudos[id];
+        data.indiceAtual = (data.indiceAtual + direcao + data.imagensCarrossel.length) % data.imagensCarrossel.length;
+        document.getElementById('img-carrossel-exibicao').src = data.imagensCarrossel[data.indiceAtual];
+        document.getElementById('contador-carrossel').innerText = `${data.indiceAtual + 1} / ${data.imagensCarrossel.length}`;
+    }
+
+    function mudarPagina(id, direcao) {
+        const data = conteudos[id];
+        data.indiceAtual = (data.indiceAtual + direcao + data.imagens.length) % data.imagens.length;
+        document.getElementById('img-modal-exibicao').src = data.imagens[data.indiceAtual];
+        document.getElementById('contador-paginas').innerText = `${data.indiceAtual + 1} / ${data.imagens.length}`;
+    }
+
+    function fecharModal() {
+        document.getElementById('projeto-modal').style.display = 'none';
+    }
+
+    function abrirImagemEspecial(caminhoImagem) {
+        const body = document.getElementById('modal-body');
+        const modal = document.getElementById('projeto-modal');
+        
+        // Garante que o modal está largo para a imagem brilhar
+        modal.classList.add('modal-largo');
+
+        // Define o novo conteúdo: apenas a imagem do storyboard
+        body.innerHTML = `
+            <div class="pergaminho-bento" style="margin-top: 20px;">
+                <span class="bento-card-title">Full Project Storyboard</span>
+                <div class="bento-image-frame">
+                    <img src="${caminhoImagem}" class="bento-img-content" style="width: 100%; height: auto;">
+                </div>
+                <div style="text-align: center; margin-top: 20px;">
+                    <p style="color: #b99b11; font-family: 'Open Sans', sans-serif; font-size: 14px;">
+                        Click the "X" to return to the main gallery.
+                    </p>
+                </div>
+            </div>
+        `;
+    }
+
+</script>
+</body>
+</html>
