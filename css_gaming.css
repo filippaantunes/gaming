@@ -9,8 +9,8 @@ body::-webkit-scrollbar,
 }
 
 body, .modal-overlay, .modal-content, .pergaminho-bento {
-    -ms-overflow-style: none !important;  /* IE/Edge */
-    scrollbar-width: none !important;     /* Firefox */
+    -ms-overflow-style: none !important;
+    scrollbar-width: none !important;
 }
 
 /* ==========================================================
@@ -103,12 +103,15 @@ body, .modal-overlay, .modal-content, .pergaminho-bento {
    4. LAYOUT ESTILO EQUIPAMENTO (Cards + Avatar)
    ========================================================== */
 .scroll-content-wrapper {
-    display: flex;
-    justify-content: center; 
-    align-items: flex-start;
-    gap: 20px; 
+    display: grid; /* Mudamos para GRID para controlo total das colunas */
+    grid-template-columns: 1fr auto 1fr; /* Coluna esquerda, Avatar (auto), Coluna direita */
+    align-items: center;
+    justify-items: center;
+    gap: 20px;
     padding: 20px 0;
-    flex-wrap: wrap; /* ADICIONADO: Permite que os itens se ajustem em telas pequenas */
+    width: 100%;
+    max-width: 850px;
+    margin: 0 auto;
 }
 
 .cards-column {
@@ -117,8 +120,11 @@ body, .modal-overlay, .modal-content, .pergaminho-bento {
     gap: 15px;
     width: 110px;
     align-items: center;
-    flex: 0 0 110px; 
 }
+
+/* Garante que a coluna da esquerda empurre para a direita e a da direita para a esquerda */
+.cards-column:first-child { justify-self: end; }
+.cards-column:last-child { justify-self: start; }
 
 .game-card {
     width: 100px;
@@ -129,10 +135,13 @@ body, .modal-overlay, .modal-content, .pergaminho-bento {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
     cursor: pointer;
     transition: all 0.3s ease;
-    flex-shrink: 0; /* ADICIONADO: Garante que o card não distorça */
+    flex-shrink: 0;
 }
 
-.game-card:hover { transform: scale(1.1); filter: brightness(1.2); }
+.game-card:hover { 
+    transform: scale(1.1); 
+    filter: brightness(1.2); 
+}
 
 .card-frame {
     width: 100%;
@@ -147,31 +156,42 @@ body, .modal-overlay, .modal-content, .pergaminho-bento {
 
 .icon-center {
     height: 70%;
-    width: auto; 
+    width: auto;
     object-fit: contain;
     filter: drop-shadow(0px 0px 10px rgba(255, 215, 0, 0.7));
 }
 
 .avatar-column {
-    flex: 0 0 auto; 
     display: flex;
     justify-content: center;
-    min-width: 250px;
-    max-width: 100%; /* ADICIONADO: Garante que o avatar não saia da borda */
+    align-items: center;
+    padding: 0 10px;
 }
 
 .avatar-video {
-    width: 100%;
-    max-width: 280px; 
-    height: auto; 
-    border-radius: 15px; 
-    border: 5px solid #D4AF37; 
+    width: 280px;
+    height: auto;
+    border-radius: 15px;
+    border: 5px solid #D4AF37;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     object-fit: cover;
 }
 
+/* AJUSTE PARA O MOBILE MANTER A VISTA BOA */
+@media (max-width: 768px) {
+    .scroll-content-wrapper {
+        display: flex; /* Volta a flex no mobile para empilhar */
+        flex-direction: column;
+        gap: 15px;
+    }
+    .cards-column { 
+        flex-direction: row; 
+        width: 100%; 
+        justify-content: center; 
+    }
+}
 /* ==========================================================
-   5. O SELO DE CERA (WAX SEAL)
+   5. O SELO E ELEMENTOS DE BAIXO (Ajuste PC)
    ========================================================== */
 .seal-container {
     width: 100%;
@@ -180,6 +200,15 @@ body, .modal-overlay, .modal-content, .pergaminho-bento {
     align-items: center;
     margin-top: 15px;
     margin-bottom: 10px;
+    gap: 20px; /* AJUSTE: Cria espaço entre cards e selo se estiverem na mesma linha */
+}
+
+/* Regra para garantir que o selo não "fuja" no PC */
+@media (min-width: 769px) {
+    .seal-container {
+        max-width: 450px; /* Limita a largura para os elementos ficarem próximos */
+        margin: 15px auto; /* Centraliza o grupo inteiro no meio do pergaminho */
+    }
 }
 
 .special-card-seal {
@@ -195,7 +224,6 @@ body, .modal-overlay, .modal-content, .pergaminho-bento {
     transition: all 0.3s ease;
     box-shadow: 0 0 20px rgba(212, 175, 55, 0.6),
                 inset 0 0 15px rgba(0, 0, 0, 0.5);
-    margin: 0 auto;
 }
 
 .special-card-seal:hover {
@@ -210,36 +238,22 @@ body, .modal-overlay, .modal-content, .pergaminho-bento {
     margin: auto;
 }
 
-/* CSS para o Novo Botão da Deusa (será usado no Modal) */
-.special-action-btn img {
-    width: 120px; /* Tamanho equilibrado, nem muito grande nem pequeno */
-    transition: transform 0.3s ease, filter 0.3s ease;
-    filter: drop-shadow(0px 0px 8px rgba(255, 215, 0, 0.5));
-}
-
-.special-action-btn:hover img {
-    transform: scale(1.1);
-    filter: drop-shadow(0px 0px 15px rgba(255, 215, 0, 0.9)) brightness(1.2);
-}
 /* ==========================================================
-   6. MODAL (O SUB-CARD INTERATIVO) - REFORMULADO
+   6. MODAL E OUTROS
    ========================================================== */
 .modal-overlay {
     display: none;
     position: fixed;
     top: 0; left: 0;
     width: 100%; height: 100%;
-    /* FUNDO VIDRO: Suave e elegante */
     background: rgba(0, 0, 0, 0.45); 
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     z-index: 1000;
-    
     justify-content: center;
     align-items: flex-start; 
     padding: 5vh 0;
     overflow-y: auto; 
-    
     scrollbar-width: none;
     -ms-overflow-style: none;
 }
@@ -260,7 +274,6 @@ body, .modal-overlay, .modal-content, .pergaminho-bento {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* ESTILO PARA PROJETOS SIMPLES (Adamastor, Passe, Selo) */
 .modal-content:not(:has(.pergaminho-bento)) {
     background: url('foto_gaming/meiobeje.jpg') repeat !important;
     border: 3px solid #D4AF37 !important;
@@ -283,7 +296,7 @@ body, .modal-overlay, .modal-content, .pergaminho-bento {
 }
 
 /* ==========================================================
-   7. RODAPÉ E RESPONSIVIDADE
+   7. RODAPÉ E RESPONSIVIDADE (MOBILE)
    ========================================================== */
 .scroll-bottom {
     background: #2b241b;
@@ -301,12 +314,12 @@ body, .modal-overlay, .modal-content, .pergaminho-bento {
     .scroll-content-wrapper { 
         gap: 15px;
         flex-wrap: wrap; 
-        flex-direction: column; /* Organiza em coluna no mobile */
+        flex-direction: column; 
         align-items: center;
     }
     .cards-column { 
         width: 100%; 
-        flex-direction: row; /* Cards ficam em linha no mobile */
+        flex-direction: row; 
         justify-content: center;
         flex: 1 1 auto;
     }
@@ -464,4 +477,17 @@ body, .modal-overlay, .modal-content, .pergaminho-bento {
     height: auto;
     cursor: pointer;
     transition: transform 0.3s ease;
+}
+
+/* Ajuste de alinhamento para o conteúdo dos modais de texto */
+.modal-content p, 
+.modal-content ul {
+    text-align: left; /* Garante que o texto base é à esquerda */
+    max-width: 90%;   /* Evita que o texto cole nas bordas */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.modal-content h3 {
+    text-align: center; /* Mantém os títulos centrados como no teu HTML */
 }
