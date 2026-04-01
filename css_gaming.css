@@ -250,9 +250,12 @@ body, .modal-overlay, .modal-content, .pergaminho-bento {
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     z-index: 1000;
+    
+    /*  Centraliza o conteúdo no meio do ecrã */
     justify-content: center;
-    align-items: flex-start; 
-    padding: 5vh 0;
+    align-items: center; 
+    
+    padding: 2vh 0; /* Diminuír o padding para ganhar espaço */
     overflow-y: auto; 
     scrollbar-width: none;
     -ms-overflow-style: none;
@@ -490,4 +493,66 @@ body, .modal-overlay, .modal-content, .pergaminho-bento {
 
 .modal-content h3 {
     text-align: center; /* Mantém os títulos centrados como no teu HTML */
+}
+
+/* ==========================================================
+   AJUSTE DE VISUALIZAÇÃO PARA TELEMÓVEL (SUB-MODAIS)
+   ========================================================== */
+@media (max-width: 768px) {
+    .modal-overlay {
+        align-items: flex-start !important; /* Encosta ao topo no mobile */
+        padding-top: 15px !important;       /* Margem mínima para não bater no topo */
+    }
+
+    .modal-content {
+        margin-top: 0 !important;           /* Remove espaços extras */
+        width: 95% !important;
+    }
+
+    .pergaminho-compacto {
+        margin-top: 0 !important;           /* Sobe o conteúdo do Adamastor/Passe */
+    }
+
+    /* Ajuste para o botão de fechar não tapar o conteúdo no mobile */
+    .close-btn {
+        top: 10px;
+        right: 15px;
+        font-size: 35px;
+    }
+}
+
+/* ==========================================================
+   ESCUDO DE COMPATIBILIDADE (SISTEMAS ANTIGOS)
+   ========================================================== */
+
+/* 1. Impede que o layout fuja para a direita */
+html, body {
+    overflow-x: hidden; 
+    position: relative;
+    width: 100%;
+}
+
+/* 2. Alternativa estável ao Grid para browsers antigos */
+@media (max-width: 768px) {
+    .scroll-content-wrapper {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        width: 100% !important;
+    }
+    
+    .cards-column {
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        width: 100% !important;
+    }
+}
+
+/* 3. Garante que o toque (clique) é registado */
+.game-card, .special-card-seal, .scroll-key, .close-btn {
+    cursor: pointer;
+    touch-action: manipulation; /* Melhora a resposta ao toque */
+    -webkit-tap-highlight-color: transparent; /* Remove aquele quadrado azul feio ao clicar */
 }
