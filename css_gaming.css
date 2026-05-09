@@ -398,23 +398,23 @@ body, .modal-overlay, .modal-content, .pergaminho-bento {
     flex-wrap: wrap;
 }
 
-.bento-btn-bento {
-    background: #721414; 
-    color: #D4AF37;
-    border: 2px solid #D4AF37;
-    padding: 12px 20px;
-    border-radius: 12px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: all 0.3s ease;
-    min-height: 44px;
-    min-width: 44px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    touch-action: manipulation;
-    -webkit-tap-highlight-color: transparent;
-    font-size: 14px;
+.pergaminho-bento {
+    background: url('foto_gaming/meiobeje.jpg') repeat; 
+    border: 2px solid #b99b11; 
+    border-radius: 25px;       
+    padding: 25px;
+    margin-bottom: 45px;       
+    box-shadow: inset 0 0 20px rgba(185, 155, 17, 0.2), 0 10px 30px rgba(0,0,0,0.8);
+    position: relative;
+    width: 92%;                
+    margin-left: auto;
+    margin-right: auto;
+    
+    /* ✅ MOSTRAR TUDO SEM CORTAR */
+    overflow: visible !important;
+    max-height: none !important;
+    height: auto !important;
+    box-sizing: border-box;
 }
 
 .bento-btn-bento:hover {
@@ -578,24 +578,28 @@ body, .modal-overlay, .modal-content, .pergaminho-bento {
         width: 44px !important;
         height: 44px !important;
     }
-    
-    /* Pergaminho no modal mobile - GARANTIR VISIBILIDADE */
+        /* Pergaminho no mobile - SEM CORTES */
     .pergaminho-bento {
         width: 100% !important;
         max-width: 100% !important;
         padding: 20px !important;
         margin-bottom: 30px !important;
-        overflow-y: auto !important;
-        max-height: 60vh !important;
+        /* ✅ REMOVE CONFLITOS - mostra tudo */
+        overflow: visible !important;
+        max-height: none !important;
+        height: auto !important;
         box-sizing: border-box;
     }
     
-    /* Imagens do carrossel - nunca ultrapassar container */
+    /* Imagens do carrossel - PROPORÇÃO COMPLETA */
     .bento-img-content {
-        max-height: 50vh !important;
+        max-height: none !important; /* ✅ Remove limite que cortava */
+        height: auto !important;
         object-fit: contain !important;
+        width: 100%;
     }
     
+        
     /* Navegação do carrossel - botões empilháveis */
     .bento-navigation-bento {
         gap: 10px !important;
@@ -715,12 +719,15 @@ body, .modal-overlay, .modal-content, .pergaminho-bento {
     
     .pergaminho-bento {
         padding: 15px !important;
-        max-height: none !important; /* ✅ Remove limite de 55vh */
+        /* ✅ Remove limites que bloqueavam */
         overflow: visible !important;
+        max-height: none !important;
+        height: auto !important;
     }
     
     .bento-img-content {
-        max-height: none !important; /* ✅ Remove limite de 45vh */
+        max-height: none !important;
+        height: auto !important;
     }
 }
 
