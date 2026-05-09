@@ -13,7 +13,7 @@
         
        <div class="scroll-top">
             <h2 class="game-title">Concept Art & World Building</h2>
-            <a href="https://filippaantunes.github.io/CV-Interativo/" class="scroll-key-link" title="Voltar ao CV Interativo">
+            <a href="index.html" class="scroll-key-link" title="Voltar ao CV Interativo">
                 <img src="foto_gaming/chave1removebg-preview.png" class="scroll-key" alt="Chave de Retorno">
             </a>
         </div>
@@ -65,7 +65,7 @@
 
                     <div class="game-card" onclick="abrirProjeto('passe')">
                         <div class="card-frame">
-                            <img src="foto_gaming/cartão verde(1).png" class="icon-center" alt="Passe Verde">
+                            <img src="foto_gaming/nova_versao.png" class="icon-center" alt="Passe Verde">
                         </div>
                     </div>
                     
@@ -130,13 +130,28 @@
             indiceAtual: 0
         },
         'passe': {
-            titulo: 'Royal Scout Pass: Impact Proposal',
-            introducao: "A strategic framework designed to revitalize the game's ecosystem. It focuses on rewarding active scouting and providing a clear progression path for mid-level players to acquire essential materials, ensuring long-term engagement and server vitality.",
-            imagens: [
+            titulo: 'Royal Scout Pass & The Undead Reckoning',
+            introducao: "A strategic framework designed to revitalize the game's ecosystem. It focuses on rewarding active scouting and providing a clear progression path for mid-level players, followed by a disruptive proposal to revitalize server economy through automated challenges.",
+            
+            // Sub-projeto 1: Royal Scout Pass
+            tituloSecao1: 'Royal Scout Pass',
+            descSecao1: "Rewarding active scouting with a clear progression path for mid-level players.",
+            imagensPasse: [
                 'foto_gaming/1.png', 'foto_gaming/2.png', 'foto_gaming/3.png', 
                 'foto_gaming/4.png', 'foto_gaming/5.png', 'foto_gaming/6.png'
             ],
-            indiceAtual: 0 
+            indicePasse: 0,
+
+            // Sub-projeto 2: The Undead Reckoning
+            tituloSecao2: 'The Undead Reckoning: A Strategic Evolution',
+            descSecao2: "The Undead Curse ends permanent shielding in Evony. Introducing the Spectral Bubble: 15 minutes of protection that demands active strategy. No more passive hoarding – only survival through smart, timely decisions.",
+            imagensUndead: [
+                'foto_gaming/folha1.png', 'foto_gaming/folha2.png', 'foto_gaming/folha3.png', 
+                'foto_gaming/folha4.png', 'foto_gaming/folha5.png', 'foto_gaming/folha6.png',
+                'foto_gaming/folha7.png', 'foto_gaming/folha8.png', 'foto_gaming/folha9.png',
+                'foto_gaming/folha10(1).png'
+            ],
+            indiceUndead: 0
         },
         'ticket-evony': {
             titulo: 'Official Support Seal',
@@ -154,42 +169,33 @@
 
         if (!data) return;
 
-        // Limpar classes antigas do modal
         modal.classList.remove('modal-largo');
 
-        let conteudoHTML = `
-            <div class="modal-intro-header-bento">
-                <h2>${data.titulo}</h2>
-            </div>
-        `;
+        // ✅ INICIA VAZIO - cada projeto gere o seu próprio cabeçalho
+        let conteudoHTML = ``;
 
-        // 0. LÓGICA PARA O ADAMASTOR (Layout de Imagem Única no Pergaminho)
         if (id === 'adamastor') {
             modal.classList.add('modal-largo');
             conteudoHTML += `
                 <div class="modal-intro-header-bento">
-                    <p>${data.introducao}</p>
+                    <h2>${data.titulo}</h2>
+                    <p style="margin-top: 15px;">${data.introducao}</p>
                 </div>
-                
                 <div class="pergaminho-bento" style="max-width: 600px; margin: 0 auto;">
                     <span class="bento-card-title">Concept Art & Moodboard</span>
                     <div class="bento-image-frame">
                         <img src="${data.imagem}" class="bento-img-content" style="width: 100%; height: auto;">
                     </div>
                 </div>
-
-                <div style="height: 30px;"></div>
             `;
         }
-
-      // 1. LÓGICA ESPECIAL PARA O MONSTRO DE CRISTAL
-        if (id === 'monstro') {
+        else if (id === 'monstro') {
             modal.classList.add('modal-largo');
             conteudoHTML += `
-                <div class="modal-intro-header-bento" style="margin-top: 10px; text-align: justify;">
-                    <p>${data.introducao}</p>
+                <div class="modal-intro-header-bento">
+                    <h2>${data.titulo}</h2>
+                    <p style="margin-top: 15px;">${data.introducao}</p>
                 </div>
-
                 <div class="pergaminho-bento">
                     <span class="bento-card-title">Concept & Moodboard</span>
                     <div class="bento-image-frame">
@@ -201,20 +207,20 @@
                         <button class="bento-btn-bento" onclick="mudarPaginaCarrossel('${id}', 1)">Next ❯</button>
                     </div>
                 </div>
-                
                 <div class="deusa-btn-container">
-                    <button class="special-action-btn" onclick="abrirImagemEspecial('foto_gaming/storyboard-ke.png')" style="background:none; border:none; padding:0; cursor:pointer;">
+                    <button class="special-action-btn" onclick="abrirImagemEspecial('foto_gaming/storyboard-ke.png', 'February 12, 2026')" style="background:none; border:none; padding:0; cursor:pointer;">
                         <img src="foto_gaming/deusa.png" alt="Deusa">
                     </button>
                 </div>
             `;
         }
-        // 2. LÓGICA PARA SVS (Carrossel Reduzido com Botão em baixo)
         else if (id === 'svs') {
             modal.classList.add('modal-largo');
             conteudoHTML += `
-                <div class="modal-intro-header-bento"><p>${data.introducao}</p></div>
-                
+                <div class="modal-intro-header-bento">
+                    <h2>${data.titulo}</h2>
+                    <p style="margin-top: 15px;">${data.introducao}</p>
+                </div>
                 <div class="pergaminho-bento" style="max-width: 450px; margin: 0 auto 30px auto;">
                     <span class="bento-card-title">Concept & Moodboard</span>
                     <div class="bento-image-frame">
@@ -226,60 +232,104 @@
                         <button class="bento-btn-bento" onclick="mudarPaginaCarrossel('${id}', 1)">Next ❯</button>
                     </div>
                 </div>
-
                 <div class="deusa-btn-container" style="text-align: center; margin-top: 20px;">
-                    <button class="special-action-btn" onclick="abrirImagemEspecial('foto_gaming/storyboard-svs.png')" style="background:none; border:none; padding:0; cursor:pointer;">
+                    <button class="special-action-btn" onclick="abrirImagemEspecial('foto_gaming/storyboard-svs.png', 'February 17, 2026')" style="background:none; border:none; padding:0; cursor:pointer;">
                         <img src="foto_gaming/deusa.png" alt="Deusa">
                     </button>
                 </div>
             `;
         }
-        // 3. LÓGICA PARA O PASSE (Carrossel Compacto)
-        else if (data.imagens) {
+        else if (id === 'passe') {
+            modal.classList.add('modal-largo');
             conteudoHTML += `
-                <div class="modal-intro-header-bento"><p>${data.introducao}</p></div>
-                <div class="pergaminho-bento pergaminho-compacto">
+                <!-- Cabeçalho Principal -->
+                <div class="modal-intro-header-bento">
+                    <h2>${data.titulo}</h2>
+                    <p style="margin-top: 15px;">${data.introducao}</p>
+                </div>
+                
+                <!-- SECÇÃO 1: Royal Scout Pass -->
+                <div style="margin: 35px 0 15px 0; text-align: center;">
+                    <h3 style="color: #b99b11; font-family: 'Open Sans', sans-serif; font-size: 22px; font-weight: 700; margin: 0 0 10px 0;">
+                        ${data.tituloSecao1}
+                    </h3>
+                    <p style="color: #fdf5e6; font-family: 'Open Sans', sans-serif; font-size: 14px; line-height: 1.6; opacity: 0.9; max-width: 700px; margin: 0 auto;">
+                        ${data.descSecao1}
+                    </p>
+                </div>
+                
+                <div class="pergaminho-bento" style="margin-bottom: 40px;">
+                    <span class="bento-card-title">Concept & Moodboard</span>
                     <div class="bento-image-frame">
-                        <img id="img-modal-exibicao" src="${data.imagens[0]}" class="bento-img-content">
+                        <img id="img-passe" src="${data.imagensPasse[0]}" class="bento-img-content">
                     </div>
                     <div class="bento-navigation-bento">
-                        <button class="bento-btn-bento" onclick="mudarPagina('${id}', -1)">❮ Previous</button>
-                        <span id="contador-paginas" class="bento-counter-bento">1 / ${data.imagens.length}</span>
-                        <button class="bento-btn-bento" onclick="mudarPagina('${id}', 1)">Next ❯</button>
+                        <button class="bento-btn-bento" onclick="navegarDuplo('passe', 'Passe', -1)">❮ Previous</button>
+                        <span id="cont-passe" class="bento-counter-bento">1 / 6</span>
+                        <button class="bento-btn-bento" onclick="navegarDuplo('passe', 'Passe', 1)">Next ❯</button>
+                    </div>
+                </div>
+
+                <hr style="border: 0; border-top: 1px solid #b99b11; opacity: 0.2; margin: 40px 0;">
+
+                <!-- SECÇÃO 2: The Undead Reckoning -->
+                <div style="margin: 35px 0 15px 0; text-align: center;">
+                    <h3 style="color: #b99b11; font-family: 'Open Sans', sans-serif; font-size: 22px; font-weight: 700; margin: 0 0 10px 0;">
+                        ${data.tituloSecao2}
+                    </h3>
+                    <p style="color: #fdf5e6; font-family: 'Open Sans', sans-serif; font-size: 14px; line-height: 1.6; opacity: 0.9; max-width: 700px; margin: 0 auto;">
+                        ${data.descSecao2}
+                    </p>
+                </div>
+
+                <div class="pergaminho-bento">
+                    <span class="bento-card-title">Concept & Moodboard</span>
+                    <div class="bento-image-frame">
+                        <img id="img-undead" src="${data.imagensUndead[0]}" class="bento-img-content">
+                    </div>
+                    <div class="bento-navigation-bento">
+                        <button class="bento-btn-bento" onclick="navegarDuplo('passe', 'Undead', -1)">❮ Previous</button>
+                        <span id="cont-undead" class="bento-counter-bento">1 / 10</span>
+                        <button class="bento-btn-bento" onclick="navegarDuplo('passe', 'Undead', 1)">Next ❯</button>
                     </div>
                 </div>
             `;
-        } 
-        /// 4. LÓGICA PARA O TICKET EVONY (Texto no topo + Pergaminho de fundo + Rolo com Vídeo)
+        }
         else if (id === 'ticket-evony') {
             modal.classList.add('modal-largo');
             conteudoHTML += `
                 <div class="modal-intro-header-bento">
-                    <p>${data.introducao}</p>
+                    <h2>${data.titulo}</h2>
+                    <p style="margin-top: 15px;">${data.introducao}</p>
                 </div>
-                
                 <div class="pergaminho-bento" style="max-width: 450px; margin: 0 auto; padding: 20px; position: relative;">
-                    
                     <div style="position: relative; width: 100%;">
-                        
                         <img src="${data.moldura}" style="width: 100%; display: block;">
-                        
                         <div style="position: absolute; top: 12%; left: 16%; width: 68%; height: 75%; overflow: hidden;">
                             <video autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: cover; border-radius: 5px;">
                                 <source src="${data.videoTicket}" type="video/mp4">
                             </video>
                         </div>
-
                         <img src="${data.selo}" style="position: absolute; bottom: 5%; right: 5%; width: 55px; filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5)); pointer-events: none;">
                     </div>
                 </div>
-
-                <div style="height: 20px;"></div>
             `;
         }
 
         body.innerHTML = conteudoHTML;
         modal.style.display = 'flex';
+    }
+
+    function navegarDuplo(projetoId, tipo, direcao) {
+        const data = conteudos[projetoId];
+        const keyIndice = 'indice' + tipo;
+        const keyImagens = 'imagens' + tipo;
+        const imgElement = document.getElementById('img-' + tipo.toLowerCase());
+        const contElement = document.getElementById('cont-' + tipo.toLowerCase());
+
+        data[keyIndice] = (data[keyIndice] + direcao + data[keyImagens].length) % data[keyImagens].length;
+        imgElement.src = data[keyImagens][data[keyIndice]];
+        contElement.innerText = `${data[keyIndice] + 1} / ${data[keyImagens].length}`;
     }
 
     function mudarPaginaCarrossel(id, direcao) {
@@ -289,40 +339,43 @@
         document.getElementById('contador-carrossel').innerText = `${data.indiceAtual + 1} / ${data.imagensCarrossel.length}`;
     }
 
-    function mudarPagina(id, direcao) {
-        const data = conteudos[id];
-        data.indiceAtual = (data.indiceAtual + direcao + data.imagens.length) % data.imagens.length;
-        document.getElementById('img-modal-exibicao').src = data.imagens[data.indiceAtual];
-        document.getElementById('contador-paginas').innerText = `${data.indiceAtual + 1} / ${data.imagens.length}`;
-    }
-
     function fecharModal() {
         document.getElementById('projeto-modal').style.display = 'none';
     }
 
-    function abrirImagemEspecial(caminhoImagem) {
+    // ✅ FUNÇÃO ATUALIZADA - COM DATA DINÂMICA
+    function abrirImagemEspecial(caminhoImagem, dataStoryboard) {
         const body = document.getElementById('modal-body');
         const modal = document.getElementById('projeto-modal');
-        
-        // Garante que o modal está largo para a imagem brilhar
         modal.classList.add('modal-largo');
-
-        // Define o novo conteúdo: apenas a imagem do storyboard
+        
         body.innerHTML = `
+            <!-- TÍTULO FORA DO PERGAMINHO -->
+            <div class="modal-intro-header-bento">
+                <h2>Full Project Storyboard</h2>
+            </div>
+
+            <!-- CRÉDITOS TÉCNICOS FORA DO PERGAMINHO -->
+            <div style="text-align: center; margin-top: 25px; padding: 0 10px;">
+                <p style="color: #fdf5e6; font-family: 'Open Sans', sans-serif; font-size: 14px; line-height: 1.6;">
+                    <strong>Technical Note:</strong> This storyboard layout was finalized on ${dataStoryboard}. The visual composition integrates structural design from <strong>Canva</strong>, refined with <strong>AI assistance (Gemini)</strong> and detailed image manipulation performed on a <strong>Samsung S24 Plus</strong>.
+                </p>
+                <p style="color: #b99b11; font-family: 'Open Sans', sans-serif; font-size: 13px; margin-top: 12px; opacity: 0.9;">
+                    Click the "X" to return to the main gallery.
+                </p>
+            </div>
+            
+            <!-- PERGAMINHO COM IMAGEM -->
             <div class="pergaminho-bento" style="margin-top: 20px;">
-                <span class="bento-card-title">Full Project Storyboard</span>
+                <span class="bento-card-title">Concept & Storyboard</span>
                 <div class="bento-image-frame">
                     <img src="${caminhoImagem}" class="bento-img-content" style="width: 100%; height: auto;">
                 </div>
-                <div style="text-align: center; margin-top: 20px;">
-                    <p style="color: #b99b11; font-family: 'Open Sans', sans-serif; font-size: 14px;">
-                        Click the "X" to return to the main gallery.
-                    </p>
-                </div>
             </div>
+            
+            
         `;
     }
-
-</script>
+    </script>
 </body>
 </html>
