@@ -2,7 +2,7 @@
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Evony - Concept Art & World Building</title>
     <link rel="stylesheet" href="css_gaming.css">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700;800&display=swap" rel="stylesheet">
@@ -13,8 +13,8 @@
         
        <div class="scroll-top">
             <h2 class="game-title">Concept Art & World Building</h2>
-            <a href="index.html" class="scroll-key-link" title="Voltar ao CV Interativo">
-                <img src="foto_gaming/chave1removebg-preview.png" class="scroll-key" alt="Chave de Retorno">
+            <a href="index.html" class="scroll-key-link" title="Voltar ao CV Interativo" ontouchstart="">
+                <img src="foto_gaming/chave1removebg-preview.png" class="scroll-key" alt="Chave de Retorno" loading="lazy" decoding="async">
             </a>
         </div>
 
@@ -25,7 +25,7 @@
                     As an<strong>Evony player for nearly 6 years</strong>, I have always been driven to innovate within the game. For too long, these high-level strategy and feature concepts remained as mental notes.
                 </p>
                 <p>
-                    Over the last 2 years, I have dedicated myself to professional <strong>Design and Multimedia (FAD) training</strong>. This journey discovered my passion for creating <stong>user-centric UI/UX and visual assets</stong> for game environments. Merging my deep gameplay knowledge with this new technical expertise, I finally gained the skills to transform strategic concepts into concrete, professional visual assets and <strong>Game Design proposals</strong>.
+                    Over the last 2 years, I have dedicated myself to professional <strong>Design and Multimedia (FAD) training</strong>. This journey discovered my passion for creating <strong>user-centric UI/UX and visual assets</strong> for game environments. Merging my deep gameplay knowledge with this new technical expertise, I finally gained the skills to transform strategic concepts into concrete, professional visual assets and <strong>Game Design proposals</strong>.
                 </p>
                 <p>
                     Today, I am proud to present my vision for the strategic and aesthetic evolution of Evony. This page documents my journey of creativity, development, and official submission of ideas to the development team.
@@ -37,48 +37,51 @@
             <div class="scroll-content-wrapper">
                 
                 <div class="cards-column">
-                    <div class="game-card" onclick="abrirProjeto('adamastor')">
+                    <div class="game-card" onclick="abrirProjeto('adamastor')" ontouchstart="">
                         <div class="card-frame">
-                            <img src="foto_gaming/adamastor_sem _fundo.png" class="icon-center" alt="Adamastor">
+                            <img src="foto_gaming/adamastor_sem _fundo.png" class="icon-center" alt="Adamastor" loading="lazy" decoding="async">
                         </div>
                     </div>
-                    <div class="game-card" onclick="abrirProjeto('monstro')">
+                    <div class="game-card" onclick="abrirProjeto('monstro')" ontouchstart="">
                         <div class="card-frame">
-                            <img src="foto_gaming/monstro_diamante-removebg-preview.png" class="icon-center" alt="Monstro de Cristal">
+                            <img src="foto_gaming/monstro_diamante-removebg-preview.png" class="icon-center" alt="Monstro de Cristal" loading="lazy" decoding="async">
                         </div>
                     </div>
                 </div>
 
                 <div class="avatar-column">
-                    <video autoplay muted loop playsinline class="avatar-video">
+                    <video autoplay muted loop playsinline class="avatar-video" preload="metadata">
                         <source src="vid_gaming/avatarVA.mp4" type="video/mp4">
                         O teu navegador não suporta vídeos.
                     </video>
                 </div>
                 
                 <div class="cards-column">
-                    <div class="game-card" onclick="abrirProjeto('svs')">
+                    <div class="game-card" onclick="abrirProjeto('svs')" ontouchstart="">
                         <div class="card-frame">
-                            <img src="foto_gaming/bandeirasvs.png" class="icon-center" alt="Bandeira SvS">
+                            <img src="foto_gaming/bandeirasvs.png" class="icon-center" alt="Bandeira SvS" loading="lazy" decoding="async">
                         </div>
                     </div>
 
-                    <div class="game-card" onclick="abrirProjeto('passe')">
+                    <div class="game-card" onclick="abrirProjeto('passe')" ontouchstart="">
                         <div class="card-frame">
-                            <img src="foto_gaming/nova_versao.png" class="icon-center" alt="Passe Verde">
+                            <img src="foto_gaming/nova_versao.png" class="icon-center" alt="Passe Verde" loading="lazy" decoding="async">
                         </div>
                     </div>
                     
                     <div class="seal-container">
-                        <div class="special-card-seal" onclick="abrirProjeto('ticket-evony')">
+                        <div class="special-card-seal" onclick="abrirProjeto('ticket-evony')" ontouchstart="">
                             <div class="seal-inner">
-                                <img src="foto_gaming/selo.png" alt="Selo Oficial">
+                                <img src="foto_gaming/selo.png" alt="Selo Oficial" loading="lazy" decoding="async">
                             </div>
                         </div>
                     </div>
                 </div>
 
-            </div> </div> <div class="scroll-bottom">
+            </div>
+        </div>
+
+        <div class="scroll-bottom">
             <div class="footer-content">
                 <p><strong>© 2026 | Vera Antunes</strong></p>
                 
@@ -99,7 +102,7 @@
 
     <div id="projeto-modal" class="modal-overlay" onclick="fecharModal()">
         <div class="modal-content" onclick="event.stopPropagation()">
-            <span class="close-btn" onclick="fecharModal()">&times;</span>
+            <span class="close-btn" onclick="fecharModal()" ontouchstart="">&times;</span>
             <div id="modal-body"></div>
         </div>
     </div>
@@ -171,7 +174,6 @@
 
         modal.classList.remove('modal-largo');
 
-        //  INICIA VAZIO - cada projeto gere o seu próprio cabeçalho
         let conteudoHTML = ``;
 
         if (id === 'adamastor') {
@@ -184,7 +186,7 @@
                 <div class="pergaminho-bento" style="max-width: 600px; margin: 0 auto;">
                     <span class="bento-card-title">Concept Art & Moodboard</span>
                     <div class="bento-image-frame">
-                        <img src="${data.imagem}" class="bento-img-content" style="width: 100%; height: auto;">
+                        <img src="${data.imagem}" class="bento-img-content" style="width: 100%; height: auto;" loading="lazy" decoding="async">
                     </div>
                 </div>
             `;
@@ -199,17 +201,17 @@
                 <div class="pergaminho-bento">
                     <span class="bento-card-title">Concept & Moodboard</span>
                     <div class="bento-image-frame">
-                        <img id="img-carrossel-exibicao" src="${data.imagensCarrossel[0]}" class="bento-img-content">
+                        <img id="img-carrossel-exibicao" src="${data.imagensCarrossel[0]}" class="bento-img-content" loading="lazy" decoding="async">
                     </div>
                     <div class="bento-navigation-bento">
-                        <button class="bento-btn-bento" onclick="mudarPaginaCarrossel('${id}', -1)">❮ Previous</button>
+                        <button class="bento-btn-bento" onclick="mudarPaginaCarrossel('${id}', -1)" ontouchstart="">❮ Previous</button>
                         <span id="contador-carrossel" class="bento-counter-bento">1 / ${data.imagensCarrossel.length}</span>
-                        <button class="bento-btn-bento" onclick="mudarPaginaCarrossel('${id}', 1)">Next ❯</button>
+                        <button class="bento-btn-bento" onclick="mudarPaginaCarrossel('${id}', 1)" ontouchstart="">Next ❯</button>
                     </div>
                 </div>
                 <div class="deusa-btn-container">
-                    <button class="special-action-btn" onclick="abrirImagemEspecial('foto_gaming/storyboard-ke.png', 'February 12, 2026')" style="background:none; border:none; padding:0; cursor:pointer;">
-                        <img src="foto_gaming/deusa.png" alt="Deusa">
+                    <button class="special-action-btn" onclick="abrirImagemEspecial('foto_gaming/storyboard-ke.png', 'February 12, 2026')" style="background:none; border:none; padding:0; cursor:pointer;" ontouchstart="">
+                        <img src="foto_gaming/deusa.png" alt="Deusa" loading="lazy" decoding="async">
                     </button>
                 </div>
             `;
@@ -224,17 +226,17 @@
                 <div class="pergaminho-bento" style="max-width: 450px; margin: 0 auto 30px auto;">
                     <span class="bento-card-title">Concept & Moodboard</span>
                     <div class="bento-image-frame">
-                        <img id="img-carrossel-exibicao" src="${data.imagensCarrossel[0]}" class="bento-img-content">
+                        <img id="img-carrossel-exibicao" src="${data.imagensCarrossel[0]}" class="bento-img-content" loading="lazy" decoding="async">
                     </div>
                     <div class="bento-navigation-bento">
-                        <button class="bento-btn-bento" onclick="mudarPaginaCarrossel('${id}', -1)">❮ Previous</button>
+                        <button class="bento-btn-bento" onclick="mudarPaginaCarrossel('${id}', -1)" ontouchstart="">❮ Previous</button>
                         <span id="contador-carrossel" class="bento-counter-bento">1 / ${data.imagensCarrossel.length}</span>
-                        <button class="bento-btn-bento" onclick="mudarPaginaCarrossel('${id}', 1)">Next ❯</button>
+                        <button class="bento-btn-bento" onclick="mudarPaginaCarrossel('${id}', 1)" ontouchstart="">Next ❯</button>
                     </div>
                 </div>
                 <div class="deusa-btn-container" style="text-align: center; margin-top: 20px;">
-                    <button class="special-action-btn" onclick="abrirImagemEspecial('foto_gaming/storyboard-svs.png', 'February 17, 2026')" style="background:none; border:none; padding:0; cursor:pointer;">
-                        <img src="foto_gaming/deusa.png" alt="Deusa">
+                    <button class="special-action-btn" onclick="abrirImagemEspecial('foto_gaming/storyboard-svs.png', 'February 17, 2026')" style="background:none; border:none; padding:0; cursor:pointer;" ontouchstart="">
+                        <img src="foto_gaming/deusa.png" alt="Deusa" loading="lazy" decoding="async">
                     </button>
                 </div>
             `;
@@ -261,12 +263,12 @@
                 <div class="pergaminho-bento" style="margin-bottom: 40px;">
                     <span class="bento-card-title">Concept & Moodboard</span>
                     <div class="bento-image-frame">
-                        <img id="img-passe" src="${data.imagensPasse[0]}" class="bento-img-content">
+                        <img id="img-passe" src="${data.imagensPasse[0]}" class="bento-img-content" loading="lazy" decoding="async">
                     </div>
                     <div class="bento-navigation-bento">
-                        <button class="bento-btn-bento" onclick="navegarDuplo('passe', 'Passe', -1)">❮ Previous</button>
+                        <button class="bento-btn-bento" onclick="navegarDuplo('passe', 'Passe', -1)" ontouchstart="">❮ Previous</button>
                         <span id="cont-passe" class="bento-counter-bento">1 / 6</span>
-                        <button class="bento-btn-bento" onclick="navegarDuplo('passe', 'Passe', 1)">Next ❯</button>
+                        <button class="bento-btn-bento" onclick="navegarDuplo('passe', 'Passe', 1)" ontouchstart="">Next ❯</button>
                     </div>
                 </div>
 
@@ -285,12 +287,12 @@
                 <div class="pergaminho-bento">
                     <span class="bento-card-title">Concept & Moodboard</span>
                     <div class="bento-image-frame">
-                        <img id="img-undead" src="${data.imagensUndead[0]}" class="bento-img-content">
+                        <img id="img-undead" src="${data.imagensUndead[0]}" class="bento-img-content" loading="lazy" decoding="async">
                     </div>
                     <div class="bento-navigation-bento">
-                        <button class="bento-btn-bento" onclick="navegarDuplo('passe', 'Undead', -1)">❮ Previous</button>
+                        <button class="bento-btn-bento" onclick="navegarDuplo('passe', 'Undead', -1)" ontouchstart="">❮ Previous</button>
                         <span id="cont-undead" class="bento-counter-bento">1 / 10</span>
-                        <button class="bento-btn-bento" onclick="navegarDuplo('passe', 'Undead', 1)">Next ❯</button>
+                        <button class="bento-btn-bento" onclick="navegarDuplo('passe', 'Undead', 1)" ontouchstart="">Next ❯</button>
                     </div>
                 </div>
             `;
@@ -304,13 +306,13 @@
                 </div>
                 <div class="pergaminho-bento" style="max-width: 450px; margin: 0 auto; padding: 20px; position: relative;">
                     <div style="position: relative; width: 100%;">
-                        <img src="${data.moldura}" style="width: 100%; display: block;">
+                        <img src="${data.moldura}" style="width: 100%; display: block;" loading="lazy" decoding="async">
                         <div style="position: absolute; top: 12%; left: 16%; width: 68%; height: 75%; overflow: hidden;">
                             <video autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: cover; border-radius: 5px;">
                                 <source src="${data.videoTicket}" type="video/mp4">
                             </video>
                         </div>
-                        <img src="${data.selo}" style="position: absolute; bottom: 5%; right: 5%; width: 55px; filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5)); pointer-events: none;">
+                        <img src="${data.selo}" style="position: absolute; bottom: 5%; right: 5%; width: 55px; filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5)); pointer-events: none;" loading="lazy" decoding="async">
                     </div>
                 </div>
             `;
@@ -327,6 +329,9 @@
         const imgElement = document.getElementById('img-' + tipo.toLowerCase());
         const contElement = document.getElementById('cont-' + tipo.toLowerCase());
 
+        // ✅ Proteção: só executa se elementos existirem (evita erro em mobile)
+        if (!imgElement || !contElement) return;
+
         data[keyIndice] = (data[keyIndice] + direcao + data[keyImagens].length) % data[keyImagens].length;
         imgElement.src = data[keyImagens][data[keyIndice]];
         contElement.innerText = `${data[keyIndice] + 1} / ${data[keyImagens].length}`;
@@ -334,9 +339,15 @@
 
     function mudarPaginaCarrossel(id, direcao) {
         const data = conteudos[id];
+        const imgElement = document.getElementById('img-carrossel-exibicao');
+        const contElement = document.getElementById('contador-carrossel');
+
+        // ✅ Proteção: só executa se elementos existirem (evita erro em mobile)
+        if (!imgElement || !contElement) return;
+
         data.indiceAtual = (data.indiceAtual + direcao + data.imagensCarrossel.length) % data.imagensCarrossel.length;
-        document.getElementById('img-carrossel-exibicao').src = data.imagensCarrossel[data.indiceAtual];
-        document.getElementById('contador-carrossel').innerText = `${data.indiceAtual + 1} / ${data.imagensCarrossel.length}`;
+        imgElement.src = data.imagensCarrossel[data.indiceAtual];
+        contElement.innerText = `${data.indiceAtual + 1} / ${data.imagensCarrossel.length}`;
     }
 
     function fecharModal() {
@@ -369,13 +380,25 @@
             <div class="pergaminho-bento" style="margin-top: 20px;">
                 <span class="bento-card-title">Concept & Storyboard</span>
                 <div class="bento-image-frame">
-                    <img src="${caminhoImagem}" class="bento-img-content" style="width: 100%; height: auto;">
+                    <img src="${caminhoImagem}" class="bento-img-content" style="width: 100%; height: auto;" loading="lazy" decoding="async">
                 </div>
             </div>
-            
-            
         `;
     }
+
+    // ✅ Prevenção de erro: garantir que o DOM está pronto antes de usar
+    document.addEventListener('DOMContentLoaded', function() {
+        // Adicionar suporte a toque para elementos interativos
+        document.querySelectorAll('[onclick]').forEach(el => {
+            el.style.cursor = 'pointer';
+            el.addEventListener('touchstart', function(e) {
+                // Prevenir delay de 300ms em mobile antigo
+                if (e.touches.length === 1) {
+                    this.click();
+                }
+            }, { passive: true });
+        });
+    });
     </script>
 </body>
 </html>
