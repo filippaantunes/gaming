@@ -171,7 +171,7 @@
 
         modal.classList.remove('modal-largo');
 
-        // ✅ INICIA VAZIO - cada projeto gere o seu próprio cabeçalho
+        //  INICIA VAZIO - cada projeto gere o seu próprio cabeçalho
         let conteudoHTML = ``;
 
         if (id === 'adamastor') {
@@ -317,7 +317,7 @@
         }
 
         body.innerHTML = conteudoHTML;
-        modal.style.display = 'flex';
+        modal.style.setProperty('display', 'flex', 'important');
     }
 
     function navegarDuplo(projetoId, tipo, direcao) {
@@ -343,7 +343,7 @@
         document.getElementById('projeto-modal').style.display = 'none';
     }
 
-    // ✅ FUNÇÃO ATUALIZADA - COM DATA DINÂMICA
+    // FUNÇÃO ATUALIZADA - COM DATA DINÂMICA
     function abrirImagemEspecial(caminhoImagem, dataStoryboard) {
         const body = document.getElementById('modal-body');
         const modal = document.getElementById('projeto-modal');
