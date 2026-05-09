@@ -253,11 +253,11 @@ body, .modal-overlay, .modal-content, .pergaminho-bento {
     justify-content: center;
     align-items: center;
     
-    /* ✅ APENAS ISTO: padding generoso para scroll */
+    /*  APENAS ISTO: padding generoso para scroll */
     padding: 80px 20px 80px 20px !important;
     box-sizing: border-box;
     
-    /* ✅ Scroll funcional */
+    /*  Scroll funcional */
     overflow-y: auto !important;
     overflow-x: hidden !important;
     -webkit-overflow-scrolling: touch;
@@ -266,7 +266,7 @@ body, .modal-overlay, .modal-content, .pergaminho-bento {
 .modal-content {
     width: 90%;
     max-width: 900px;
-    margin: auto 0; /* ✅ Centra verticalmente mas permite scroll */
+    margin: auto 0; /*  Centra verticalmente mas permite scroll */
     position: relative;
     background: transparent !important;
     border: none !important;
@@ -287,7 +287,7 @@ body, .modal-overlay, .modal-content, .pergaminho-bento {
     padding: 30px;
 }
 
-/* ✅ BOTÃO X SEMPRE ACESSÍVEL */
+/*  BOTÃO X SEMPRE ACESSÍVEL */
 .close-btn {
     position: fixed !important;
     top: 15px !important;
@@ -322,7 +322,7 @@ body, .modal-overlay, .modal-content, .pergaminho-bento {
         padding: 60px 10px 60px 10px !important;
         align-items: flex-start !important;
         /*  Alterado de 'scroll' para 'auto' - mostra scrollbar só quando necessário */
-        overflow-y: auto !important;
+        /*overflow-y: auto !important;*/
         display: flex !important;
     }
     
@@ -362,19 +362,19 @@ body, .modal-overlay, .modal-content, .pergaminho-bento {
         font-size: 14px !important;
     }
     
-    /*  Garante que as secções do passe são visíveis */
+    /* Garante que as secções do passe são visíveis */
     .modal-content > div[style*="margin: 35px"] {
         margin: 25px 0 10px 0 !important;
     }
 }
 
-/*  Garante scroll suave em iOS (mantido) */
+/* Garante scroll suave em iOS (mantido) */
 .modal-overlay {
     -webkit-overflow-scrolling: touch;
     overscroll-behavior: contain;
 }
 
-/*  Garante que o conteúdo do modal não seja cortado */
+/* Garante que o conteúdo do modal não seja cortado */
 #modal-body {
     width: 100%;
     min-height: 100px;
@@ -612,7 +612,7 @@ body, .modal-overlay, .modal-content, .pergaminho-bento {
 }
 
 /* ==========================================================
-   SCROLLBAR ESTILIZADA PARA MODAL (OPCIONAL)
+    SCROLLBAR ESTILIZADA PARA MODAL (OPCIONAL)
    ========================================================== */
 /* Se quiseres scrollbar visível e dourada no modal: */
 .modal-overlay::-webkit-scrollbar {
@@ -669,4 +669,9 @@ html, body {
     cursor: pointer;
     touch-action: manipulation;
     -webkit-tap-highlight-color: transparent;
+}
+
+.game-card, .special-card-seal {
+    cursor: pointer;
+    pointer-events: auto !important;
 }
