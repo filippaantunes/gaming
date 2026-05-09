@@ -320,6 +320,17 @@ body, .modal-overlay, .modal-content, .pergaminho-bento {
 @media (max-width: 768px) {
     .modal-overlay {
         padding: 60px 10px 60px 10px !important;
+        align-items: flex-start !important;
+        /*  Alterado de 'scroll' para 'auto' - mostra scrollbar só quando necessário */
+        overflow-y: auto !important;
+        display: flex !important;
+    }
+    
+    .modal-content {
+        width: 98% !important;
+        margin: 0 auto !important;
+        min-height: auto !important;
+        position: relative !important;
     }
     
     .close-btn {
@@ -329,6 +340,44 @@ body, .modal-overlay, .modal-content, .pergaminho-bento {
         width: 40px;
         height: 40px;
     }
+    
+    /*  Garante que os pergaminhos são visíveis no mobile */
+    .pergaminho-bento {
+        margin-bottom: 30px !important;
+        padding: 15px !important;
+        width: 100% !important;
+        /*  Garante que o conteúdo interno não seja cortado */
+        overflow: visible !important;
+        max-height: none !important;
+    }
+    
+    /*  Ajusta navegação dos carrosseis para mobile */
+    .bento-navigation-bento {
+        gap: 15px !important;
+        flex-wrap: wrap !important;
+    }
+    
+    .bento-btn-bento {
+        padding: 8px 15px !important;
+        font-size: 14px !important;
+    }
+    
+    /*  Garante que as secções do passe são visíveis */
+    .modal-content > div[style*="margin: 35px"] {
+        margin: 25px 0 10px 0 !important;
+    }
+}
+
+/*  Garante scroll suave em iOS (mantido) */
+.modal-overlay {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+}
+
+/*  Garante que o conteúdo do modal não seja cortado */
+#modal-body {
+    width: 100%;
+    min-height: 100px;
 }
 
 /* ==========================================================
@@ -440,7 +489,7 @@ body, .modal-overlay, .modal-content, .pergaminho-bento {
     margin-left: auto;
     margin-right: auto;
     
-    /* ✅ CORREÇÃO: Permite crescimento do conteúdo */
+    /*  CORREÇÃO: Permite crescimento do conteúdo */
     overflow-y: visible !important;
     max-height: none !important;
 }
@@ -457,7 +506,7 @@ body, .modal-overlay, .modal-content, .pergaminho-bento {
     padding-bottom: 5px;
 }
 
-/* ✅ NOVO: Títulos fora do pergaminho (secções do passe) - MESMO ESTILO */
+/*  NOVO: Títulos fora do pergaminho (secções do passe) - MESMO ESTILO */
 .modal-content > div[style*="margin: 35px"] .bento-card-title,
 .secao-passe .bento-card-title,
 .secao-undead .bento-card-title {
@@ -563,7 +612,7 @@ body, .modal-overlay, .modal-content, .pergaminho-bento {
 }
 
 /* ==========================================================
-   ✅ SCROLLBAR ESTILIZADA PARA MODAL (OPCIONAL)
+   SCROLLBAR ESTILIZADA PARA MODAL (OPCIONAL)
    ========================================================== */
 /* Se quiseres scrollbar visível e dourada no modal: */
 .modal-overlay::-webkit-scrollbar {
