@@ -1,5 +1,5 @@
 /* ==========================================================
-   REMOVER BARRAS DE ARRASTAR (SCROLLBARS) EM TUDO
+   REMOVER BARRAS DE ARRASTAR (SCROLLBARS) EM TUDO - BASE
    ========================================================== */
 body::-webkit-scrollbar,
 .modal-overlay::-webkit-scrollbar,
@@ -103,8 +103,8 @@ body, .modal-overlay, .modal-content, .pergaminho-bento {
    4. LAYOUT ESTILO EQUIPAMENTO (Cards + Avatar)
    ========================================================== */
 .scroll-content-wrapper {
-    display: grid; /* Mudamos para GRID para controlo total das colunas */
-    grid-template-columns: 1fr auto 1fr; /* Coluna esquerda, Avatar (auto), Coluna direita */
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
     align-items: center;
     justify-items: center;
     gap: 20px;
@@ -122,7 +122,6 @@ body, .modal-overlay, .modal-content, .pergaminho-bento {
     align-items: center;
 }
 
-/* Garante que a coluna da esquerda empurre para a direita e a da direita para a esquerda */
 .cards-column:first-child { justify-self: end; }
 .cards-column:last-child { justify-self: start; }
 
@@ -177,10 +176,9 @@ body, .modal-overlay, .modal-content, .pergaminho-bento {
     object-fit: cover;
 }
 
-/* AJUSTE PARA O MOBILE MANTER A VISTA BOA */
 @media (max-width: 768px) {
     .scroll-content-wrapper {
-        display: flex; /* Volta a flex no mobile para empilhar */
+        display: flex;
         flex-direction: column;
         gap: 15px;
     }
@@ -190,6 +188,7 @@ body, .modal-overlay, .modal-content, .pergaminho-bento {
         justify-content: center; 
     }
 }
+
 /* ==========================================================
    5. O SELO E ELEMENTOS DE BAIXO (Ajuste PC)
    ========================================================== */
@@ -200,14 +199,13 @@ body, .modal-overlay, .modal-content, .pergaminho-bento {
     align-items: center;
     margin-top: 15px;
     margin-bottom: 10px;
-    gap: 20px; /* AJUSTE: Cria espaço entre cards e selo se estiverem na mesma linha */
+    gap: 20px;
 }
 
-/* Regra para garantir que o selo não "fuja" no PC */
 @media (min-width: 769px) {
     .seal-container {
-        max-width: 450px; /* Limita a largura para os elementos ficarem próximos */
-        margin: 15px auto; /* Centraliza o grupo inteiro no meio do pergaminho */
+        max-width: 450px;
+        margin: 15px auto;
     }
 }
 
@@ -239,7 +237,7 @@ body, .modal-overlay, .modal-content, .pergaminho-bento {
 }
 
 /* ==========================================================
-   6. MODAL E OUTROS
+   6. MODAL - CORREÇÃO SIMPLES E SEGURA
    ========================================================== */
 .modal-overlay {
     display: none;
@@ -251,20 +249,24 @@ body, .modal-overlay, .modal-content, .pergaminho-bento {
     -webkit-backdrop-filter: blur(12px);
     z-index: 1000;
     
-    /*  Centraliza o conteúdo no meio do ecrã */
+    /* Centralização */
     justify-content: center;
-    align-items: center; 
+    align-items: center;
     
-    padding: 2vh 0; /* Diminuír o padding para ganhar espaço */
-    overflow-y: auto; 
-    scrollbar-width: none;
-    -ms-overflow-style: none;
+    /* ✅ APENAS ISTO: padding generoso para scroll */
+    padding: 80px 20px 80px 20px !important;
+    box-sizing: border-box;
+    
+    /* ✅ Scroll funcional */
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    -webkit-overflow-scrolling: touch;
 }
 
 .modal-content {
     width: 90%;
     max-width: 900px;
-    margin-bottom: 5vh; 
+    margin: auto 0; /* ✅ Centra verticalmente mas permite scroll */
     position: relative;
     background: transparent !important;
     border: none !important;
@@ -283,19 +285,50 @@ body, .modal-overlay, .modal-content, .pergaminho-bento {
     border-radius: 15px;
     box-shadow: 0 0 40px rgba(0, 0, 0, 0.8) !important;
     padding: 30px;
-    margin-top: 5vh; 
 }
 
+/* ✅ BOTÃO X SEMPRE ACESSÍVEL */
 .close-btn {
-    position: fixed; 
-    top: 20px;
-    right: 30px;
+    position: fixed !important;
+    top: 15px !important;
+    right: 25px !important;
     font-size: 45px;
     font-weight: bold;
     color: #fdf5e6; 
     cursor: pointer;
-    z-index: 1100;
-    text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+    z-index: 1100 !important; /* Máxima prioridade */
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
+    background: rgba(0, 0, 0, 0.3); /* Fundo semi-transparente */
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    line-height: 1;
+}
+
+.close-btn:hover {
+    background: rgba(212, 175, 55, 0.4);
+    color: #D4AF37;
+    transform: rotate(90deg);
+}
+
+/* ==========================================
+   MOBILE
+   ========================================== */
+@media (max-width: 768px) {
+    .modal-overlay {
+        padding: 60px 10px 60px 10px !important;
+    }
+    
+    .close-btn {
+        top: 10px !important;
+        right: 15px !important;
+        font-size: 35px !important;
+        width: 40px;
+        height: 40px;
+    }
 }
 
 /* ==========================================================
@@ -329,6 +362,24 @@ body, .modal-overlay, .modal-content, .pergaminho-bento {
     .game-card { width: 75px; height: 75px; }
     .avatar-video { max-width: 230px; }
     .special-card-seal { width: 70px; height: 70px; }
+    
+    /* Ajustes mobile para modal */
+    .modal-overlay {
+        padding: 50px 10px 10px 10px !important;
+        align-items: flex-start !important;
+    }
+    .modal-content {
+        width: 98% !important;
+        margin-top: 0 !important;
+    }
+    .pergaminho-compacto {
+        margin-top: 0 !important;
+    }
+    .close-btn {
+        top: 10px;
+        right: 15px;
+        font-size: 35px;
+    }
 }
 
 /* ==========================================================
@@ -388,6 +439,10 @@ body, .modal-overlay, .modal-content, .pergaminho-bento {
     width: 92%;                
     margin-left: auto;
     margin-right: auto;
+    
+    /* ✅ CORREÇÃO: Permite crescimento do conteúdo */
+    overflow-y: visible !important;
+    max-height: none !important;
 }
 
 .bento-card-title {
@@ -400,6 +455,20 @@ body, .modal-overlay, .modal-content, .pergaminho-bento {
     display: block;
     border-bottom: 1px solid rgba(93, 64, 55, 0.1);
     padding-bottom: 5px;
+}
+
+/* ✅ NOVO: Títulos fora do pergaminho (secções do passe) - MESMO ESTILO */
+.modal-content > div[style*="margin: 35px"] .bento-card-title,
+.secao-passe .bento-card-title,
+.secao-undead .bento-card-title {
+    font-size: 1.1rem !important;
+    color: #b99b11 !important;
+    border-bottom: 2px solid #b99b11 !important;
+    padding-bottom: 8px !important;
+    margin-bottom: 15px !important;
+    text-align: center !important;
+    display: inline-block !important;
+    min-width: 200px;
 }
 
 .bento-image-frame {
@@ -457,15 +526,13 @@ body, .modal-overlay, .modal-content, .pergaminho-bento {
 }
 
 /* ==========================================================
-   11. BOTÂO DOURADO
+   11. BOTÃO DOURADO / DEUSA
    ========================================================== */
-
-/* --- NOVO CÓDIGO PARA O BOTÃO DA DEUSA --- */
 .deusa-btn-container {
     display: flex;
-    justify-content: flex-end; /* Empurra para a direita */
-    padding-right: 15%;        /* Margem para não colar na borda */
-    margin-top: -10px;         /* Ajuste de altura para subir um pouco */
+    justify-content: flex-end;
+    padding-right: 15%;
+    margin-top: -10px;
 }
 
 @media (max-width: 768px) {
@@ -476,63 +543,62 @@ body, .modal-overlay, .modal-content, .pergaminho-bento {
 }
 
 .special-action-btn img {
-    width: 80px !important;    /* Tamanho pequeno e elegante */
+    width: 80px !important;
     height: auto;
     cursor: pointer;
     transition: transform 0.3s ease;
 }
 
-/* Ajuste de alinhamento para o conteúdo dos modais de texto */
+/* Ajuste de alinhamento para texto dos modais */
 .modal-content p, 
 .modal-content ul {
-    text-align: left; /* Garante que o texto base é à esquerda */
-    max-width: 90%;   /* Evita que o texto cole nas bordas */
+    text-align: left;
+    max-width: 90%;
     margin-left: auto;
     margin-right: auto;
 }
 
 .modal-content h3 {
-    text-align: center; /* Mantém os títulos centrados como no teu HTML */
+    text-align: center;
 }
 
 /* ==========================================================
-   AJUSTE DE VISUALIZAÇÃO PARA TELEMÓVEL (SUB-MODAIS)
+   ✅ SCROLLBAR ESTILIZADA PARA MODAL (OPCIONAL)
    ========================================================== */
-@media (max-width: 768px) {
-    .modal-overlay {
-        align-items: flex-start !important; /* Encosta ao topo no mobile */
-        padding-top: 15px !important;       /* Margem mínima para não bater no topo */
-    }
-
-    .modal-content {
-        margin-top: 0 !important;           /* Remove espaços extras */
-        width: 95% !important;
-    }
-
-    .pergaminho-compacto {
-        margin-top: 0 !important;           /* Sobe o conteúdo do Adamastor/Passe */
-    }
-
-    /* Ajuste para o botão de fechar não tapar o conteúdo no mobile */
-    .close-btn {
-        top: 10px;
-        right: 15px;
-        font-size: 35px;
-    }
+/* Se quiseres scrollbar visível e dourada no modal: */
+.modal-overlay::-webkit-scrollbar {
+    width: 8px !important;
+    display: block !important;
 }
+
+.modal-overlay::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+}
+
+.modal-overlay::-webkit-scrollbar-thumb {
+    background: #D4AF37;
+    border-radius: 4px;
+    border: 2px solid rgba(0, 0, 0, 0.3);
+}
+
+.modal-overlay::-webkit-scrollbar-thumb:hover {
+    background: #b99b11;
+}
+
+/* Se preferires manter scrollbar escondida MAS com scroll funcional, 
+   descomenta a linha abaixo e comenta o bloco acima: */
+/* .modal-overlay::-webkit-scrollbar { display: none !important; } */
 
 /* ==========================================================
    ESCUDO DE COMPATIBILIDADE (SISTEMAS ANTIGOS)
    ========================================================== */
-
-/* 1. Impede que o layout fuja para a direita */
 html, body {
     overflow-x: hidden; 
     position: relative;
     width: 100%;
 }
 
-/* 2. Alternativa estável ao Grid para browsers antigos */
 @media (max-width: 768px) {
     .scroll-content-wrapper {
         display: flex !important;
@@ -550,9 +616,8 @@ html, body {
     }
 }
 
-/* 3. Garante que o toque (clique) é registado */
 .game-card, .special-card-seal, .scroll-key, .close-btn {
     cursor: pointer;
-    touch-action: manipulation; /* Melhora a resposta ao toque */
-    -webkit-tap-highlight-color: transparent; /* Remove aquele quadrado azul feio ao clicar */
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
 }
