@@ -57,9 +57,9 @@ body.modal-open {
     border-radius: 20px;
     border: 2px solid #b99b11;
     box-sizing: border-box;
-    overflow: hidden; /* ✅ CORREÇÃO: hidden em vez de visible */
+    overflow: hidden;
     height: auto;
-    background: #f5e6c8; /* ✅ CORREÇÃO: cor de fallback */
+    background: #f5e6c8;
 }
 
 /* ==========================================================
@@ -71,7 +71,7 @@ body.modal-open {
     justify-content: center;
     align-items: center;
     gap: 15px;
-    height: clamp(160px, 22vw, 300px); /* ✅ CORREÇÃO: clamp substitui min/max */
+    height: clamp(160px, 22vw, 300px);
     background: url('foto_gaming/mesagemini.png') no-repeat center center;
     background-size: cover;
     border-bottom: 2px solid #b99b11;
@@ -85,7 +85,7 @@ body.modal-open {
     font-family: 'Open Sans', sans-serif;
     font-weight: 600;
     color: #D4AF37;
-    font-size: clamp(0.9rem, 3.5vw, 2.2rem); /* ✅ CORREÇÃO: tamanho base mais pequeno */
+    font-size: clamp(0.9rem, 3.5vw, 2.2rem);
     text-align: center;
     text-transform: uppercase;
     letter-spacing: 1.5px;
@@ -106,7 +106,7 @@ body.modal-open {
 }
 
 .scroll-key {
-    width: clamp(45px, 12vw, 85px); /* ✅ CORREÇÃO: reduzido para não ficar gigante */
+    width: clamp(45px, 12vw, 85px);
     height: auto;
     filter: drop-shadow(0px 0px 10px rgba(255, 215, 0, 0.8));
     transition: all 0.3s ease;
@@ -128,7 +128,7 @@ body.modal-open {
     color: #4a3721;
     line-height: 1.8;
     box-sizing: border-box;
-    width: 100%; /* ✅ CORREÇÃO: largura total garantida */
+    width: 100%;
     overflow: visible;
     height: auto;
     min-height: 200px;
@@ -173,7 +173,7 @@ body.modal-open {
 .cards-column:last-child { justify-self: start; }
 
 .game-card {
-    width: clamp(60px, 15vw, 100px); /* ✅ CORREÇÃO: clamp para flexibilidade */
+    width: clamp(60px, 15vw, 100px);
     height: clamp(60px, 15vw, 100px);
     background: linear-gradient(135deg, #b99b11, #f3e07e, #b99b11);
     padding: 3px;
@@ -223,7 +223,7 @@ body.modal-open {
 }
 
 .avatar-video {
-    width: clamp(200px, 30vw, 280px); /* ✅ CORREÇÃO: clamp para flexibilidade */
+    width: clamp(200px, 30vw, 280px);
     height: auto;
     border-radius: 15px;
     border: 5px solid #D4AF37;
@@ -240,12 +240,12 @@ body.modal-open {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 20px 0 15px 0; /* ✅ CORREÇÃO: margem equilibrada */
+    margin: 20px 0 15px 0;
     gap: 20px;
 }
 
 .special-card-seal {
-    width: clamp(50px, 10vw, 75px); /* ✅ CORREÇÃO: muito mais pequeno */
+    width: clamp(50px, 10vw, 75px);
     height: clamp(50px, 10vw, 75px);
     background: radial-gradient(circle, #8B0000 0%, #680e20 50%, #8B0000 100%);
     border-radius: 50%;
@@ -285,7 +285,7 @@ body.modal-open {
    ========================================================== */
 .deusa-btn-container {
     display: flex;
-    justify-content: center; /* ✅ CORREÇÃO: center em vez de flex-end */
+    justify-content: center;
     padding: 0 15%;
     margin-top: 10px;
 }
@@ -300,7 +300,7 @@ body.modal-open {
 }
 
 .special-action-btn img {
-    width: clamp(55px, 12vw, 80px); /* ✅ CORREÇÃO: tamanho controlado */
+    width: clamp(55px, 12vw, 80px);
     height: auto;
     display: block;
     transition: transform 0.3s ease;
@@ -314,7 +314,7 @@ body.modal-open {
    7. RODAPÉ - AGORA SEMPRE VISÍVEL
    ========================================================== */
 .scroll-bottom {
-    background: linear-gradient(to bottom, #2b241b, #1a1410); /* ✅ CORREÇÃO: gradiente para melhor visibilidade */
+    background: linear-gradient(to bottom, #2b241b, #1a1410);
     border-top: 2px solid #b99b11;
     display: flex;
     flex-direction: column;
@@ -396,9 +396,9 @@ body.modal-open {
 }
 
 .close-btn {
-    position: sticky; /* ✅ CORREÇÃO: sticky em vez de fixed */
+    position: sticky;
     top: 10px;
-    float: right; /* ✅ CORREÇÃO: float para ficar dentro do modal */
+    float: right;
     font-size: 36px;
     font-weight: bold;
     color: #fdf5e6;
@@ -430,7 +430,7 @@ body.modal-open {
 }
 
 /* ==========================================================
-   9. CONTEÚDOS BENTO (MODAL)
+   9. CONTEÚDOS BENTO (MODAL) - TÍTULOS SUAVES + DOURO ESCURO
    ========================================================== */
 .modal-intro-header-bento {
     text-align: center;
@@ -439,17 +439,20 @@ body.modal-open {
 }
 
 .modal-intro-header-bento h2 {
-    color: #D4AF37;
+    color: #9A7B15; /* ✅ Dourado Escuro Elegante */
     font-size: clamp(1.3rem, 3.5vw, 2rem);
     margin-bottom: 10px;
     text-transform: uppercase;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    /* ✅ Sombra suave e difusa (sem contornos duros) */
+    text-shadow: 0px 2px 4px rgba(60, 40, 15, 0.5), 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .modal-intro-header-bento p {
-    color: #fdf5e6;
+    color: #3a2a1a; 
     font-size: clamp(0.85rem, 2vw, 1rem);
     line-height: 1.6;
+    font-weight: 500;
+    text-shadow: 0px 1px 0px rgba(255,255,255,0.7);
 }
 
 .pergaminho-bento {
@@ -470,7 +473,7 @@ body.modal-open {
 }
 
 .bento-card-title {
-    color: #b99b11;
+    color: #9A7B15; /* ✅ Dourado Escuro */
     font-size: clamp(0.9rem, 2.5vw, 1.1rem);
     font-weight: 800;
     text-transform: uppercase;
@@ -480,11 +483,14 @@ body.modal-open {
     border-bottom: 2px solid #b99b11;
     padding-bottom: 8px;
     text-align: center;
+    
+    /* ✅ Sombra suave profissional */
+    text-shadow: 0px 2px 3px rgba(60, 40, 15, 0.6), 0px 4px 6px rgba(0, 0, 0, 0.25);
 }
 
 .bento-image-frame {
     border-radius: 12px;
-    overflow: hidden; /* ✅ CORREÇÃO: hidden em vez de visible */
+    overflow: hidden;
     border: 1px solid rgba(0,0,0,0.2);
     box-shadow: 0 5px 15px rgba(0,0,0,0.3);
     width: 100%;
@@ -511,7 +517,7 @@ body.modal-open {
 }
 
 .carousel-track {
-    display: flex; /* ✅ GARANTIDO: sempre visível */
+    display: flex;
     transition: transform 0.4s ease;
     gap: 15px;
     width: 100%;
@@ -528,7 +534,7 @@ body.modal-open {
 
 .carousel-item {
     flex: 0 0 auto;
-    width: clamp(110px, 28vw, 180px); /* ✅ CORREÇÃO: clamp para todos os ecrãs */
+    width: clamp(110px, 28vw, 180px);
     background: linear-gradient(135deg, #b99b11, #f3e07e, #b99b11);
     padding: 3px;
     border-radius: 12px;
@@ -543,7 +549,7 @@ body.modal-open {
     background: #1a1a1a;
     border-radius: 10px;
     overflow: hidden;
-    display: flex; /* ✅ GARANTIDO: sempre visível */
+    display: flex;
     align-items: center;
     justify-content: center;
 }
@@ -651,7 +657,9 @@ body.modal-open {
 .secao-passe .bento-card-title,
 .secao-undead .bento-card-title {
     font-size: clamp(1rem, 2.5vw, 1.2rem);
-    color: #b99b11;
+    color: #9A7B15 !important; /* ✅ Dourado Escuro */
+    /* ✅ Sombra suave aplicada */
+    text-shadow: 0px 2px 3px rgba(60, 40, 15, 0.6), 0px 4px 6px rgba(0, 0, 0, 0.25) !important;
     border-bottom: 2px solid #b99b11;
     padding-bottom: 8px;
     margin-bottom: 15px;
@@ -669,7 +677,7 @@ body.modal-open {
 }
 
 /* ==========================================================
-   14. CONTEÚDO MODAL GENÉRICO
+   14. CONTEÚDO MODAL GENÉRICO - LEITURA OTIMIZADA
    ========================================================== */
 .modal-content p,
 .modal-content ul {
@@ -679,11 +687,17 @@ body.modal-open {
     margin-right: auto;
     word-wrap: break-word;
     overflow-wrap: break-word;
+    
+    color: #3a2a1a !important; 
+    font-weight: 500;
+    text-shadow: 0px 1px 0px rgba(255,255,255,0.6);
 }
 
 .modal-content h3 {
     text-align: center;
-    color: #b99b11;
+    color: #9A7B15 !important; /* ✅ Dourado Escuro */
+    /* ✅ Sombra suave */
+    text-shadow: 0px 2px 3px rgba(60, 40, 15, 0.6), 0px 4px 6px rgba(0, 0, 0, 0.25);
 }
 
 /* ==========================================================
