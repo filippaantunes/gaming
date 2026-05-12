@@ -2,6 +2,7 @@
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
+    <!-- ✅ Viewport otimizado para mobile sem quebrar zoom acessível -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <title>Evony - Concept Art & World Building</title>
     <link rel="stylesheet" href="css_gaming.css">
@@ -9,9 +10,10 @@
 </head>
 <body>
 
+    <!-- ✅ CONTAINER PRINCIPAL - FECHADO CORRETAMENTE -->
     <div class="scroll-container">
         
-       <div class="scroll-top">
+        <div class="scroll-top">
             <h2 class="game-title">Concept Art & World Building</h2>
             <a href="index.html" class="scroll-key-link" title="Voltar ao CV Interativo">
                 <img src="foto_gaming/chave1removebg-preview.png" class="scroll-key" alt="Chave de Retorno" loading="lazy" decoding="async">
@@ -50,7 +52,7 @@
                 </div>
 
                 <div class="avatar-column">
-                    <video autoplay muted loop playsinline class="avatar-video" preload="metadata">
+                    <video autoplay muted loop playsinline class="avatar-video" preload="metadata" poster="foto_gaming/avatar-fallback.png">
                         <source src="vid_gaming/avatarVA.mp4" type="video/mp4">
                         O teu navegador não suporta vídeos.
                     </video>
@@ -68,19 +70,22 @@
                             <img src="foto_gaming/nova_versao.png" class="icon-center" alt="Passe Verde" loading="lazy" decoding="async">
                         </div>
                     </div>
-                    
-                    <div class="seal-container">
-                        <div class="special-card-seal" onclick="abrirProjeto('ticket-evony')" style="touch-action: manipulation; -webkit-tap-highlight-color: transparent;">
-                            <div class="seal-inner">
-                                <img src="foto_gaming/selo.png" alt="Selo Oficial" loading="lazy" decoding="async">
-                            </div>
-                        </div>
-                    </div>
                 </div>
 
             </div>
+
+            <!-- ✅ SELO MOVIDO PARA FORA DO GRID - EVITA QUEBRA DE LAYOUT -->
+            <div class="seal-container" style="margin-top: 25px; margin-bottom: 15px;">
+                <div class="special-card-seal" onclick="abrirProjeto('ticket-evony')" style="touch-action: manipulation; -webkit-tap-highlight-color: transparent;">
+                    <div class="seal-inner">
+                        <img src="foto_gaming/selo.png" alt="Selo Oficial" loading="lazy" decoding="async">
+                    </div>
+                </div>
+            </div>
+
         </div>
 
+        <!-- ✅ RODAPÉ -->
         <div class="scroll-bottom">
             <div class="footer-content">
                 <p><strong>© 2026 | Vera Antunes</strong></p>
@@ -100,10 +105,13 @@
             </div>
         </div>
 
-    <div id="projeto-modal" class="modal-overlay">
+    </div> <!-- ✅ FECHAMENTO CORRETO DO scroll-container -->
+
+    <!-- ✅ MODAL MOVIDO PARA FORA DO CONTAINER - EVITA CONFLITOS DE Z-INDEX E SCROLL -->
+    <div id="projeto-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title">
         <div class="modal-content">
-            <span class="close-btn" id="modal-close">&times;</span>
-            <div id="modal-body"></div>
+            <button class="close-btn" id="modal-close" aria-label="Fechar modal">&times;</button>
+            <div id="modal-body" role="document"></div>
         </div>
     </div>
 
@@ -163,7 +171,7 @@
         }
     };
 
-    // ✅ Função principal para abrir projetos - sem conflitos de toque
+    // ✅ Função principal para abrir projetos
     function abrirProjeto(id) {
         const modal = document.getElementById('projeto-modal');
         const body = document.getElementById('modal-body');
@@ -172,7 +180,7 @@
         if (!data) return;
 
         modal.classList.remove('modal-largo');
-        document.body.style.overflow = 'hidden'; // ✅ Previne scroll do body quando modal está aberto
+        document.body.classList.add('modal-open'); // ✅ Usa classe CSS em vez de inline
 
         let conteudoHTML = ``;
 
@@ -180,13 +188,13 @@
             modal.classList.add('modal-largo');
             conteudoHTML += `
                 <div class="modal-intro-header-bento">
-                    <h2>${data.titulo}</h2>
+                    <h2 id="modal-title">${data.titulo}</h2>
                     <p style="margin-top: 15px;">${data.introducao}</p>
                 </div>
                 <div class="pergaminho-bento" style="max-width: 600px; margin: 0 auto;">
                     <span class="bento-card-title">Concept Art & Moodboard</span>
                     <div class="bento-image-frame">
-                        <img src="${data.imagem}" class="bento-img-content" style="width: 100%; height: auto;" loading="lazy" decoding="async">
+                        <img src="${data.imagem}" class="bento-img-content" style="width: 100%; height: auto;" loading="lazy" decoding="async" alt="Adamastor Concept">
                     </div>
                 </div>
             `;
@@ -195,22 +203,22 @@
             modal.classList.add('modal-largo');
             conteudoHTML += `
                 <div class="modal-intro-header-bento">
-                    <h2>${data.titulo}</h2>
+                    <h2 id="modal-title">${data.titulo}</h2>
                     <p style="margin-top: 15px;">${data.introducao}</p>
                 </div>
                 <div class="pergaminho-bento">
                     <span class="bento-card-title">Concept & Moodboard</span>
                     <div class="bento-image-frame">
-                        <img id="img-carrossel-exibicao" src="${data.imagensCarrossel[0]}" class="bento-img-content" loading="lazy" decoding="async">
+                        <img id="img-carrossel-exibicao" src="${data.imagensCarrossel[0]}" class="bento-img-content" loading="lazy" decoding="async" alt="Crystal Veins Concept">
                     </div>
                     <div class="bento-navigation-bento">
-                        <button class="bento-btn-bento" onclick="mudarPaginaCarrossel('${id}', -1); event.stopPropagation();" style="touch-action: manipulation;">❮ Previous</button>
-                        <span id="contador-carrossel" class="bento-counter-bento">1 / ${data.imagensCarrossel.length}</span>
-                        <button class="bento-btn-bento" onclick="mudarPaginaCarrossel('${id}', 1); event.stopPropagation();" style="touch-action: manipulation;">Next ❯</button>
+                        <button class="bento-btn-bento" onclick="mudarPaginaCarrossel('${id}', -1); event.stopPropagation();" style="touch-action: manipulation;" aria-label="Imagem anterior">❮ Previous</button>
+                        <span id="contador-carrossel" class="bento-counter-bento" aria-live="polite">1 / ${data.imagensCarrossel.length}</span>
+                        <button class="bento-btn-bento" onclick="mudarPaginaCarrossel('${id}', 1); event.stopPropagation();" style="touch-action: manipulation;" aria-label="Próxima imagem">Next ❯</button>
                     </div>
                 </div>
                 <div class="deusa-btn-container">
-                    <button class="special-action-btn" onclick="abrirImagemEspecial('foto_gaming/storyboard-ke.png', 'February 12, 2026'); event.stopPropagation();" style="background:none; border:none; padding:0; cursor:pointer; touch-action: manipulation;">
+                    <button class="special-action-btn" onclick="abrirImagemEspecial('foto_gaming/storyboard-ke.png', 'February 12, 2026'); event.stopPropagation();" style="background:none; border:none; padding:0; cursor:pointer; touch-action: manipulation;" aria-label="Ver storyboard completo">
                         <img src="foto_gaming/deusa.png" alt="Deusa" loading="lazy" decoding="async">
                     </button>
                 </div>
@@ -220,22 +228,22 @@
             modal.classList.add('modal-largo');
             conteudoHTML += `
                 <div class="modal-intro-header-bento">
-                    <h2>${data.titulo}</h2>
+                    <h2 id="modal-title">${data.titulo}</h2>
                     <p style="margin-top: 15px;">${data.introducao}</p>
                 </div>
                 <div class="pergaminho-bento" style="max-width: 450px; margin: 0 auto 30px auto;">
                     <span class="bento-card-title">Concept & Moodboard</span>
                     <div class="bento-image-frame">
-                        <img id="img-carrossel-exibicao" src="${data.imagensCarrossel[0]}" class="bento-img-content" loading="lazy" decoding="async">
+                        <img id="img-carrossel-exibicao" src="${data.imagensCarrossel[0]}" class="bento-img-content" loading="lazy" decoding="async" alt="SvS Banner Concept">
                     </div>
                     <div class="bento-navigation-bento">
-                        <button class="bento-btn-bento" onclick="mudarPaginaCarrossel('${id}', -1); event.stopPropagation();" style="touch-action: manipulation;">❮ Previous</button>
-                        <span id="contador-carrossel" class="bento-counter-bento">1 / ${data.imagensCarrossel.length}</span>
-                        <button class="bento-btn-bento" onclick="mudarPaginaCarrossel('${id}', 1); event.stopPropagation();" style="touch-action: manipulation;">Next ❯</button>
+                        <button class="bento-btn-bento" onclick="mudarPaginaCarrossel('${id}', -1); event.stopPropagation();" style="touch-action: manipulation;" aria-label="Imagem anterior">❮ Previous</button>
+                        <span id="contador-carrossel" class="bento-counter-bento" aria-live="polite">1 / ${data.imagensCarrossel.length}</span>
+                        <button class="bento-btn-bento" onclick="mudarPaginaCarrossel('${id}', 1); event.stopPropagation();" style="touch-action: manipulation;" aria-label="Próxima imagem">Next ❯</button>
                     </div>
                 </div>
                 <div class="deusa-btn-container" style="text-align: center; margin-top: 20px;">
-                    <button class="special-action-btn" onclick="abrirImagemEspecial('foto_gaming/storyboard-svs.png', 'February 17, 2026'); event.stopPropagation();" style="background:none; border:none; padding:0; cursor:pointer; touch-action: manipulation;">
+                    <button class="special-action-btn" onclick="abrirImagemEspecial('foto_gaming/storyboard-svs.png', 'February 17, 2026'); event.stopPropagation();" style="background:none; border:none; padding:0; cursor:pointer; touch-action: manipulation;" aria-label="Ver storyboard completo">
                         <img src="foto_gaming/deusa.png" alt="Deusa" loading="lazy" decoding="async">
                     </button>
                 </div>
@@ -245,7 +253,7 @@
             modal.classList.add('modal-largo');
             conteudoHTML += `
                 <div class="modal-intro-header-bento">
-                    <h2>${data.titulo}</h2>
+                    <h2 id="modal-title">${data.titulo}</h2>
                     <p style="margin-top: 15px;">${data.introducao}</p>
                 </div>
                 
@@ -261,12 +269,12 @@
                 <div class="pergaminho-bento" style="margin-bottom: 40px;">
                     <span class="bento-card-title">Concept & Moodboard</span>
                     <div class="bento-image-frame">
-                        <img id="img-passe" src="${data.imagensPasse[0]}" class="bento-img-content" loading="lazy" decoding="async">
+                        <img id="img-passe" src="${data.imagensPasse[0]}" class="bento-img-content" loading="lazy" decoding="async" alt="Royal Scout Pass">
                     </div>
                     <div class="bento-navigation-bento">
-                        <button class="bento-btn-bento" onclick="navegarDuplo('passe', 'Passe', -1); event.stopPropagation();" style="touch-action: manipulation;">❮ Previous</button>
-                        <span id="cont-passe" class="bento-counter-bento">1 / 6</span>
-                        <button class="bento-btn-bento" onclick="navegarDuplo('passe', 'Passe', 1); event.stopPropagation();" style="touch-action: manipulation;">Next ❯</button>
+                        <button class="bento-btn-bento" onclick="navegarDuplo('passe', 'Passe', -1); event.stopPropagation();" style="touch-action: manipulation;" aria-label="Imagem anterior">❮ Previous</button>
+                        <span id="cont-passe" class="bento-counter-bento" aria-live="polite">1 / 6</span>
+                        <button class="bento-btn-bento" onclick="navegarDuplo('passe', 'Passe', 1); event.stopPropagation();" style="touch-action: manipulation;" aria-label="Próxima imagem">Next ❯</button>
                     </div>
                 </div>
 
@@ -284,12 +292,12 @@
                 <div class="pergaminho-bento">
                     <span class="bento-card-title">Concept & Moodboard</span>
                     <div class="bento-image-frame">
-                        <img id="img-undead" src="${data.imagensUndead[0]}" class="bento-img-content" loading="lazy" decoding="async">
+                        <img id="img-undead" src="${data.imagensUndead[0]}" class="bento-img-content" loading="lazy" decoding="async" alt="Undead Reckoning">
                     </div>
                     <div class="bento-navigation-bento">
-                        <button class="bento-btn-bento" onclick="navegarDuplo('passe', 'Undead', -1); event.stopPropagation();" style="touch-action: manipulation;">❮ Previous</button>
-                        <span id="cont-undead" class="bento-counter-bento">1 / 10</span>
-                        <button class="bento-btn-bento" onclick="navegarDuplo('passe', 'Undead', 1); event.stopPropagation();" style="touch-action: manipulation;">Next ❯</button>
+                        <button class="bento-btn-bento" onclick="navegarDuplo('passe', 'Undead', -1); event.stopPropagation();" style="touch-action: manipulation;" aria-label="Imagem anterior">❮ Previous</button>
+                        <span id="cont-undead" class="bento-counter-bento" aria-live="polite">1 / 10</span>
+                        <button class="bento-btn-bento" onclick="navegarDuplo('passe', 'Undead', 1); event.stopPropagation();" style="touch-action: manipulation;" aria-label="Próxima imagem">Next ❯</button>
                     </div>
                 </div>
             `;
@@ -298,18 +306,18 @@
             modal.classList.add('modal-largo');
             conteudoHTML += `
                 <div class="modal-intro-header-bento">
-                    <h2>${data.titulo}</h2>
+                    <h2 id="modal-title">${data.titulo}</h2>
                     <p style="margin-top: 15px;">${data.introducao}</p>
                 </div>
                 <div class="pergaminho-bento" style="max-width: 450px; margin: 0 auto; padding: 20px; position: relative;">
                     <div style="position: relative; width: 100%;">
-                        <img src="${data.moldura}" style="width: 100%; display: block;" loading="lazy" decoding="async">
-                        <div style="position: absolute; top: 12%; left: 16%; width: 68%; height: 75%; overflow: hidden;">
-                            <video autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: cover; border-radius: 5px;">
+                        <img src="${data.moldura}" style="width: 100%; display: block;" loading="lazy" decoding="async" alt="Moldura de Pergaminho">
+                        <div style="position: absolute; top: 12%; left: 16%; width: 68%; height: 75%; overflow: hidden; border-radius: 5px;">
+                            <video autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: cover;" poster="foto_gaming/video-poster.jpg">
                                 <source src="${data.videoTicket}" type="video/mp4">
                             </video>
                         </div>
-                        <img src="${data.selo}" style="position: absolute; bottom: 5%; right: 5%; width: 55px; filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5)); pointer-events: none;" loading="lazy" decoding="async">
+                        <img src="${data.selo}" style="position: absolute; bottom: 5%; right: 5%; width: 55px; filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5)); pointer-events: none;" loading="lazy" decoding="async" alt="Selo de Validação">
                     </div>
                 </div>
             `;
@@ -318,9 +326,11 @@
         body.innerHTML = conteudoHTML;
         modal.style.display = 'flex';
         
-        // ✅ Forçar reflow para garantir que o scroll funcione no mobile
+        // ✅ Focar o botão de fechar para acessibilidade keyboard
         setTimeout(() => {
             modal.scrollTop = 0;
+            const closeBtn = document.getElementById('modal-close');
+            if (closeBtn) closeBtn.focus();
         }, 10);
     }
 
@@ -350,12 +360,12 @@
         contElement.innerText = `${data.indiceAtual + 1} / ${data.imagensCarrossel.length}`;
     }
 
-    // ✅ Função de fechar modal corrigida
+    // ✅ Função de fechar modal
     function fecharModal() {
         const modal = document.getElementById('projeto-modal');
         modal.style.display = 'none';
-        document.body.style.overflow = ''; // ✅ Restaura scroll do body
-        document.getElementById('modal-body').innerHTML = ''; // ✅ Limpa conteúdo para evitar vazamento de memória
+        document.body.classList.remove('modal-open'); // ✅ Remove classe CSS
+        document.getElementById('modal-body').innerHTML = ''; // ✅ Limpa conteúdo
     }
 
     function abrirImagemEspecial(caminhoImagem, dataStoryboard) {
@@ -365,7 +375,7 @@
         
         body.innerHTML = `
             <div class="modal-intro-header-bento">
-                <h2>Full Project Storyboard</h2>
+                <h2 id="modal-title">Full Project Storyboard</h2>
             </div>
 
             <div style="text-align: center; margin-top: 25px; padding: 0 10px;">
@@ -380,22 +390,28 @@
             <div class="pergaminho-bento" style="margin-top: 20px;">
                 <span class="bento-card-title">Concept & Storyboard</span>
                 <div class="bento-image-frame">
-                    <img src="${caminhoImagem}" class="bento-img-content" style="width: 100%; height: auto;" loading="lazy" decoding="async">
+                    <img src="${caminhoImagem}" class="bento-img-content" style="width: 100%; height: auto;" loading="lazy" decoding="async" alt="Storyboard Completo">
                 </div>
             </div>
         `;
     }
 
-    // ✅ Inicialização segura - SEM listener problemático de touchstart
+    // ✅ Inicialização segura
     document.addEventListener('DOMContentLoaded', function() {
         const modal = document.getElementById('projeto-modal');
-        const modalContent = document.querySelector('.modal-content');
         const closeBtn = document.getElementById('modal-close');
 
         // Fechar ao clicar no X
         closeBtn.addEventListener('click', function(e) {
             e.stopPropagation();
             fecharModal();
+        });
+
+        // Fechar com tecla ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && modal.style.display === 'flex') {
+                fecharModal();
+            }
         });
 
         // Fechar ao clicar fora do conteúdo do modal
@@ -410,10 +426,9 @@
             e.stopPropagation();
         }, { passive: true });
 
-        // ✅ Garantir que os cards respondem bem ao toque sem interferir no scroll
-        document.querySelectorAll('.game-card, .special-card-seal, .scroll-key').forEach(el => {
+        // ✅ Melhorar resposta ao toque nos cards
+        document.querySelectorAll('.game-card, .special-card-seal, .scroll-key, .bento-btn-bento, .carousel-btn, .special-action-btn').forEach(el => {
             el.addEventListener('touchend', function(e) {
-                // Apenas previne o delay de 300ms, sem forçar clique
                 e.preventDefault();
             }, { passive: true });
         });
