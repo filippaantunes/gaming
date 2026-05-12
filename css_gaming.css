@@ -1,20 +1,38 @@
 /* ==========================================================
-   REMOVER BARRAS DE ARRASTAR (SCROLLBARS) EM TUDO
+   SCROLLBARS: FUNCIONAIS MAS INVISÍVEIS (MÉTODO ESTÁVEL)
    ========================================================== */
+/* WebKit: Chrome, Safari, Edge */
+html::-webkit-scrollbar,
 body::-webkit-scrollbar,
-.modal-overlay::-webkit-scrollbar,
-.modal-content::-webkit-scrollbar,
-.pergaminho-bento::-webkit-scrollbar {
-    display: none !important;
+.scroll-container::-webkit-scrollbar,
+.modal-overlay::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    display: none;
 }
 
-body, .modal-overlay, .modal-content, .pergaminho-bento {
-    -ms-overflow-style: none !important;
-    scrollbar-width: none !important;
+/* Firefox & IE/Edge Legacy */
+html, body, .scroll-container, .modal-overlay {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+/* ✅ SCROLL PRINCIPAL DO BROWSER - GARANTIDO */
+html, body {
+    overflow-y: auto;
+    overflow-x: hidden;
+    min-height: 100vh;
+    min-height: 100dvh; /* Suporte a viewports dinâmicos iOS/Android */
+    height: auto;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    position: relative;
+    -webkit-overflow-scrolling: touch;
 }
 
 /* ==========================================================
-   1. CONFIGURAÇÃO GERAL E CONTENTOR
+   1. CONFIGURAÇÃO GERAL E CONTENTOR - SCROLL EXTERIOR LIBERTO
    ========================================================== */
 .scroll-container {
     width: 95%;
@@ -22,8 +40,14 @@ body, .modal-overlay, .modal-content, .pergaminho-bento {
     margin: 50px auto;
     filter: drop-shadow(0px 10px 25px rgba(0, 0, 0, 0.6));
     border-radius: 20px;
-    overflow: hidden; 
     border: 2px solid #b99b11; 
+    box-sizing: border-box;
+    
+    /* ✅ Conteúdo flui naturalmente com o scroll da página */
+    overflow: visible;
+    height: auto;
+    min-height: auto;
+    max-height: none;
 }
 
 /* ==========================================================
@@ -43,6 +67,7 @@ body, .modal-overlay, .modal-content, .pergaminho-bento {
     border-bottom: 2px solid #b99b11; 
     margin-bottom: -2px;
     z-index: 10;
+    flex-shrink: 0;
 }
 
 .game-title {
@@ -58,6 +83,7 @@ body, .modal-overlay, .modal-content, .pergaminho-bento {
     background: linear-gradient(to bottom, #FFD700 0%, #D4AF37 50%, #856c2d 90%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    flex-shrink: 0;
 }
 
 .scroll-key-link {
@@ -66,6 +92,7 @@ body, .modal-overlay, .modal-content, .pergaminho-bento {
     justify-content: center;
     text-decoration: none;
     z-index: 20;
+    flex-shrink: 0;
 }
 
 .scroll-key {
@@ -81,7 +108,7 @@ body, .modal-overlay, .modal-content, .pergaminho-bento {
 }
 
 /* ==========================================================
-   3. O CORPO DO PERGAMINHO
+   3. O CORPO DO PERGAMINHO - EXPANSÃO NATURAL
    ========================================================== */
 .scroll-body {
     background: url('foto_gaming/meiobeje.jpg') repeat-y;
@@ -90,6 +117,12 @@ body, .modal-overlay, .modal-content, .pergaminho-bento {
     font-family: 'Georgia', serif;
     color: #4a3721;
     line-height: 1.8;
+    box-sizing: border-box;
+    
+    /* ✅ Permite que o conteúdo cresça sem criar scroll interno */
+    overflow: visible;
+    height: auto;
+    min-height: 200px;
 }
 
 .intro-text {
@@ -103,8 +136,8 @@ body, .modal-overlay, .modal-content, .pergaminho-bento {
    4. LAYOUT ESTILO EQUIPAMENTO (Cards + Avatar)
    ========================================================== */
 .scroll-content-wrapper {
-    display: grid; /* Mudamos para GRID para controlo total das colunas */
-    grid-template-columns: 1fr auto 1fr; /* Coluna esquerda, Avatar (auto), Coluna direita */
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
     align-items: center;
     justify-items: center;
     gap: 20px;
@@ -122,7 +155,6 @@ body, .modal-overlay, .modal-content, .pergaminho-bento {
     align-items: center;
 }
 
-/* Garante que a coluna da esquerda empurre para a direita e a da direita para a esquerda */
 .cards-column:first-child { justify-self: end; }
 .cards-column:last-child { justify-self: start; }
 
@@ -136,11 +168,18 @@ body, .modal-overlay, .modal-content, .pergaminho-bento {
     cursor: pointer;
     transition: all 0.3s ease;
     flex-shrink: 0;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
 }
 
 .game-card:hover { 
     transform: scale(1.1); 
     filter: brightness(1.2); 
+}
+
+.game-card:active {
+    transform: scale(0.98);
 }
 
 .card-frame {
@@ -159,6 +198,7 @@ body, .modal-overlay, .modal-content, .pergaminho-bento {
     width: auto;
     object-fit: contain;
     filter: drop-shadow(0px 0px 10px rgba(255, 215, 0, 0.7));
+    pointer-events: none;
 }
 
 .avatar-column {
@@ -166,6 +206,7 @@ body, .modal-overlay, .modal-content, .pergaminho-bento {
     justify-content: center;
     align-items: center;
     padding: 0 10px;
+    flex-shrink: 0;
 }
 
 .avatar-video {
@@ -175,384 +216,6 @@ body, .modal-overlay, .modal-content, .pergaminho-bento {
     border: 5px solid #D4AF37;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     object-fit: cover;
-}
-
-/* AJUSTE PARA O MOBILE MANTER A VISTA BOA */
-@media (max-width: 768px) {
-    .scroll-content-wrapper {
-        display: flex; /* Volta a flex no mobile para empilhar */
-        flex-direction: column;
-        gap: 15px;
-    }
-    .cards-column { 
-        flex-direction: row; 
-        width: 100%; 
-        justify-content: center; 
-    }
-}
-/* ==========================================================
-   5. O SELO E ELEMENTOS DE BAIXO (Ajuste PC)
-   ========================================================== */
-.seal-container {
-    width: 100%;
-    display: flex;
-    justify-content: center; 
-    align-items: center;
-    margin-top: 15px;
-    margin-bottom: 10px;
-    gap: 20px; /* AJUSTE: Cria espaço entre cards e selo se estiverem na mesma linha */
-}
-
-/* Regra para garantir que o selo não "fuja" no PC */
-@media (min-width: 769px) {
-    .seal-container {
-        max-width: 450px; /* Limita a largura para os elementos ficarem próximos */
-        margin: 15px auto; /* Centraliza o grupo inteiro no meio do pergaminho */
-    }
-}
-
-.special-card-seal {
-    width: 85px;
-    height: 85px;
-    background: radial-gradient(circle, #8B0000 0%, #680e20 50%, #8B0000 100%);
-    border-radius: 50%;
-    border: 4px solid #D4AF37;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
-    box-shadow: 0 0 20px rgba(212, 175, 55, 0.6),
-                inset 0 0 15px rgba(0, 0, 0, 0.5);
-}
-
-.special-card-seal:hover {
-    transform: scale(1.1) rotate(10deg);
-    box-shadow: 0 0 30px rgba(212, 175, 55, 0.9);
-}
-
-.special-card-seal img {
-    width: 60%;
-    height: auto;
-    display: block;
-    margin: auto;
-}
-
-/* ==========================================================
-   6. MODAL E OUTROS
-   ========================================================== */
-.modal-overlay {
-    display: none;
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.45); 
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    z-index: 1000;
-    
-    /*  Centraliza o conteúdo no meio do ecrã */
-    justify-content: center;
-    align-items: center; 
-    
-    padding: 2vh 0; /* Diminuír o padding para ganhar espaço */
-    overflow-y: auto; 
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-}
-
-.modal-content {
-    width: 90%;
-    max-width: 900px;
-    margin-bottom: 5vh; 
-    position: relative;
-    background: transparent !important;
-    border: none !important;
-    box-shadow: none !important;
-    animation: surgindo 0.4s ease-out;
-}
-
-@keyframes surgindo {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-.modal-content:not(:has(.pergaminho-bento)) {
-    background: url('foto_gaming/meiobeje.jpg') repeat !important;
-    border: 3px solid #D4AF37 !important;
-    border-radius: 15px;
-    box-shadow: 0 0 40px rgba(0, 0, 0, 0.8) !important;
-    padding: 30px;
-    margin-top: 5vh; 
-}
-
-.close-btn {
-    position: fixed; 
-    top: 20px;
-    right: 30px;
-    font-size: 45px;
-    font-weight: bold;
-    color: #fdf5e6; 
-    cursor: pointer;
-    z-index: 1100;
-    text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
-}
-
-/* ==========================================================
-   7. RODAPÉ E RESPONSIVIDADE (MOBILE)
-   ========================================================== */
-.scroll-bottom {
-    background: #2b241b;
-    border-top: 2px solid #b99b11;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    color: #D4AF37;
-    text-align: center;
-    border-radius: 0 0 20px 20px;
-}
-
-@media (max-width: 768px) {
-    .scroll-content-wrapper { 
-        gap: 15px;
-        flex-wrap: wrap; 
-        flex-direction: column; 
-        align-items: center;
-    }
-    .cards-column { 
-        width: 100%; 
-        flex-direction: row; 
-        justify-content: center;
-        flex: 1 1 auto;
-    }
-    .game-card { width: 75px; height: 75px; }
-    .avatar-video { max-width: 230px; }
-    .special-card-seal { width: 70px; height: 70px; }
-}
-
-/* ==========================================================
-   8. NAVEGAÇÃO INTERNA DO MODAL
-   ========================================================== */
-.navegacao-modal {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    margin: 15px 0;
-}
-
-.navegacao-modal button {
-    background: #721414;
-    color: #D4AF37;
-    border: 2px solid #D4AF37;
-    padding: 5px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-family: 'Open Sans', sans-serif;
-    font-weight: bold;
-    transition: 0.3s;
-}
-
-/* ==========================================================
-   9. ESTILO PARA CONTEÚDOS BENTO (MODAL)
-   ========================================================== */
-.modal-intro-header-bento {
-    text-align: center;
-    margin-bottom: 30px;
-    padding: 0 5%;
-}
-
-.modal-intro-header-bento h2 {
-    color: #D4AF37;
-    font-size: clamp(1.5rem, 4vw, 2.2rem);
-    margin-bottom: 10px;
-    text-transform: uppercase;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-}
-
-.modal-intro-header-bento p {
-    color: #fdf5e6; 
-    font-size: 1.1rem;
-    line-height: 1.6;
-}
-
-.pergaminho-bento {
-    background: url('foto_gaming/meiobeje.jpg') repeat; 
-    border: 2px solid #b99b11; 
-    border-radius: 25px;       
-    padding: 25px;
-    margin-bottom: 45px;       
-    box-shadow: inset 0 0 20px rgba(185, 155, 17, 0.2), 0 10px 30px rgba(0,0,0,0.8);
-    position: relative;
-    width: 92%;                
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.bento-card-title {
-    color: #5d4037;
-    font-size: 0.8rem;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    margin-bottom: 15px;
-    display: block;
-    border-bottom: 1px solid rgba(93, 64, 55, 0.1);
-    padding-bottom: 5px;
-}
-
-.bento-image-frame {
-    border-radius: 12px;
-    overflow: hidden;
-    border: 1px solid rgba(0,0,0,0.2);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-}
-
-.bento-img-content {
-    width: 100%;
-    height: auto;
-    display: block;
-}
-
-.bento-navigation-bento {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 30px;
-    margin-top: 25px;
-}
-
-.bento-btn-bento {
-    background: #721414; 
-    color: #D4AF37;
-    border: 2px solid #D4AF37;
-    padding: 10px 25px;
-    border-radius: 12px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: all 0.3s ease;
-}
-
-.bento-btn-bento:hover {
-    background: #D4AF37;
-    color: #721414;
-    transform: translateY(-2px);
-}
-
-.bento-counter-bento {
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 800;
-    color: #5d4037;
-    font-size: 1.1rem;
-}
-
-/* ==========================================================
-   10. CAIXA DE PERGAMINHO COMPACTA (Adamastor e Passe)
-   ========================================================== */
-.pergaminho-compacto {
-    max-width: 600px !important; 
-    padding: 15px !important;    
-    margin-top: 10vh;             
-}
-
-/* ==========================================================
-   11. BOTÂO DOURADO
-   ========================================================== */
-
-/* --- NOVO CÓDIGO PARA O BOTÃO DA DEUSA --- */
-.deusa-btn-container {
-    display: flex;
-    justify-content: flex-end; /* Empurra para a direita */
-    padding-right: 15%;        /* Margem para não colar na borda */
-    margin-top: -10px;         /* Ajuste de altura para subir um pouco */
-}
-
-@media (max-width: 768px) {
-    .deusa-btn-container {
-        justify-content: center;
-        padding-right: 0;
-    }
-}
-
-.special-action-btn img {
-    width: 80px !important;    /* Tamanho pequeno e elegante */
-    height: auto;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-}
-
-/* Ajuste de alinhamento para o conteúdo dos modais de texto */
-.modal-content p, 
-.modal-content ul {
-    text-align: left; /* Garante que o texto base é à esquerda */
-    max-width: 90%;   /* Evita que o texto cole nas bordas */
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.modal-content h3 {
-    text-align: center; /* Mantém os títulos centrados como no teu HTML */
-}
-
-/* ==========================================================
-   AJUSTE DE VISUALIZAÇÃO PARA TELEMÓVEL (SUB-MODAIS)
-   ========================================================== */
-@media (max-width: 768px) {
-    .modal-overlay {
-        align-items: flex-start !important; /* Encosta ao topo no mobile */
-        padding-top: 15px !important;       /* Margem mínima para não bater no topo */
-    }
-
-    .modal-content {
-        margin-top: 0 !important;           /* Remove espaços extras */
-        width: 95% !important;
-    }
-
-    .pergaminho-compacto {
-        margin-top: 0 !important;           /* Sobe o conteúdo do Adamastor/Passe */
-    }
-
-    /* Ajuste para o botão de fechar não tapar o conteúdo no mobile */
-    .close-btn {
-        top: 10px;
-        right: 15px;
-        font-size: 35px;
-    }
-}
-
-/* ==========================================================
-   ESCUDO DE COMPATIBILIDADE (SISTEMAS ANTIGOS)
-   ========================================================== */
-
-/* 1. Impede que o layout fuja para a direita */
-html, body {
-    overflow-x: hidden; 
-    position: relative;
-    width: 100%;
-}
-
-/* 2. Alternativa estável ao Grid para browsers antigos */
-@media (max-width: 768px) {
-    .scroll-content-wrapper {
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-        width: 100% !important;
-    }
-    
-    .cards-column {
-        display: flex !important;
-        flex-direction: row !important;
-        flex-wrap: wrap !important;
-        justify-content: center !important;
-        width: 100% !important;
-    }
-}
-
-/* 3. Garante que o toque (clique) é registado */
-.game-card, .special-card-seal, .scroll-key, .close-btn {
-    cursor: pointer;
-    touch-action: manipulation; /* Melhora a resposta ao toque */
-    -webkit-tap-highlight-color: transparent; /* Remove aquele quadrado azul feio ao clicar */
+    max-width: 100%;
+    pointer-events: none;
 }
