@@ -2,7 +2,7 @@
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <title>Evony - Concept Art & World Building</title>
     <link rel="stylesheet" href="css_gaming.css">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700;800&display=swap" rel="stylesheet">
@@ -13,7 +13,7 @@
         
        <div class="scroll-top">
             <h2 class="game-title">Concept Art & World Building</h2>
-            <a href="index.html" class="scroll-key-link" title="Voltar ao CV Interativo" ontouchstart="">
+            <a href="index.html" class="scroll-key-link" title="Voltar ao CV Interativo">
                 <img src="foto_gaming/chave1removebg-preview.png" class="scroll-key" alt="Chave de Retorno" loading="lazy" decoding="async">
             </a>
         </div>
@@ -37,12 +37,12 @@
             <div class="scroll-content-wrapper">
                 
                 <div class="cards-column">
-                    <div class="game-card" onclick="abrirProjeto('adamastor')" ontouchstart="">
+                    <div class="game-card" onclick="abrirProjeto('adamastor')" style="touch-action: manipulation; -webkit-tap-highlight-color: transparent;">
                         <div class="card-frame">
                             <img src="foto_gaming/adamastor_sem _fundo.png" class="icon-center" alt="Adamastor" loading="lazy" decoding="async">
                         </div>
                     </div>
-                    <div class="game-card" onclick="abrirProjeto('monstro')" ontouchstart="">
+                    <div class="game-card" onclick="abrirProjeto('monstro')" style="touch-action: manipulation; -webkit-tap-highlight-color: transparent;">
                         <div class="card-frame">
                             <img src="foto_gaming/monstro_diamante-removebg-preview.png" class="icon-center" alt="Monstro de Cristal" loading="lazy" decoding="async">
                         </div>
@@ -57,20 +57,20 @@
                 </div>
                 
                 <div class="cards-column">
-                    <div class="game-card" onclick="abrirProjeto('svs')" ontouchstart="">
+                    <div class="game-card" onclick="abrirProjeto('svs')" style="touch-action: manipulation; -webkit-tap-highlight-color: transparent;">
                         <div class="card-frame">
                             <img src="foto_gaming/bandeirasvs.png" class="icon-center" alt="Bandeira SvS" loading="lazy" decoding="async">
                         </div>
                     </div>
 
-                    <div class="game-card" onclick="abrirProjeto('passe')" ontouchstart="">
+                    <div class="game-card" onclick="abrirProjeto('passe')" style="touch-action: manipulation; -webkit-tap-highlight-color: transparent;">
                         <div class="card-frame">
                             <img src="foto_gaming/nova_versao.png" class="icon-center" alt="Passe Verde" loading="lazy" decoding="async">
                         </div>
                     </div>
                     
                     <div class="seal-container">
-                        <div class="special-card-seal" onclick="abrirProjeto('ticket-evony')" ontouchstart="">
+                        <div class="special-card-seal" onclick="abrirProjeto('ticket-evony')" style="touch-action: manipulation; -webkit-tap-highlight-color: transparent;">
                             <div class="seal-inner">
                                 <img src="foto_gaming/selo.png" alt="Selo Oficial" loading="lazy" decoding="async">
                             </div>
@@ -100,9 +100,9 @@
             </div>
         </div>
 
-    <div id="projeto-modal" class="modal-overlay" onclick="fecharModal()">
-        <div class="modal-content" onclick="event.stopPropagation()">
-            <span class="close-btn" onclick="fecharModal()" ontouchstart="">&times;</span>
+    <div id="projeto-modal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-btn" id="modal-close">&times;</span>
             <div id="modal-body"></div>
         </div>
     </div>
@@ -136,7 +136,6 @@
             titulo: 'Royal Scout Pass & The Undead Reckoning',
             introducao: "A strategic framework designed to revitalize the game's ecosystem. It focuses on rewarding active scouting and providing a clear progression path for mid-level players, followed by a disruptive proposal to revitalize server economy through automated challenges.",
             
-            // Sub-projeto 1: Royal Scout Pass
             tituloSecao1: 'Royal Scout Pass',
             descSecao1: "Rewarding active scouting with a clear progression path for mid-level players.",
             imagensPasse: [
@@ -145,7 +144,6 @@
             ],
             indicePasse: 0,
 
-            // Sub-projeto 2: The Undead Reckoning
             tituloSecao2: 'The Undead Reckoning: A Strategic Evolution',
             descSecao2: "The Undead Curse ends permanent shielding in Evony. Introducing the Spectral Bubble: 15 minutes of protection that demands active strategy. No more passive hoarding – only survival through smart, timely decisions.",
             imagensUndead: [
@@ -165,6 +163,7 @@
         }
     };
 
+    // ✅ Função principal para abrir projetos - sem conflitos de toque
     function abrirProjeto(id) {
         const modal = document.getElementById('projeto-modal');
         const body = document.getElementById('modal-body');
@@ -173,6 +172,7 @@
         if (!data) return;
 
         modal.classList.remove('modal-largo');
+        document.body.style.overflow = 'hidden'; // ✅ Previne scroll do body quando modal está aberto
 
         let conteudoHTML = ``;
 
@@ -204,13 +204,13 @@
                         <img id="img-carrossel-exibicao" src="${data.imagensCarrossel[0]}" class="bento-img-content" loading="lazy" decoding="async">
                     </div>
                     <div class="bento-navigation-bento">
-                        <button class="bento-btn-bento" onclick="mudarPaginaCarrossel('${id}', -1)" ontouchstart="">❮ Previous</button>
+                        <button class="bento-btn-bento" onclick="mudarPaginaCarrossel('${id}', -1); event.stopPropagation();" style="touch-action: manipulation;">❮ Previous</button>
                         <span id="contador-carrossel" class="bento-counter-bento">1 / ${data.imagensCarrossel.length}</span>
-                        <button class="bento-btn-bento" onclick="mudarPaginaCarrossel('${id}', 1)" ontouchstart="">Next ❯</button>
+                        <button class="bento-btn-bento" onclick="mudarPaginaCarrossel('${id}', 1); event.stopPropagation();" style="touch-action: manipulation;">Next ❯</button>
                     </div>
                 </div>
                 <div class="deusa-btn-container">
-                    <button class="special-action-btn" onclick="abrirImagemEspecial('foto_gaming/storyboard-ke.png', 'February 12, 2026')" style="background:none; border:none; padding:0; cursor:pointer;" ontouchstart="">
+                    <button class="special-action-btn" onclick="abrirImagemEspecial('foto_gaming/storyboard-ke.png', 'February 12, 2026'); event.stopPropagation();" style="background:none; border:none; padding:0; cursor:pointer; touch-action: manipulation;">
                         <img src="foto_gaming/deusa.png" alt="Deusa" loading="lazy" decoding="async">
                     </button>
                 </div>
@@ -229,13 +229,13 @@
                         <img id="img-carrossel-exibicao" src="${data.imagensCarrossel[0]}" class="bento-img-content" loading="lazy" decoding="async">
                     </div>
                     <div class="bento-navigation-bento">
-                        <button class="bento-btn-bento" onclick="mudarPaginaCarrossel('${id}', -1)" ontouchstart="">❮ Previous</button>
+                        <button class="bento-btn-bento" onclick="mudarPaginaCarrossel('${id}', -1); event.stopPropagation();" style="touch-action: manipulation;">❮ Previous</button>
                         <span id="contador-carrossel" class="bento-counter-bento">1 / ${data.imagensCarrossel.length}</span>
-                        <button class="bento-btn-bento" onclick="mudarPaginaCarrossel('${id}', 1)" ontouchstart="">Next ❯</button>
+                        <button class="bento-btn-bento" onclick="mudarPaginaCarrossel('${id}', 1); event.stopPropagation();" style="touch-action: manipulation;">Next ❯</button>
                     </div>
                 </div>
                 <div class="deusa-btn-container" style="text-align: center; margin-top: 20px;">
-                    <button class="special-action-btn" onclick="abrirImagemEspecial('foto_gaming/storyboard-svs.png', 'February 17, 2026')" style="background:none; border:none; padding:0; cursor:pointer;" ontouchstart="">
+                    <button class="special-action-btn" onclick="abrirImagemEspecial('foto_gaming/storyboard-svs.png', 'February 17, 2026'); event.stopPropagation();" style="background:none; border:none; padding:0; cursor:pointer; touch-action: manipulation;">
                         <img src="foto_gaming/deusa.png" alt="Deusa" loading="lazy" decoding="async">
                     </button>
                 </div>
@@ -244,13 +244,11 @@
         else if (id === 'passe') {
             modal.classList.add('modal-largo');
             conteudoHTML += `
-                <!-- Cabeçalho Principal -->
                 <div class="modal-intro-header-bento">
                     <h2>${data.titulo}</h2>
                     <p style="margin-top: 15px;">${data.introducao}</p>
                 </div>
                 
-                <!-- SECÇÃO 1: Royal Scout Pass -->
                 <div style="margin: 35px 0 15px 0; text-align: center;">
                     <h3 style="color: #b99b11; font-family: 'Open Sans', sans-serif; font-size: 22px; font-weight: 700; margin: 0 0 10px 0;">
                         ${data.tituloSecao1}
@@ -266,15 +264,14 @@
                         <img id="img-passe" src="${data.imagensPasse[0]}" class="bento-img-content" loading="lazy" decoding="async">
                     </div>
                     <div class="bento-navigation-bento">
-                        <button class="bento-btn-bento" onclick="navegarDuplo('passe', 'Passe', -1)" ontouchstart="">❮ Previous</button>
+                        <button class="bento-btn-bento" onclick="navegarDuplo('passe', 'Passe', -1); event.stopPropagation();" style="touch-action: manipulation;">❮ Previous</button>
                         <span id="cont-passe" class="bento-counter-bento">1 / 6</span>
-                        <button class="bento-btn-bento" onclick="navegarDuplo('passe', 'Passe', 1)" ontouchstart="">Next ❯</button>
+                        <button class="bento-btn-bento" onclick="navegarDuplo('passe', 'Passe', 1); event.stopPropagation();" style="touch-action: manipulation;">Next ❯</button>
                     </div>
                 </div>
 
                 <hr style="border: 0; border-top: 1px solid #b99b11; opacity: 0.2; margin: 40px 0;">
 
-                <!-- SECÇÃO 2: The Undead Reckoning -->
                 <div style="margin: 35px 0 15px 0; text-align: center;">
                     <h3 style="color: #b99b11; font-family: 'Open Sans', sans-serif; font-size: 22px; font-weight: 700; margin: 0 0 10px 0;">
                         ${data.tituloSecao2}
@@ -290,9 +287,9 @@
                         <img id="img-undead" src="${data.imagensUndead[0]}" class="bento-img-content" loading="lazy" decoding="async">
                     </div>
                     <div class="bento-navigation-bento">
-                        <button class="bento-btn-bento" onclick="navegarDuplo('passe', 'Undead', -1)" ontouchstart="">❮ Previous</button>
+                        <button class="bento-btn-bento" onclick="navegarDuplo('passe', 'Undead', -1); event.stopPropagation();" style="touch-action: manipulation;">❮ Previous</button>
                         <span id="cont-undead" class="bento-counter-bento">1 / 10</span>
-                        <button class="bento-btn-bento" onclick="navegarDuplo('passe', 'Undead', 1)" ontouchstart="">Next ❯</button>
+                        <button class="bento-btn-bento" onclick="navegarDuplo('passe', 'Undead', 1); event.stopPropagation();" style="touch-action: manipulation;">Next ❯</button>
                     </div>
                 </div>
             `;
@@ -320,6 +317,11 @@
 
         body.innerHTML = conteudoHTML;
         modal.style.display = 'flex';
+        
+        // ✅ Forçar reflow para garantir que o scroll funcione no mobile
+        setTimeout(() => {
+            modal.scrollTop = 0;
+        }, 10);
     }
 
     function navegarDuplo(projetoId, tipo, direcao) {
@@ -329,7 +331,6 @@
         const imgElement = document.getElementById('img-' + tipo.toLowerCase());
         const contElement = document.getElementById('cont-' + tipo.toLowerCase());
 
-        // ✅ Proteção: só executa se elementos existirem (evita erro em mobile)
         if (!imgElement || !contElement) return;
 
         data[keyIndice] = (data[keyIndice] + direcao + data[keyImagens].length) % data[keyImagens].length;
@@ -342,7 +343,6 @@
         const imgElement = document.getElementById('img-carrossel-exibicao');
         const contElement = document.getElementById('contador-carrossel');
 
-        // ✅ Proteção: só executa se elementos existirem (evita erro em mobile)
         if (!imgElement || !contElement) return;
 
         data.indiceAtual = (data.indiceAtual + direcao + data.imagensCarrossel.length) % data.imagensCarrossel.length;
@@ -350,23 +350,24 @@
         contElement.innerText = `${data.indiceAtual + 1} / ${data.imagensCarrossel.length}`;
     }
 
+    // ✅ Função de fechar modal corrigida
     function fecharModal() {
-        document.getElementById('projeto-modal').style.display = 'none';
+        const modal = document.getElementById('projeto-modal');
+        modal.style.display = 'none';
+        document.body.style.overflow = ''; // ✅ Restaura scroll do body
+        document.getElementById('modal-body').innerHTML = ''; // ✅ Limpa conteúdo para evitar vazamento de memória
     }
 
-    // FUNÇÃO ATUALIZADA - COM DATA DINÂMICA
     function abrirImagemEspecial(caminhoImagem, dataStoryboard) {
         const body = document.getElementById('modal-body');
         const modal = document.getElementById('projeto-modal');
         modal.classList.add('modal-largo');
         
         body.innerHTML = `
-            <!-- TÍTULO FORA DO PERGAMINHO -->
             <div class="modal-intro-header-bento">
                 <h2>Full Project Storyboard</h2>
             </div>
 
-            <!-- CRÉDITOS TÉCNICOS FORA DO PERGAMINHO -->
             <div style="text-align: center; margin-top: 25px; padding: 0 10px;">
                 <p style="color: #fdf5e6; font-family: 'Open Sans', sans-serif; font-size: 14px; line-height: 1.6;">
                     <strong>Technical Note:</strong> This storyboard layout was finalized on ${dataStoryboard}. The visual composition integrates structural design from <strong>Canva</strong>, refined with <strong>AI assistance (Gemini)</strong> and detailed image manipulation performed on a <strong>Samsung S24 Plus</strong>.
@@ -376,7 +377,6 @@
                 </p>
             </div>
             
-            <!-- PERGAMINHO COM IMAGEM -->
             <div class="pergaminho-bento" style="margin-top: 20px;">
                 <span class="bento-card-title">Concept & Storyboard</span>
                 <div class="bento-image-frame">
@@ -386,16 +386,35 @@
         `;
     }
 
-    // ✅ Prevenção de erro: garantir que o DOM está pronto antes de usar
+    // ✅ Inicialização segura - SEM listener problemático de touchstart
     document.addEventListener('DOMContentLoaded', function() {
-        // Adicionar suporte a toque para elementos interativos
-        document.querySelectorAll('[onclick]').forEach(el => {
-            el.style.cursor = 'pointer';
-            el.addEventListener('touchstart', function(e) {
-                // Prevenir delay de 300ms em mobile antigo
-                if (e.touches.length === 1) {
-                    this.click();
-                }
+        const modal = document.getElementById('projeto-modal');
+        const modalContent = document.querySelector('.modal-content');
+        const closeBtn = document.getElementById('modal-close');
+
+        // Fechar ao clicar no X
+        closeBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            fecharModal();
+        });
+
+        // Fechar ao clicar fora do conteúdo do modal
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                fecharModal();
+            }
+        });
+
+        // Prevenir que o scroll do modal propague para o body em mobile
+        modal.addEventListener('touchmove', function(e) {
+            e.stopPropagation();
+        }, { passive: true });
+
+        // ✅ Garantir que os cards respondem bem ao toque sem interferir no scroll
+        document.querySelectorAll('.game-card, .special-card-seal, .scroll-key').forEach(el => {
+            el.addEventListener('touchend', function(e) {
+                // Apenas previne o delay de 300ms, sem forçar clique
+                e.preventDefault();
             }, { passive: true });
         });
     });
