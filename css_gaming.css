@@ -1,28 +1,35 @@
 /* ==========================================================
-   SCROLLBARS: FUNCIONAIS MAS INVISÍVEIS (MÉTODO ESTÁVEL)
+   RESET GLOBAL - COLOCAR SEMPRE PRIMEIRO
    ========================================================== */
-/* WebKit: Chrome, Safari, Edge */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* ==========================================================
+   SCROLLBARS: FUNCIONAIS MAS INVISÍVEIS
+   ========================================================== */
 html::-webkit-scrollbar,
-body::-webkit-scrollbar,
-.scroll-container::-webkit-scrollbar,
-.modal-overlay::-webkit-scrollbar {
+body::-webkit-scrollbar {
     width: 0;
     height: 0;
     display: none;
 }
 
-/* Firefox & IE/Edge Legacy */
-html, body, .scroll-container, .modal-overlay {
+html, body {
     scrollbar-width: none;
     -ms-overflow-style: none;
 }
 
-/* ✅ SCROLL PRINCIPAL DO BROWSER - GARANTIDO */
+/* ✅ SCROLL PRINCIPAL DO BROWSER */
 html, body {
     overflow-y: auto;
     overflow-x: hidden;
     min-height: 100vh;
-    min-height: 100dvh; /* Suporte a viewports dinâmicos iOS/Android */
+    min-height: 100dvh;
     height: auto;
     margin: 0;
     padding: 0;
@@ -31,43 +38,46 @@ html, body {
     -webkit-overflow-scrolling: touch;
 }
 
+body.modal-open {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    touch-action: none;
+}
+
 /* ==========================================================
-   1. CONFIGURAÇÃO GERAL E CONTENTOR - SCROLL EXTERIOR LIBERTO
+   1. CONTAINER PRINCIPAL
    ========================================================== */
 .scroll-container {
     width: 95%;
     max-width: 1000px;
-    margin: 50px auto;
+    margin: 30px auto;
     filter: drop-shadow(0px 10px 25px rgba(0, 0, 0, 0.6));
     border-radius: 20px;
-    border: 2px solid #b99b11; 
+    border: 2px solid #b99b11;
     box-sizing: border-box;
-    
-    /* ✅ Conteúdo flui naturalmente com o scroll da página */
-    overflow: visible;
+    overflow: hidden; /* ✅ CORREÇÃO: hidden em vez de visible */
     height: auto;
-    min-height: auto;
-    max-height: none;
+    background: #f5e6c8; /* ✅ CORREÇÃO: cor de fallback */
 }
 
 /* ==========================================================
-   2. O TOPO (Mesa com Pergaminho)
+   2. TOPO (Mesa com Pergaminho)
    ========================================================== */
 .scroll-top {
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 20px;
-    height: 22vw; 
-    max-height: 300px;
-    min-height: 180px;
+    gap: 15px;
+    height: clamp(160px, 22vw, 300px); /* ✅ CORREÇÃO: clamp substitui min/max */
     background: url('foto_gaming/mesagemini.png') no-repeat center center;
     background-size: cover;
-    border-bottom: 2px solid #b99b11; 
-    margin-bottom: -2px;
+    border-bottom: 2px solid #b99b11;
     z-index: 10;
     flex-shrink: 0;
+    padding: 10px;
 }
 
 .game-title {
@@ -75,15 +85,15 @@ html, body {
     font-family: 'Open Sans', sans-serif;
     font-weight: 600;
     color: #D4AF37;
-    font-size: clamp(1.2rem, 3.5vw, 2.5rem);
+    font-size: clamp(0.9rem, 3.5vw, 2.2rem); /* ✅ CORREÇÃO: tamanho base mais pequeno */
     text-align: center;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 1.5px;
     text-shadow: 1px 1px 0px #856c2d, 2px 2px 0px #705332, 3px 3px 0px #4a3721, 4px 4px 8px rgba(0, 0, 0, 0.8);
     background: linear-gradient(to bottom, #FFD700 0%, #D4AF37 50%, #856c2d 90%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    flex-shrink: 0;
+    line-height: 1.3;
 }
 
 .scroll-key-link {
@@ -96,7 +106,7 @@ html, body {
 }
 
 .scroll-key {
-    width: clamp(55px, 15vw, 95px);
+    width: clamp(45px, 12vw, 85px); /* ✅ CORREÇÃO: reduzido para não ficar gigante */
     height: auto;
     filter: drop-shadow(0px 0px 10px rgba(255, 215, 0, 0.8));
     transition: all 0.3s ease;
@@ -108,18 +118,17 @@ html, body {
 }
 
 /* ==========================================================
-   3. O CORPO DO PERGAMINHO - EXPANSÃO NATURAL
+   3. CORPO DO PERGAMINHO - 100% FLEXÍVEL
    ========================================================== */
 .scroll-body {
-    background: url('foto_gaming/meiobeje.jpg') repeat-y;
+    background: url('foto_gaming/meiobeje.jpg') repeat-y center;
     background-size: 100% auto;
-    padding: 20px 8%; 
+    padding: 20px 8%;
     font-family: 'Georgia', serif;
     color: #4a3721;
     line-height: 1.8;
     box-sizing: border-box;
-    
-    /* ✅ Permite que o conteúdo cresça sem criar scroll interno */
+    width: 100%; /* ✅ CORREÇÃO: largura total garantida */
     overflow: visible;
     height: auto;
     min-height: 200px;
@@ -130,6 +139,11 @@ html, body {
     border-left: 3px solid #D4AF37;
     padding-left: 15px;
     margin-bottom: 30px;
+    font-size: clamp(0.82rem, 1.8vw, 0.95rem);
+}
+
+.intro-text p {
+    margin-bottom: 10px;
 }
 
 /* ==========================================================
@@ -159,8 +173,8 @@ html, body {
 .cards-column:last-child { justify-self: start; }
 
 .game-card {
-    width: 100px;
-    height: 100px;
+    width: clamp(60px, 15vw, 100px); /* ✅ CORREÇÃO: clamp para flexibilidade */
+    height: clamp(60px, 15vw, 100px);
     background: linear-gradient(135deg, #b99b11, #f3e07e, #b99b11);
     padding: 3px;
     border-radius: 12px;
@@ -173,9 +187,9 @@ html, body {
     user-select: none;
 }
 
-.game-card:hover { 
-    transform: scale(1.1); 
-    filter: brightness(1.2); 
+.game-card:hover {
+    transform: scale(1.1);
+    filter: brightness(1.2);
 }
 
 .game-card:active {
@@ -198,7 +212,6 @@ html, body {
     width: auto;
     object-fit: contain;
     filter: drop-shadow(0px 0px 10px rgba(255, 215, 0, 0.7));
-    pointer-events: none;
 }
 
 .avatar-column {
@@ -210,42 +223,33 @@ html, body {
 }
 
 .avatar-video {
-    width: 280px;
+    width: clamp(200px, 30vw, 280px); /* ✅ CORREÇÃO: clamp para flexibilidade */
     height: auto;
     border-radius: 15px;
     border: 5px solid #D4AF37;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     object-fit: cover;
     max-width: 100%;
-    pointer-events: none;
 }
 
 /* ==========================================================
-   5. O SELO E ELEMENTOS DE BAIXO
+   5. SELO VERMELHO - TAMANHO CORRETO
    ========================================================== */
 .seal-container {
     width: 100%;
     display: flex;
-    justify-content: center; 
+    justify-content: center;
     align-items: center;
-    margin-top: 15px;
-    margin-bottom: 10px;
+    margin: 20px 0 15px 0; /* ✅ CORREÇÃO: margem equilibrada */
     gap: 20px;
 }
 
-@media (min-width: 769px) {
-    .seal-container {
-        max-width: 450px;
-        margin: 15px auto;
-    }
-}
-
 .special-card-seal {
-    width: 85px;
-    height: 85px;
+    width: clamp(50px, 10vw, 75px); /* ✅ CORREÇÃO: muito mais pequeno */
+    height: clamp(50px, 10vw, 75px);
     background: radial-gradient(circle, #8B0000 0%, #680e20 50%, #8B0000 100%);
     border-radius: 50%;
-    border: 4px solid #D4AF37;
+    border: 3px solid #D4AF37;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -256,6 +260,7 @@ html, body {
     touch-action: manipulation;
     -webkit-tap-highlight-color: transparent;
     user-select: none;
+    flex-shrink: 0;
 }
 
 .special-card-seal:hover {
@@ -268,7 +273,7 @@ html, body {
 }
 
 .special-card-seal img {
-    width: 60%;
+    width: 55%;
     height: auto;
     display: block;
     margin: auto;
@@ -276,29 +281,99 @@ html, body {
 }
 
 /* ==========================================================
-   6. MODAL - SCROLL INTERNO FUNCIONAL
+   6. BOTÃO DEUSA / AÇÃO
+   ========================================================== */
+.deusa-btn-container {
+    display: flex;
+    justify-content: center; /* ✅ CORREÇÃO: center em vez de flex-end */
+    padding: 0 15%;
+    margin-top: 10px;
+}
+
+.special-action-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.special-action-btn img {
+    width: clamp(55px, 12vw, 80px); /* ✅ CORREÇÃO: tamanho controlado */
+    height: auto;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.special-action-btn:hover img {
+    transform: scale(1.1);
+}
+
+/* ==========================================================
+   7. RODAPÉ - AGORA SEMPRE VISÍVEL
+   ========================================================== */
+.scroll-bottom {
+    background: linear-gradient(to bottom, #2b241b, #1a1410); /* ✅ CORREÇÃO: gradiente para melhor visibilidade */
+    border-top: 2px solid #b99b11;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 25px 20px;
+    color: #D4AF37;
+    text-align: center;
+    border-radius: 0 0 20px 20px;
+    box-sizing: border-box;
+    flex-shrink: 0;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+}
+
+.scroll-bottom p {
+    margin: 4px 0;
+    line-height: 1.5;
+    max-width: 90%;
+}
+
+.scroll-bottom .copyright {
+    font-weight: bold;
+    margin-bottom: 8px;
+    font-size: clamp(0.75rem, 1.6vw, 0.9rem);
+}
+
+.scroll-bottom .disclaimer {
+    font-size: clamp(0.6rem, 1.3vw, 0.7rem);
+    opacity: 0.7;
+    margin-top: 10px;
+    font-style: italic;
+}
+
+/* ==========================================================
+   8. MODAL - SCROLL INTERNO FUNCIONAL
    ========================================================== */
 .modal-overlay {
     display: none;
     position: fixed;
     top: 0; left: 0;
     width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.45); 
+    background: rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     z-index: 1000;
-    
     justify-content: center;
     align-items: flex-start;
-    
-    padding: 60px 15px 40px 15px;
+    padding: 50px 15px 40px 15px;
     box-sizing: border-box;
-    
-    /* ✅ Scroll independente dentro do modal */
     overflow-y: auto;
     overflow-x: hidden;
     -webkit-overflow-scrolling: touch;
     overscroll-behavior: contain;
+}
+
+.modal-overlay.active {
+    display: flex;
 }
 
 .modal-content {
@@ -306,9 +381,11 @@ html, body {
     max-width: 900px;
     margin: 0 auto;
     position: relative;
-    background: transparent;
-    border: none;
-    box-shadow: none;
+    background: url('foto_gaming/meiobeje.jpg') repeat;
+    border: 3px solid #D4AF37;
+    border-radius: 15px;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.8);
+    padding: 30px 20px;
     animation: surgindo 0.4s ease-out;
     min-height: auto;
 }
@@ -318,21 +395,13 @@ html, body {
     to { opacity: 1; transform: translateY(0); }
 }
 
-.modal-content:not(:has(.pergaminho-bento)) {
-    background: url('foto_gaming/meiobeje.jpg') repeat;
-    border: 3px solid #D4AF37;
-    border-radius: 15px;
-    box-shadow: 0 0 40px rgba(0, 0, 0, 0.8);
-    padding: 30px;
-}
-
 .close-btn {
-    position: fixed;
-    top: 15px;
-    right: 20px;
-    font-size: 40px;
+    position: sticky; /* ✅ CORREÇÃO: sticky em vez de fixed */
+    top: 10px;
+    float: right; /* ✅ CORREÇÃO: float para ficar dentro do modal */
+    font-size: 36px;
     font-weight: bold;
-    color: #fdf5e6; 
+    color: #fdf5e6;
     cursor: pointer;
     z-index: 1100;
     text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
@@ -347,6 +416,7 @@ html, body {
     touch-action: manipulation;
     -webkit-tap-highlight-color: transparent;
     user-select: none;
+    margin-bottom: 10px;
 }
 
 .close-btn:hover {
@@ -360,7 +430,7 @@ html, body {
 }
 
 /* ==========================================================
-   7. ESTILO PARA CONTEÚDOS BENTO (MODAL)
+   9. CONTEÚDOS BENTO (MODAL)
    ========================================================== */
 .modal-intro-header-bento {
     text-align: center;
@@ -370,69 +440,56 @@ html, body {
 
 .modal-intro-header-bento h2 {
     color: #D4AF37;
-    font-size: clamp(1.5rem, 4vw, 2.2rem);
+    font-size: clamp(1.3rem, 3.5vw, 2rem);
     margin-bottom: 10px;
     text-transform: uppercase;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
 }
 
 .modal-intro-header-bento p {
-    color: #fdf5e6; 
-    font-size: 1.1rem;
+    color: #fdf5e6;
+    font-size: clamp(0.85rem, 2vw, 1rem);
     line-height: 1.6;
 }
 
 .pergaminho-bento {
-    background: url('foto_gaming/meiobeje.jpg') repeat; 
-    border: 2px solid #b99b11; 
-    border-radius: 25px;       
-    padding: 25px;
-    margin-bottom: 45px;       
+    background: url('foto_gaming/meiobeje.jpg') repeat;
+    border: 2px solid #b99b11;
+    border-radius: 25px;
+    padding: 25px 20px;
+    margin-bottom: 45px;
     box-shadow: inset 0 0 20px rgba(185, 155, 17, 0.2), 0 10px 30px rgba(0,0,0,0.8);
     position: relative;
-    width: 100%;                
+    width: 100%;
     max-width: 100%;
     margin-left: auto;
     margin-right: auto;
-    
-    overflow: visible;
-    max-height: none;
+    overflow: hidden;
     height: auto;
     box-sizing: border-box;
 }
 
 .bento-card-title {
-    color: #5d4037;
-    font-size: 0.8rem;
+    color: #b99b11;
+    font-size: clamp(0.9rem, 2.5vw, 1.1rem);
     font-weight: 800;
     text-transform: uppercase;
     letter-spacing: 2px;
     margin-bottom: 15px;
     display: block;
-    border-bottom: 1px solid rgba(93, 64, 55, 0.1);
-    padding-bottom: 5px;
-}
-
-.modal-content > div[style*="margin: 35px"] .bento-card-title,
-.secao-passe .bento-card-title,
-.secao-undead .bento-card-title {
-    font-size: 1.1rem !important;
-    color: #b99b11 !important;
-    border-bottom: 2px solid #b99b11 !important;
-    padding-bottom: 8px !important;
-    margin-bottom: 15px !important;
-    text-align: center !important;
-    display: inline-block !important;
-    min-width: 200px;
+    border-bottom: 2px solid #b99b11;
+    padding-bottom: 8px;
+    text-align: center;
 }
 
 .bento-image-frame {
     border-radius: 12px;
-    overflow: visible;
+    overflow: hidden; /* ✅ CORREÇÃO: hidden em vez de visible */
     border: 1px solid rgba(0,0,0,0.2);
     box-shadow: 0 5px 15px rgba(0,0,0,0.3);
     width: 100%;
     margin-bottom: 20px;
+    background: #1a1a1a;
 }
 
 .bento-img-content {
@@ -443,11 +500,114 @@ html, body {
     object-fit: contain;
 }
 
+/* ==========================================================
+   10. CARROSSEL - VISÍVEL EM TODOS OS DISPOSITIVOS
+   ========================================================== */
+.carousel-container {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    margin: 15px 0;
+}
+
+.carousel-track {
+    display: flex; /* ✅ GARANTIDO: sempre visível */
+    transition: transform 0.4s ease;
+    gap: 15px;
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding: 10px 0;
+}
+
+.carousel-track::-webkit-scrollbar {
+    display: none;
+}
+
+.carousel-item {
+    flex: 0 0 auto;
+    width: clamp(110px, 28vw, 180px); /* ✅ CORREÇÃO: clamp para todos os ecrãs */
+    background: linear-gradient(135deg, #b99b11, #f3e07e, #b99b11);
+    padding: 3px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+    touch-action: manipulation;
+}
+
+.carousel-item-inner {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    background: #1a1a1a;
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex; /* ✅ GARANTIDO: sempre visível */
+    align-items: center;
+    justify-content: center;
+}
+
+.carousel-item-inner img {
+    width: 75%;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0px 0px 8px rgba(255, 215, 0, 0.5));
+}
+
+.carousel-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.carousel-btn {
+    background: linear-gradient(135deg, #b99b11, #f3e07e);
+    border: 2px solid #856c2d;
+    color: #1a1a1a;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+}
+
+.carousel-btn:hover {
+    background: #D4AF37;
+    transform: scale(1.1);
+}
+
+.carousel-btn:active {
+    transform: scale(0.95);
+}
+
+.carousel-counter {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 800;
+    color: #5d4037;
+    font-size: clamp(0.9rem, 2vw, 1.1rem);
+    min-width: 60px;
+    text-align: center;
+}
+
+/* ==========================================================
+   11. NAVEGAÇÃO BENTO
+   ========================================================== */
 .bento-navigation-bento {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 20px;
+    gap: 15px;
     margin-top: 25px;
     flex-wrap: wrap;
 }
@@ -460,7 +620,7 @@ html, body {
     border-radius: 8px;
     font-family: 'Open Sans', sans-serif;
     font-weight: 700;
-    font-size: 14px;
+    font-size: clamp(0.75rem, 1.8vw, 0.9rem);
     cursor: pointer;
     transition: all 0.2s ease;
     min-width: 100px;
@@ -479,316 +639,551 @@ html, body {
     transform: translateY(0);
 }
 
-.bento-counter-bento {
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 800;
-    color: #5d4037;
-    font-size: 1.1rem;
-    min-width: 60px;
+/* ==========================================================
+   12. SEÇÕES PASSE / UNDEAD
+   ========================================================== */
+.secao-passe,
+.secao-undead {
+    margin: 30px 0;
+    padding: 20px 10px;
+}
+
+.secao-passe .bento-card-title,
+.secao-undead .bento-card-title {
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    color: #b99b11;
+    border-bottom: 2px solid #b99b11;
+    padding-bottom: 8px;
+    margin-bottom: 15px;
     text-align: center;
+    display: block;
 }
 
 /* ==========================================================
-   8. CAIXA DE PERGAMINHO COMPACTA
+   13. PERGAMINHO COMPACTO
    ========================================================== */
 .pergaminho-compacto {
-    max-width: 600px; 
-    padding: 15px;    
-    margin-top: 10vh;             
+    max-width: 600px;
+    padding: 15px;
+    margin: 0 auto;
 }
 
 /* ==========================================================
-   9. BOTÃO DOURADO / DEUSA
+   14. CONTEÚDO MODAL GENÉRICO
    ========================================================== */
-.deusa-btn-container {
-    display: flex;
-    justify-content: flex-end;
-    padding-right: 15%;
-    margin-top: -10px;
-}
-
-.special-action-btn {
-    background: none;
-    border: none;
-    padding: 0;
-    cursor: pointer;
-    touch-action: manipulation;
-    -webkit-tap-highlight-color: transparent;
-}
-
-.special-action-btn img {
-    width: 80px;
-    height: auto;
-    display: block;
-    transition: transform 0.3s ease;
-    pointer-events: none;
-}
-
-.special-action-btn:hover img {
-    transform: scale(1.1);
-}
-
-.modal-content p, 
+.modal-content p,
 .modal-content ul {
     text-align: left;
-    max-width: 90%;
+    max-width: 95%;
     margin-left: auto;
     margin-right: auto;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 .modal-content h3 {
     text-align: center;
+    color: #b99b11;
 }
 
 /* ==========================================================
-   10. RODAPÉ
+   15. MEDIA QUERIES - TABLET (769px - 1024px)
    ========================================================== */
-.scroll-bottom {
-    background: #2b241b;
-    border-top: 2px solid #b99b11;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    color: #D4AF37;
-    text-align: center;
-    border-radius: 0 0 20px 20px;
-    box-sizing: border-box;
-    flex-shrink: 0;
+@media (min-width: 769px) and (max-width: 1024px) {
+    .scroll-container {
+        width: 92%;
+        margin: 25px auto;
+    }
+
+    .scroll-content-wrapper {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .cards-column {
+        flex-direction: column;
+        width: auto;
+        min-width: 100px;
+    }
+
+    .cards-column:first-child { justify-self: end; }
+    .cards-column:last-child { justify-self: start; }
+
+    .avatar-video {
+        max-width: 240px;
+    }
+
+    .seal-container {
+        max-width: 450px;
+        margin: 20px auto;
+    }
+
+    .carousel-item {
+        width: 150px;
+    }
 }
 
 /* ==========================================================
-   11. MEDIA QUERIES MOBILE - CONSOLIDADO
+   16. MEDIA QUERIES - MOBILE (max-width: 768px)
    ========================================================== */
 @media (max-width: 768px) {
-    
+
     .scroll-container {
         width: 98%;
-        margin: 20px auto;
+        margin: 15px auto;
         border-radius: 15px;
-        overflow: visible;
-        height: auto;
     }
-    
+
     .scroll-top {
         height: auto;
         min-height: 120px;
-        padding: 15px 10px;
-        gap: 10px;
+        padding: 12px 8px;
+        gap: 8px;
     }
-    
-    .scroll-content-wrapper { 
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
+
+    .game-title {
+        font-size: clamp(0.85rem, 4vw, 1.4rem);
+        letter-spacing: 1px;
+    }
+
+    .scroll-key {
+        width: clamp(38px, 13vw, 65px);
+    }
+
+    .scroll-body {
+        padding: 15px 6%;
+    }
+
+    .intro-text {
+        padding-left: 10px;
+        font-size: clamp(0.78rem, 2.2vw, 0.9rem);
+    }
+
+    /* ✅ CORREÇÃO: layout vertical em mobile */
+    .scroll-content-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         gap: 15px;
+        padding: 15px 0;
+    }
+
+    .cards-column {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
         width: 100%;
     }
-    
-    .cards-column { 
-        width: 100% !important; 
-        flex-direction: row !important;
-        flex-wrap: wrap !important;
-        justify-content: center !important;
-        gap: 10px;
-    }
-    
+
     .cards-column:first-child,
     .cards-column:last-child {
-        justify-self: center !important;
+        justify-self: center;
     }
-    
-    .game-card { 
-        width: 75px !important; 
-        height: 75px !important; 
+
+    .game-card {
+        width: clamp(55px, 18vw, 75px);
+        height: clamp(55px, 18vw, 75px);
     }
-    
-    .icon-center { height: 65%; }
-    
-    .avatar-video { 
-        max-width: 230px !important;
+
+    .icon-center { height: 60%; }
+
+    .avatar-video {
+        max-width: 220px;
         width: 100%;
     }
-    
-    .special-card-seal { 
-        width: 70px !important; 
-        height: 70px !important; 
+
+    /* ✅ SELO - tamanho reduzido para mobile */
+    .special-card-seal {
+        width: clamp(48px, 13vw, 65px);
+        height: clamp(48px, 13vw, 65px);
+        border-width: 3px;
     }
-    
+
     .seal-container {
-        justify-content: center !important;
-        padding: 0;
-    }
-    
-    .modal-overlay {
-        padding: 50px 10px 30px 10px !important;
-        align-items: flex-start !important;
-        overflow-y: auto !important;
-        -webkit-overflow-scrolling: touch;
-        overscroll-behavior: contain;
-    }
-    
-    .modal-content {
-        width: 100% !important;
-        max-width: 100% !important;
-        margin: 0 auto !important;
-        position: relative !important;
-    }
-    
-    .close-btn {
-        top: 10px !important;
-        right: 15px !important;
-        font-size: 32px !important;
-        width: 44px !important;
-        height: 44px !important;
-    }
-    
-    .pergaminho-bento {
-        width: 100% !important;
-        max-width: 100% !important;
-        padding: 20px !important;
-        margin-bottom: 30px !important;
-        overflow: visible !important;
-        max-height: none !important;
-        height: auto !important;
-        box-sizing: border-box;
-    }
-    
-    .bento-img-content {
-        max-height: none !important;
-        height: auto !important;
-        object-fit: contain !important;
-        width: 100%;
-    }
-    
-    .bento-navigation-bento {
-        gap: 10px !important;
-        flex-wrap: wrap !important;
-    }
-    
-    .bento-btn-bento {
-        padding: 10px 15px !important;
-        font-size: 13px !important;
-        min-height: 40px !important;
-        min-width: 90px !important;
-    }
-    
-    .bento-counter-bento {
-        font-size: 1rem !important;
-        order: -1;
-        width: 100%;
-        margin-bottom: 5px;
-    }
-    
-    .modal-content > div[style*="margin: 35px"] {
-        margin: 20px 0 10px 0 !important;
+        margin: 15px 0 12px 0;
         padding: 0 10px;
     }
-    
+
+    /* ✅ DEUSA */
     .deusa-btn-container {
-        justify-content: center !important;
-        padding-right: 0 !important;
-        margin-top: 10px !important;
+        justify-content: center;
+        padding: 0 10%;
+        margin-top: 10px;
     }
-    
-    .special-action-btn img { width: 70px !important; }
-    
-    .modal-intro-header-bento h2 { font-size: 1.4rem !important; }
-    .modal-intro-header-bento p { font-size: 1rem !important; }
-    
+
+    .special-action-btn img {
+        width: clamp(50px, 15vw, 70px);
+    }
+
+    /* ✅ MODAL */
+    .modal-overlay {
+        padding: 45px 10px 30px 10px;
+        align-items: flex-start;
+    }
+
+    .modal-content {
+        width: 100%;
+        max-width: 100%;
+        margin: 0 auto;
+        padding: 25px 12px;
+        border-radius: 12px;
+        border-width: 2px;
+    }
+
+    .close-btn {
+        position: sticky;
+        top: 5px;
+        float: right;
+        font-size: 30px;
+        width: 42px;
+        height: 42px;
+        margin-bottom: 8px;
+    }
+
+    .pergaminho-bento {
+        width: 100%;
+        max-width: 100%;
+        padding: 18px 12px;
+        margin-bottom: 30px;
+        border-radius: 18px;
+    }
+
+    .bento-img-content {
+        max-height: none;
+        height: auto;
+        object-fit: contain;
+        width: 100%;
+    }
+
+    .bento-navigation-bento {
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+
+    .bento-btn-bento {
+        padding: 10px 15px;
+        font-size: clamp(0.7rem, 2vw, 0.85rem);
+        min-width: 90px;
+    }
+
+    /* ✅ CARROSSEL MOBILE */
+    .carousel-item {
+        width: clamp(100px, 32vw, 140px);
+    }
+
+    .carousel-item-inner {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .carousel-btn {
+        width: 36px;
+        height: 36px;
+        font-size: 18px;
+    }
+
+    .carousel-nav {
+        gap: 10px;
+    }
+
+    .carousel-counter {
+        font-size: 0.95rem;
+    }
+
+    /* ✅ RODAPÉ */
     .scroll-bottom {
-        padding: 15px 10px;
+        padding: 18px 12px;
         border-radius: 0 0 15px 15px;
     }
-    
-    html, body {
-        overflow-x: hidden;
-        overflow-y: auto;
-        width: 100%;
-        position: relative;
-        -webkit-text-size-adjust: 100%;
-        height: auto;
+
+    .scroll-bottom p {
+        max-width: 95%;
     }
-    
-    /* ✅ iOS/Android modal lock sem saltar a posição do scroll */
-    body.modal-open {
-        overflow: hidden;
-        position: fixed;
-        width: 100%;
-        touch-action: none;
+
+    .scroll-bottom .copyright {
+        font-size: clamp(0.7rem, 2vw, 0.85rem);
     }
-    
-    .game-card, 
-    .special-card-seal, 
-    .scroll-key, 
-    .close-btn,
-    .bento-btn-bento,
-    .special-action-btn {
-        touch-action: manipulation !important;
-        -webkit-tap-highlight-color: transparent !important;
-        cursor: pointer !important;
-        user-select: none !important;
+
+    .scroll-bottom .disclaimer {
+        font-size: clamp(0.58rem, 1.5vw, 0.68rem);
+    }
+
+    .secao-passe,
+    .secao-undead {
+        padding: 15px 5px;
+    }
+
+    .modal-intro-header-bento h2 {
+        font-size: clamp(1.1rem, 3.5vw, 1.5rem);
+    }
+
+    .modal-intro-header-bento p {
+        font-size: clamp(0.8rem, 2vw, 0.95rem);
     }
 }
 
 /* ==========================================================
-   12. ECRÃS MUITO PEQUENOS (<480px)
+   17. MEDIA QUERIES - MÓVEIS PEQUENOS (<480px)
    ========================================================== */
 @media (max-width: 480px) {
+
     .scroll-container {
         width: 99%;
-        margin: 10px auto;
+        margin: 8px auto;
         border-radius: 12px;
     }
-    
+
     .scroll-top {
         min-height: 100px;
         padding: 10px 5px;
+        gap: 6px;
     }
-    
-    .game-card { width: 65px !important; height: 65px !important; }
-    .icon-center { height: 60%; }
-    .avatar-video { max-width: 200px !important; }
-    .special-card-seal { width: 60px !important; height: 60px !important; }
-    .bento-btn-bento { padding: 8px 12px !important; font-size: 12px !important; min-width: 80px !important; }
-    
+
+    .game-title {
+        font-size: clamp(0.78rem, 5vw, 1.15rem);
+        letter-spacing: 0.5px;
+    }
+
+    .scroll-key {
+        width: clamp(32px, 15vw, 55px);
+    }
+
+    .scroll-body {
+        padding: 12px 5%;
+    }
+
+    .intro-text {
+        border-left-width: 2px;
+        padding-left: 8px;
+        font-size: clamp(0.75rem, 2.5vw, 0.85rem);
+    }
+
+    .game-card {
+        width: clamp(48px, 20vw, 65px);
+        height: clamp(48px, 20vw, 65px);
+    }
+
+    .icon-center { height: 55%; }
+
+    .avatar-video {
+        max-width: 190px;
+    }
+
+    .special-card-seal {
+        width: clamp(42px, 15vw, 55px);
+        height: clamp(42px, 15vw, 55px);
+        border-width: 2px;
+    }
+
+    .special-card-seal img {
+        width: 50%;
+    }
+
+    .deusa-btn-container {
+        padding: 0 5%;
+    }
+
+    .special-action-btn img {
+        width: clamp(45px, 16vw, 60px);
+    }
+
+    .scroll-bottom {
+        padding: 15px 10px;
+        border-radius: 0 0 12px 12px;
+    }
+
+    .scroll-bottom .copyright {
+        font-size: clamp(0.65rem, 2.2vw, 0.8rem);
+    }
+
+    .scroll-bottom .disclaimer {
+        font-size: clamp(0.55rem, 1.6vw, 0.63rem);
+    }
+
+    .modal-content {
+        padding: 20px 10px;
+    }
+
     .close-btn {
-        width: 40px !important; height: 40px !important; font-size: 28px !important;
-        top: 8px !important; right: 12px !important;
+        font-size: 26px;
+        width: 36px;
+        height: 36px;
+        top: 5px;
     }
-    
+
     .pergaminho-bento {
-        padding: 15px !important;
-        overflow: visible !important;
-        max-height: none !important;
-        height: auto !important;
+        padding: 14px 10px;
+        margin-bottom: 25px;
+        border-radius: 15px;
     }
-    
-    .bento-img-content {
-        max-height: none !important;
-        height: auto !important;
+
+    .carousel-item {
+        width: clamp(85px, 38vw, 115px);
+    }
+
+    .carousel-btn {
+        width: 32px;
+        height: 32px;
+        font-size: 16px;
+    }
+
+    .carousel-counter {
+        font-size: 0.85rem;
+        min-width: 50px;
+    }
+
+    .bento-btn-bento {
+        padding: 8px 12px;
+        font-size: clamp(0.65rem, 2.2vw, 0.78rem);
+        min-width: 80px;
+    }
+
+    .bento-navigation-bento {
+        gap: 8px;
+    }
+
+    .secao-passe,
+    .secao-undead {
+        padding: 12px 5px;
+        margin: 20px 0;
+    }
+
+    .modal-intro-header-bento {
+        margin-bottom: 20px;
+    }
+
+    .modal-intro-header-bento h2 {
+        font-size: clamp(1rem, 4vw, 1.3rem);
+        margin-bottom: 8px;
     }
 }
 
 /* ==========================================================
-   13. PROTEÇÃO FINAL
+   18. MEDIA QUERIES - MÓVEIS MUITO PEQUENOS (<360px)
    ========================================================== */
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+@media (max-width: 360px) {
+
+    .scroll-container {
+        width: 100%;
+        margin: 5px auto;
+        border-radius: 10px;
+    }
+
+    .scroll-top {
+        min-height: 85px;
+        padding: 8px 4px;
+    }
+
+    .game-title {
+        font-size: clamp(0.72rem, 5.5vw, 1rem);
+        letter-spacing: 0.5px;
+    }
+
+    .scroll-key {
+        width: clamp(28px, 16vw, 45px);
+    }
+
+    .scroll-body {
+        padding: 10px 4%;
+    }
+
+    .intro-text {
+        font-size: clamp(0.72rem, 2.8vw, 0.82rem);
+    }
+
+    .game-card {
+        width: clamp(42px, 22vw, 55px);
+        height: clamp(42px, 22vw, 55px);
+    }
+
+    .avatar-video {
+        max-width: 170px;
+    }
+
+    .special-card-seal {
+        width: clamp(38px, 17vw, 50px);
+        height: clamp(38px, 17vw, 50px);
+        border-width: 2px;
+    }
+
+    .scroll-bottom {
+        padding: 12px 8px;
+        border-radius: 0 0 10px 10px;
+    }
+
+    .carousel-item {
+        width: clamp(75px, 40vw, 95px);
+    }
+
+    .carousel-btn {
+        width: 28px;
+        height: 28px;
+        font-size: 14px;
+    }
+
+    .bento-btn-bento {
+        padding: 7px 10px;
+        font-size: clamp(0.6rem, 2.5vw, 0.72rem);
+        min-width: 75px;
+    }
+
+    .bento-card-title {
+        font-size: clamp(0.8rem, 2.8vw, 0.95rem);
+    }
+}
+
+/* ==========================================================
+   19. PROTEÇÃO FINAL - ELEMENTOS INTERATIVOS
+   ========================================================== */
+.game-card,
+.special-card-seal,
+.scroll-key,
+.close-btn,
+.bento-btn-bento,
+.carousel-btn,
+.special-action-btn {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    cursor: pointer;
+    user-select: none;
 }
 
 img, video {
     max-width: 100%;
     height: auto;
     display: block;
-    pointer-events: none;
 }
 
-.modal-content p,
-.modal-content ul,
-.intro-text p {
-    word-wrap: break-word;
-    overflow-wrap: break-word;
+/* ==========================================================
+   20. ANIMAÇÕES SUAVES
+   ========================================================== */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.scroll-body {
+    animation: fadeInUp 0.5s ease-out;
+}
+
+.scroll-content-wrapper {
+    animation: fadeInUp 0.5s ease-out 0.1s both;
+}
+
+.seal-container {
+    animation: fadeInUp 0.5s ease-out 0.2s both;
+}
+
+.scroll-bottom {
+    animation: fadeInUp 0.5s ease-out 0.3s both;
 }
