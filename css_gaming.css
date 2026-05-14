@@ -1201,3 +1201,49 @@ img, video {
 .scroll-bottom {
     animation: fadeInUp 0.5s ease-out 0.3s both;
 }
+
+/* ==========================================================
+     ZOOM EM SUB-MODAIS - CORREÇÃO MÍNIMA E SEGURA
+   ========================================================== */
+
+/* Permite pinch-to-zoom APENAS no conteúdo dos sub-modais */
+.sub-modal .modal-content,
+.sub-modal .sub-content {
+    touch-action: auto !important;           /* ✅ Ativa gestos de zoom no iOS/Safari */
+    -webkit-user-select: text !important;    /* ✅ Permite selecionar texto */
+    user-select: text !important;
+}
+
+/* Garante que imagens dentro de sub-modais respondem ao zoom */
+.sub-modal img,
+.sub-modal video,
+.sub-modal iframe {
+    pointer-events: auto !important;         /* ✅ Crucial para zoom em mídia */
+    max-width: 100% !important;
+    height: auto !important;
+    display: block !important;
+}
+
+/* Mantém botões precisos (close, navegação) mesmo com zoom ativo */
+.sub-modal .close-btn,
+.sub-modal .bento-btn-bento,
+.sub-modal .carousel-btn,
+.sub-modal .special-card-seal {
+    touch-action: manipulation !important;   /* ✅ Botões continuam precisos */
+    -webkit-user-select: none;
+    user-select: none;
+    pointer-events: auto !important;
+}
+
+/* Evita que o zoom "escape" para a página de fundo no iOS */
+.sub-modal {
+    overscroll-behavior: contain !important;
+}
+
+/* Ajuste Safari: garante que o conteúdo zoomável não fica "preso" */
+@supports (-webkit-touch-callout: none) {
+    .sub-modal .modal-content {
+        -webkit-overflow-scrolling: touch;
+        will-change: transform;
+    }
+}
