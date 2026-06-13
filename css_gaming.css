@@ -24,7 +24,7 @@ html, body {
     -ms-overflow-style: none;
 }
 
-/* ✅ SCROLL PRINCIPAL DO BROWSER */
+/*  SCROLL PRINCIPAL DO BROWSER */
 html, body {
     overflow-y: auto;
     overflow-x: hidden;
