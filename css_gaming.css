@@ -430,7 +430,7 @@ body.modal-open {
 }
 
 /* ==========================================================
-   9. CONTEÚDOS BENTO (MODAL) - TÍTULOS SUAVES + DOURO ESCURO
+   9. CONTEÚDOS BENTO (MODAL) - TÍTULOS COM GRADIENTE DOURADO
    ========================================================== */
 .modal-intro-header-bento {
     text-align: center;
@@ -439,11 +439,16 @@ body.modal-open {
 }
 
 .modal-intro-header-bento h2 {
-    color: #9A7B15;
     font-size: clamp(1.3rem, 3.5vw, 2rem);
     margin-bottom: 10px;
     text-transform: uppercase;
-    text-shadow: 0px 2px 4px rgba(60, 40, 15, 0.5), 0px 4px 8px rgba(0, 0, 0, 0.2);
+    letter-spacing: 1.5px;
+    line-height: 1.3;
+    /* ✅ GRADIENTE DOURADO IGUAL AO .game-title */
+    background: linear-gradient(to bottom, #FFD700 0%, #D4AF37 50%, #856c2d 90%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 1px 1px 0px #856c2d, 2px 2px 0px #705332, 3px 3px 0px #4a3721, 4px 4px 8px rgba(0, 0, 0, 0.8);
 }
 
 .pergaminho-bento {
@@ -464,7 +469,6 @@ body.modal-open {
 }
 
 .bento-card-title {
-    color: #9A7B15;
     font-size: clamp(0.9rem, 2.5vw, 1.1rem);
     font-weight: 800;
     text-transform: uppercase;
@@ -474,7 +478,11 @@ body.modal-open {
     border-bottom: 2px solid #b99b11;
     padding-bottom: 8px;
     text-align: center;
-    text-shadow: 0px 2px 3px rgba(60, 40, 15, 0.6), 0px 4px 6px rgba(0, 0, 0, 0.25);
+    /* ✅ GRADIENTE DOURADO IGUAL AO .game-title */
+    background: linear-gradient(to bottom, #FFD700 0%, #D4AF37 50%, #856c2d 90%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 1px 1px 0px #856c2d, 2px 2px 0px #705332, 3px 3px 0px #4a3721, 4px 4px 8px rgba(0, 0, 0, 0.8);
 }
 
 .bento-image-frame {
@@ -646,8 +654,11 @@ body.modal-open {
 .secao-passe .bento-card-title,
 .secao-undead .bento-card-title {
     font-size: clamp(1rem, 2.5vw, 1.2rem);
-    color: #9A7B15 !important;
-    text-shadow: 0px 2px 3px rgba(60, 40, 15, 0.6), 0px 4px 6px rgba(0, 0, 0, 0.25) !important;
+    /* ✅ GRADIENTE DOURADO IGUAL AO .game-title */
+    background: linear-gradient(to bottom, #FFD700 0%, #D4AF37 50%, #856c2d 90%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 1px 1px 0px #856c2d, 2px 2px 0px #705332, 3px 3px 0px #4a3721, 4px 4px 8px rgba(0, 0, 0, 0.8);
     border-bottom: 2px solid #b99b11;
     padding-bottom: 8px;
     margin-bottom: 15px;
@@ -678,19 +689,22 @@ body.modal-open {
 
 .modal-content h3 {
     text-align: center;
-    color: #9A7B15 !important;
-    text-shadow: 0px 2px 3px rgba(60, 40, 15, 0.6), 0px 4px 6px rgba(0, 0, 0, 0.25);
+    /* ✅ GRADIENTE DOURADO IGUAL AO .game-title */
+    background: linear-gradient(to bottom, #FFD700 0%, #D4AF37 50%, #856c2d 90%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 1px 1px 0px #856c2d, 2px 2px 0px #705332, 3px 3px 0px #4a3721, 4px 4px 8px rgba(0, 0, 0, 0.8);
 }
 
 /* ==========================================================
- ESTILO DE PARÁGRAFO PADRÃO -  (Open Sans 13px 600)
+  ESTILO DE PARÁGRAFO PADRÃO - (Open Sans 13px 600)
    Aplicado a TODOS os parágrafos dentro dos modais
    ========================================================== */
 .modal-content p,
 .modal-intro-header-bento p,
 .pergaminho-bento p,
 .paragrafo-dourado {
-    color: #4c4113  !important;
+    color: #4c4113 !important;
     font-family: 'Open Sans', sans-serif !important;
     font-size: 13px !important;
     line-height: 1.6 !important;
