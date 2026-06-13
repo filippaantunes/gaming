@@ -683,14 +683,14 @@ body.modal-open {
 }
 
 /* ==========================================================
-   21. ESTILO DE PARÁGRAFO PADRÃO - DOURADO (Open Sans 13px 600)
+ ESTILO DE PARÁGRAFO PADRÃO -  (Open Sans 13px 600)
    Aplicado a TODOS os parágrafos dentro dos modais
    ========================================================== */
 .modal-content p,
 .modal-intro-header-bento p,
 .pergaminho-bento p,
 .paragrafo-dourado {
-    color: #b99b11 !important;
+    color: #4c4113  !important;
     font-family: 'Open Sans', sans-serif !important;
     font-size: 13px !important;
     line-height: 1.6 !important;
