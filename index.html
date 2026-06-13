@@ -13,11 +13,7 @@
         
         <div class="scroll-top">
             <h2 class="game-title">Concept Art & World Building</h2>
-            <a href="https://filippaantunes.github.io/CV-Interativo/" 
-               class="scroll-key-link" 
-               title="Back to Interactive CV"
-               target="_blank"
-               rel="noopener noreferrer">
+            <a href="index.html" class="scroll-key-link" title="Back to Interactive CV">
                 <img src="foto_gaming/chave1removebg-preview.png" class="scroll-key" alt="Return Key" loading="lazy" decoding="async">
             </a>
         </div>
@@ -128,6 +124,7 @@
         'monstro': {
             titulo: 'THE CRYSTAL VEINS: A NEW ERA OF WARFARE', 
             introducao: "A strategic World Event concept focusing on alliance coordination, resource competition, and tactical engagement within the ecosystem.",
+            paragrafoAntesSelo: "Click on the goddess seal below to open the complete storyboard shared with Evony's development team.",
             imagensCarrossel: [
                 'foto_gaming/1-ke.png', 'foto_gaming/2-ke.png', 'foto_gaming/3-ke.png', 
                 'foto_gaming/4-ke.png', 'foto_gaming/5-ke.png', 'foto_gaming/6-ke.png'
@@ -137,6 +134,7 @@
         'svs': {
             titulo: 'The Ancestral Banner Rescue',
             introducao: "A strategic SVS redesign focusing on team inclusivity and psychological engagement. By transforming the Alliance Castle's perimeter from a 'visual void' into a glowing trophy, it encourages players of all levels to participate in high-stakes escort missions across enemy territory.",
+            paragrafoAntesSelo: "Click on the goddess seal below to open the complete storyboard shared with Evony's development team.",
             imagensCarrossel: [
                 'foto_gaming/1svs.png', 'foto_gaming/2svs.png', 'foto_gaming/3svs.png', 
                 'foto_gaming/4svs.png', 'foto_gaming/5svs.png', 'foto_gaming/6svs.png'
@@ -225,6 +223,11 @@
                         <button class="bento-btn-bento" onclick="mudarPaginaCarrossel('${id}', 1); event.stopPropagation();" style="touch-action: manipulation;" aria-label="Next image">Next ❯</button>
                     </div>
                 </div>
+                <div style="text-align: center; margin: 25px 0 15px 0; padding: 0 15px;">
+                    <p style="color: #b99b11; font-family: 'Open Sans', sans-serif; font-size: 13px; line-height: 1.6; font-weight: 600; opacity: 0.95;">
+                        ${data.paragrafoAntesSelo}
+                    </p>
+                </div>
                 <div class="deusa-btn-container">
                     <button class="special-action-btn" onclick="abrirImagemEspecial('foto_gaming/storyboard-ke.png', 'February 12, 2026'); event.stopPropagation();" style="background:none; border:none; padding:0; cursor:pointer; touch-action: manipulation;" aria-label="View full storyboard">
                         <img src="foto_gaming/deusa.png" alt="Goddess" loading="lazy" decoding="async">
@@ -249,6 +252,11 @@
                         <span id="contador-carrossel" class="bento-counter-bento" aria-live="polite">1 / ${data.imagensCarrossel.length}</span>
                         <button class="bento-btn-bento" onclick="mudarPaginaCarrossel('${id}', 1); event.stopPropagation();" style="touch-action: manipulation;" aria-label="Next image">Next ❯</button>
                     </div>
+                </div>
+                <div style="text-align: center; margin: 25px 0 15px 0; padding: 0 15px;">
+                    <p style="color: #b99b11; font-family: 'Open Sans', sans-serif; font-size: 13px; line-height: 1.6; font-weight: 600; opacity: 0.95;">
+                        ${data.paragrafoAntesSelo}
+                    </p>
                 </div>
                 <div class="deusa-btn-container" style="text-align: center; margin-top: 20px;">
                     <button class="special-action-btn" onclick="abrirImagemEspecial('foto_gaming/storyboard-svs.png', 'February 17, 2026'); event.stopPropagation();" style="background:none; border:none; padding:0; cursor:pointer; touch-action: manipulation;" aria-label="View full storyboard">
