@@ -852,6 +852,8 @@ body.modal-open {
     .intro-text {
         padding-left: 10px;
         font-size: clamp(0.78rem, 2.2vw, 0.9rem);
+        text-align: left !important; 
+        word-spacing: normal !important; 
     }
 
     .scroll-content-wrapper {
