@@ -14,24 +14,24 @@
         <div class="scroll-top">
             <h2 class="game-title">Concept Art & World Building</h2>
             
-               class="scroll-key-link" 
-               
+            <!-- Link a envolver a imagem da chave -->
+            <a href="https://filippaantunes.github.io/CV-Interativo/" class="scroll-key-link" title="Voltar ao CV Interativo">
                 <img src="foto_gaming/chave1removebg-preview.png" class="scroll-key" alt="Return Key" loading="lazy" decoding="async">
             </a>
         </div>
-
+        
         <div class="scroll-body">
             
             <div class="intro-text">
                 <p>
-                    As an<strong>Evony player for nearly 6 years</strong>, I have always been driven to innovate within the game. For too long, these high-level strategy and feature concepts remained as mental notes.
+                    <h3>Case Study: Evony UI/UX Concept & Fan Experience</h3>
                 </p>
                 <p>
-                    Over the last 2 years, I have dedicated myself to professional <strong>Design and Multimedia (FAD) training</strong>. This journey discovered my passion for creating <strong>user-centric UI/UX and visual assets</strong> for game environments. Merging my deep gameplay knowledge with this new technical expertise, I finally gained the skills to transform strategic concepts into concrete, professional visual assets and <strong>Game Design proposals</strong>.
-                </p>
-                <p>
-                    Today, I am proud to present my vision for the strategic and aesthetic evolution of Evony. This page documents my journey of creativity, development, and official submission of ideas to the development team.
-                </p>
+                    <strong>Project Tracking | From Player to Experience Designer</strong>
+                    <p>This project originated as a personal interface exploration for the game Evony and evolved into a practical UX/UI case study, tested and validated by both the community and the game's development team.<br>
+                       Explore the creations and navigate through the project.<br>
+                       To view the full analysis, methodology, and conclusions, open the red seal below.<br>
+                       Thank you.</p> 
             </div>
 
             <hr style="border: 0; border-top: 1px solid #b99b11; margin: 30px 0; opacity: 0.3;">
@@ -169,12 +169,46 @@
             ],
             indice: 0
         },
+
         'ticket-evony': {
             titulo: 'Official Support Seal',
             introducao: "Documentation and official recognition of concepts submitted to the development team. This seal validates the proactive bridge between advanced player experience and professional game design contribution.",
             videoTicket: 'vid_gaming/Evony2026.mp4',
             moldura: 'foto_gaming/pergaminho_rolo1.png',
-            selo: 'foto_gaming/selo.png'
+            selo: 'foto_gaming/selo.png',
+            conclusao: `
+                <div class="case-study-container">
+                    <h3>Case Study Report & Conclusion</h3>
+                    
+                    <div class="case-study-section">
+                        <h4>1. The Challenge & The Concept</h4>
+                        <p><strong>The Challenge:</strong> As an active player, I identified the need to restructure the game's information architecture, making navigation more intuitive, engaging, and focused on User Experience (UX).</p>
+                        <p><strong>The Solution:</strong> I developed a tailored thematic interface, combining high-contrast aesthetics with a clear information architecture, making statistics, guides, and strategic resources easily accessible.</p>
+                    </div>
+
+                    <div class="case-study-section">
+                        <h4>2. Real-World Validation & Team Communication</h4>
+                        <p>The project went far beyond a visual concept. The design and interface optimization proposals were submitted directly to the Evony support/development team via Tickets, earning direct recognition and validation.</p>
+                        <p><strong>Phygital Strategy / QR Code:</strong> Integration of quick QR Code access for a seamless transition between physical media and the digital prototype.</p>
+                        <p><strong>In-Game Recognition:</strong> Awarded in-game gifts and rewards by the development team as an expression of appreciation for the contribution.</p>
+                    </div>
+
+                    <div class="case-study-section">
+                        <h4>3. Tech Stack & Methodology</h4>
+                        <p><strong>UI/UX & Frontend:</strong> Prototyping, HTML5, CSS3, Vanilla JavaScript, Git/GitHub.</p>
+                        <p><strong>AI Workflow & Editing:</strong> Strategic use of AI tools (Gemini / Qwen) as assistants for code logic, ideation, and structural planning; Samsung Galaxy S24 Ultra for image manipulation and editing.</p>
+                        <p><strong>Testing Device:</strong> Samsung Galaxy S24 Ultra (responsiveness testing and mobile workflow).</p>
+                    </div>
+
+                    <div class="case-study-section">
+                        <h4>4. Conclusion & Current Status</h4>
+                        <p><strong>From Community Insights to Game Systems Engineering:</strong></p>
+                        <p>This project originated from identifying a critical retention issue: the dominance of static high-level accounts ("whales"), passive account hoarding and trading, and ecosystem stagnation caused by purely cosmetic updates.</p>
+                        <p>Leveraging the skills acquired during my Multimedia training at IEFP, I designed solutions focused on restructuring existing architectural layers — re-negotiating and re-using core game assets while introducing dynamic risk and urgency mechanics. The goal was to level the playing field for new users, penalize passive resource hoarding, and reactivate server economy.</p>
+                        <p>This case study remains a core milestone in my portfolio, demonstrating strong capabilities in user research, UI/UX systems design, digital optimization, and direct engagement with global brands.</p>
+                    </div>
+                </div>
+            `
         }
     };
 
@@ -333,9 +367,13 @@
                         <img src="${data.selo}" style="position: absolute; bottom: 5%; right: 5%; width: 55px; filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5)); pointer-events: none;" loading="lazy" decoding="async" alt="Validation Seal">
                     </div>
                 </div>
+
+                <!-- AQUI: INJETAR A CONCLUSÃO FORMATADA -->
+                <div class="modal-conclusao-bento">
+                    ${data.conclusao}
+                </div>
             `;
         }
-
         body.innerHTML = conteudoHTML;
         modal.style.display = 'flex';
         
@@ -499,3 +537,4 @@
     </script>
 </body>
 </html>
+
