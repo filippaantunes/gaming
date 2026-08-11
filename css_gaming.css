@@ -146,15 +146,6 @@ body.modal-open {
     margin-bottom: 10px;
 }
 
-/* CORREÇÃO APENAS PARA O TÍTULO E SUBTÍTULO */
-.intro-text h3,
-.intro-text h4,
-.intro-text header,
-.intro-text strong:first-of-type {
-    text-align: left !important;
-    word-spacing: normal !important;
-}
-
 /* ==========================================================
    ESTUDO DE CASO & CONCLUSÃO - SOBREPOSIÇÃO AO CSS GENÉRICO
    ========================================================== */
