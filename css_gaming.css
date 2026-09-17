@@ -1,5 +1,9 @@
 /* ==========================================================
-   RESET GLOBAL - COLOCAR SEMPRE PRIMEIRO
+   GAMING PAGE 
+   ========================================================== */
+
+/* ==========================================================
+   1. RESET GLOBAL E SCROLLBARS
    ========================================================== */
 *,
 *::before,
@@ -9,9 +13,6 @@
     padding: 0;
 }
 
-/* ==========================================================
-   SCROLLBARS: FUNCIONAIS MAS INVISÍVEIS
-   ========================================================== */
 html::-webkit-scrollbar,
 body::-webkit-scrollbar {
     width: 0;
@@ -22,17 +23,11 @@ body::-webkit-scrollbar {
 html, body {
     scrollbar-width: none;
     -ms-overflow-style: none;
-}
-
-/*  SCROLL PRINCIPAL DO BROWSER */
-html, body {
     overflow-y: auto;
     overflow-x: hidden;
     min-height: 100vh;
     min-height: 100dvh;
     height: auto;
-    margin: 0;
-    padding: 0;
     width: 100%;
     position: relative;
     -webkit-overflow-scrolling: touch;
@@ -47,7 +42,7 @@ body.modal-open {
 }
 
 /* ==========================================================
-   1. CONTAINER PRINCIPAL
+   2. CONTAINER PRINCIPAL (PERGAMINHO)
    ========================================================== */
 .scroll-container {
     width: 95%;
@@ -56,14 +51,13 @@ body.modal-open {
     filter: drop-shadow(0px 10px 25px rgba(0, 0, 0, 0.6));
     border-radius: 20px;
     border: 2px solid #b99b11;
-    box-sizing: border-box;
     overflow: hidden;
     height: auto;
     background: #f5e6c8;
 }
 
 /* ==========================================================
-   2. TOPO (Mesa com Pergaminho)
+   3. TOPO DO PERGAMINHO (MESA + TÍTULO)
    ========================================================== */
 .scroll-top {
     position: relative;
@@ -118,7 +112,7 @@ body.modal-open {
 }
 
 /* ==========================================================
-   3. CORPO DO PERGAMINHO - 100% FLEXÍVEL
+   4. CORPO DO PERGAMINHO (CONTEÚDO)
    ========================================================== */
 .scroll-body {
     background: url('foto_gaming/meiobeje.jpg') repeat-y center;
@@ -127,7 +121,6 @@ body.modal-open {
     font-family: 'Georgia', serif;
     color: #4a3721;
     line-height: 1.8;
-    box-sizing: border-box;
     width: 100%;
     overflow: visible;
     height: auto;
@@ -146,71 +139,16 @@ body.modal-open {
     margin-bottom: 10px;
 }
 
-/* ==========================================================
-   ESTUDO DE CASO & CONCLUSÃO - SOBREPOSIÇÃO AO CSS GENÉRICO
-   ========================================================== */
-.modal-content .case-study-container,
-.pergaminho-bento .case-study-container,
-.modal-conclusao-bento .case-study-container {
+.intro-text h3,
+.intro-text h4,
+.intro-text header,
+.intro-text strong:first-of-type {
     text-align: left !important;
-    margin-top: 25px;
-    font-family: 'Georgia', serif !important;
-}
-
-/* Título Principal */
-.modal-content .case-study-container h3,
-.pergaminho-bento .case-study-container h3 {
-    font-size: clamp(1.1rem, 2.2vw, 1.35rem) !important;
-    color: #312314 !important;
-    font-weight: 700 !important;
-    font-family: 'Georgia', serif !important;
-    text-shadow: none !important;
-    margin-bottom: 20px !important;
-    text-align: center !important;
-    background: none !important; /* Remove o gradiente dourado genérico */
-    -webkit-text-fill-color: initial !important; /* Remove o texto transparente */
-}
-
-/* Subtítulos (1, 2, 3, 4) */
-.modal-content .case-study-section h4,
-.pergaminho-bento .case-study-section h4 {
-    font-size: clamp(0.95rem, 1.8vw, 1.1rem) !important;
-    color: #312314 !important;
-    font-weight: 700 !important;
-    font-family: 'Georgia', serif !important;
-    text-shadow: none !important;
-    margin-top: 15px !important;
-    margin-bottom: 8px !important;
-    text-align: left !important;
-}
-
-/* PARÁGRAFOS DO PERGAMINHO - Anula a regra genérica da Open Sans 600 */
-.modal-content .case-study-section p,
-.modal-intro-header-bento .case-study-section p,
-.pergaminho-bento .case-study-section p,
-.modal-conclusao-bento .case-study-section p {
-    font-family: 'Georgia', serif !important; /* Muda de Open Sans para Georgia */
-    font-size: clamp(0.85rem, 1.6vw, 0.95rem) !important;
-    font-weight: 400 !important; /* Muda de 600 (negrito) para 400 (fino) */
-    color: #4a3721 !important;
-    line-height: 1.7 !important;
-    text-shadow: none !important;
-    text-align: left !important; /* Muda de center para left */
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-    max-width: 100% !important;
-}
-
-/* Rótulos Strong */
-.modal-content .case-study-section strong,
-.pergaminho-bento .case-study-section strong {
-    font-weight: 700 !important;
-    font-family: 'Georgia', serif !important;
-    color: #2b1d0f !important;
+    word-spacing: normal !important;
 }
 
 /* ==========================================================
-   4. LAYOUT ESTILO EQUIPAMENTO (Cards + Avatar)
+   5. LAYOUT DE CARDS E AVATAR (GRID 3 COLUNAS)
    ========================================================== */
 .scroll-content-wrapper {
     display: grid;
@@ -296,7 +234,7 @@ body.modal-open {
 }
 
 /* ==========================================================
-   5. SELO VERMELHO - TAMANHO CORRETO
+   6. SELO VERMELHO E BOTÃO DE AÇÃO
    ========================================================== */
 .seal-container {
     width: 100%;
@@ -318,8 +256,7 @@ body.modal-open {
     align-items: center;
     justify-content: center;
     transition: all 0.3s ease;
-    box-shadow: 0 0 20px rgba(212, 175, 55, 0.6),
-                inset 0 0 15px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.6), inset 0 0 15px rgba(0, 0, 0, 0.5);
     touch-action: manipulation;
     -webkit-tap-highlight-color: transparent;
     user-select: none;
@@ -343,9 +280,6 @@ body.modal-open {
     pointer-events: none;
 }
 
-/* ==========================================================
-   6. BOTÃO DEUSA / AÇÃO
-   ========================================================== */
 .deusa-btn-container {
     display: flex;
     justify-content: center;
@@ -374,7 +308,7 @@ body.modal-open {
 }
 
 /* ==========================================================
-   7. RODAPÉ - AGORA SEMPRE VISÍVEL
+   7. RODAPÉ DO PERGAMINHO
    ========================================================== */
 .scroll-bottom {
     background: linear-gradient(to bottom, #2b241b, #1a1410);
@@ -387,8 +321,6 @@ body.modal-open {
     color: #D4AF37;
     text-align: center;
     border-radius: 0 0 20px 20px;
-    box-sizing: border-box;
-    flex-shrink: 0;
     width: 100%;
     position: relative;
     z-index: 1;
@@ -414,7 +346,7 @@ body.modal-open {
 }
 
 /* ==========================================================
-   8. MODAL - SCROLL INTERNO FUNCIONAL
+   8. MODAL (OVERLAY E CONTEÚDO)
    ========================================================== */
 .modal-overlay {
     display: none;
@@ -428,7 +360,6 @@ body.modal-open {
     justify-content: center;
     align-items: flex-start;
     padding: 50px 15px 40px 15px;
-    box-sizing: border-box;
     overflow-y: auto;
     overflow-x: hidden;
     -webkit-overflow-scrolling: touch;
@@ -493,7 +424,7 @@ body.modal-open {
 }
 
 /* ==========================================================
-   9. CONTEÚDOS BENTO (MODAL) - TÍTULOS COM GRADIENTE DOURADO
+   9. CONTEÚDO BENTO (MODAIS INTERNOS)
    ========================================================== */
 .modal-intro-header-bento {
     text-align: center;
@@ -507,7 +438,6 @@ body.modal-open {
     text-transform: uppercase;
     letter-spacing: 1.5px;
     line-height: 1.3;
-    /* GRADIENTE DOURADO IGUAL AO .game-title */
     background: linear-gradient(to bottom, #FFD700 0%, #D4AF37 50%, #856c2d 90%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -528,7 +458,6 @@ body.modal-open {
     margin-right: auto;
     overflow: hidden;
     height: auto;
-    box-sizing: border-box;
 }
 
 .bento-card-title {
@@ -541,7 +470,6 @@ body.modal-open {
     border-bottom: 2px solid #b99b11;
     padding-bottom: 8px;
     text-align: center;
-    /* GRADIENTE DOURADO IGUAL AO .game-title */
     background: linear-gradient(to bottom, #FFD700 0%, #D4AF37 50%, #856c2d 90%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -567,7 +495,7 @@ body.modal-open {
 }
 
 /* ==========================================================
-   10. CARROSSEL - VISÍVEL EM TODOS OS DISPOSITIVOS
+   10. CARROSSEL DE IMAGENS
    ========================================================== */
 .carousel-container {
     width: 100%;
@@ -667,7 +595,7 @@ body.modal-open {
 }
 
 /* ==========================================================
-   11. NAVEGAÇÃO BENTO
+   11. NAVEGAÇÃO E SEÇÕES ESPECIAIS
    ========================================================== */
 .bento-navigation-bento {
     display: flex;
@@ -705,9 +633,6 @@ body.modal-open {
     transform: translateY(0);
 }
 
-/* ==========================================================
-   12. SEÇÕES PASSE / UNDEAD
-   ========================================================== */
 .secao-passe,
 .secao-undead {
     margin: 30px 0;
@@ -717,7 +642,6 @@ body.modal-open {
 .secao-passe .bento-card-title,
 .secao-undead .bento-card-title {
     font-size: clamp(1rem, 2.5vw, 1.2rem);
-    /* GRADIENTE DOURADO IGUAL AO .game-title */
     background: linear-gradient(to bottom, #FFD700 0%, #D4AF37 50%, #856c2d 90%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -729,9 +653,6 @@ body.modal-open {
     display: block;
 }
 
-/* ==========================================================
-   13. PERGAMINHO COMPACTO
-   ========================================================== */
 .pergaminho-compacto {
     max-width: 600px;
     padding: 15px;
@@ -739,7 +660,7 @@ body.modal-open {
 }
 
 /* ==========================================================
-   14. CONTEÚDO MODAL GENÉRICO - LEITURA OTIMIZADA
+   12. ESTILOS GENÉRICOS DE MODAL (TEXTO E LISTAS)
    ========================================================== */
 .modal-content ul {
     text-align: left;
@@ -752,7 +673,6 @@ body.modal-open {
 
 .modal-content h3 {
     text-align: center;
-    /*GRADIENTE DOURADO IGUAL AO .game-title */
     background: linear-gradient(to bottom, #FFD700 0%, #D4AF37 50%, #856c2d 90%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -760,18 +680,63 @@ body.modal-open {
 }
 
 /* ==========================================================
-  ESTILO DE PARÁGRAFO PADRÃO - (Open Sans 13px 600)
-   Aplicado a TODOS os parágrafos dentro dos modais
+   12. ESTILOS GENÉRICOS DE MODAL (TEXTO E LISTAS)
    ========================================================== */
+.modal-content ul {
+    text-align: left;
+    max-width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.modal-content h3 {
+    text-align: center;
+    background: linear-gradient(to bottom, #FFD700 0%, #D4AF37 50%, #856c2d 90%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 1px 1px 0px #856c2d, 2px 2px 0px #705332, 3px 3px 0px #4a3721, 4px 4px 8px rgba(0, 0, 0, 0.8);
+}
+
+/* TÍTULOS DA CASE STUDY (GRADIENTE DOURADO) */
+.case-study-container h2,
+.case-study-container h3 {
+    font-size: clamp(1.2rem, 3vw, 1.8rem) !important;
+    margin-bottom: 25px !important;
+    text-align: center !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1.5px !important;
+    background: linear-gradient(to bottom, #FFD700 0%, #D4AF37 50%, #856c2d 90%) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    text-shadow: 1px 1px 0px #856c2d, 2px 2px 0px #705332, 3px 3px 0px #4a3721, 4px 4px 8px rgba(0, 0, 0, 0.8) !important;
+    color: transparent !important;
+    font-weight: 700 !important;
+    line-height: 1.3 !important;
+}
+
+/* Subtítulos (h4) da Case Study */
+.case-study-container h4 {
+    font-size: clamp(1rem, 2.2vw, 1.2rem) !important;
+    color: #312314 !important;
+    font-weight: 700 !important;
+    margin-top: 20px !important;
+    margin-bottom: 12px !important;
+    text-align: left !important;
+    text-shadow: none !important;
+}
+
+/* PARÁGRAFOS - Fonte Arial, peso NORMAL (400) */
 .modal-content p,
 .modal-intro-header-bento p,
 .pergaminho-bento p,
 .paragrafo-dourado {
     color: #4c4113 !important;
-    font-family: 'Open Sans', sans-serif !important;
-    font-size: 13px !important;
+    font-family: Arial, sans-serif !important;
+    font-size: 14px !important;
     line-height: 1.6 !important;
-    font-weight: 600 !important;
+    font-weight: 500 !important; /* <--- MUDADO DE 600 PARA 400 (NORMAL) */
     opacity: 0.95 !important;
     text-shadow: none !important;
     text-align: center !important;
@@ -781,7 +746,7 @@ body.modal-open {
 }
 
 /* ==========================================================
-   15. MEDIA QUERIES - TABLET (769px - 1024px)
+   13. MEDIA QUERIES - TABLET (769px - 1024px)
    ========================================================== */
 @media (min-width: 769px) and (max-width: 1024px) {
     .scroll-container {
@@ -819,10 +784,9 @@ body.modal-open {
 }
 
 /* ==========================================================
-   16. MEDIA QUERIES - MOBILE (max-width: 768px)
+   14. MEDIA QUERIES - MOBILE (max-width: 768px)
    ========================================================== */
 @media (max-width: 768px) {
-
     .scroll-container {
         width: 98%;
         margin: 15px auto;
@@ -1013,10 +977,9 @@ body.modal-open {
 }
 
 /* ==========================================================
-   17. MEDIA QUERIES - MÓVEIS PEQUENOS (<480px)
+   15. MEDIA QUERIES - MÓVEIS PEQUENOS (<480px)
    ========================================================== */
 @media (max-width: 480px) {
-
     .scroll-container {
         width: 99%;
         margin: 8px auto;
@@ -1149,10 +1112,9 @@ body.modal-open {
 }
 
 /* ==========================================================
-   18. MEDIA QUERIES - MÓVEIS MUITO PEQUENOS (<360px)
+   16. MEDIA QUERIES - MÓVEIS MUITO PEQUENOS (<360px)
    ========================================================== */
 @media (max-width: 360px) {
-
     .scroll-container {
         width: 100%;
         margin: 5px auto;
@@ -1223,7 +1185,7 @@ body.modal-open {
 }
 
 /* ==========================================================
-   19. PROTEÇÃO FINAL - ELEMENTOS INTERATIVOS
+   17. PROTEÇÃO DE ELEMENTOS INTERATIVOS E ANIMAÇÕES
    ========================================================== */
 .game-card,
 .special-card-seal,
@@ -1244,9 +1206,6 @@ img, video {
     display: block;
 }
 
-/* ==========================================================
-   20. ANIMAÇÕES SUAVES
-   ========================================================== */
 @keyframes fadeInUp {
     from {
         opacity: 0;
