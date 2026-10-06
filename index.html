@@ -11,6 +11,51 @@
     
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Inline styles for modal signature protection -->
+    <style>
+        /* =========================================
+   MODAL SIGNATURE (Protection) - Ajustado
+   ========================================= */
+    .modal-signature {
+        display: block !important;
+        text-align: center !important;
+        font-size: 10px !important;
+        
+        /* Dourado Escuro / Bronze (mais rico e visível no fundo escuro) */
+        color: #996515 !important; 
+        
+        /* Opacidade aumentada: 0.6 lavava a cor, 0.85 mantém subtil mas legível */
+        opacity: 0.85 !important; 
+        
+        margin-top: 25px !important;
+        padding-top: 15px !important;
+        
+        /* Linha superior a combinar com a nova cor dourada escura */
+        border-top: 1px solid rgba(153, 101, 21, 0.4) !important; 
+        
+        font-style: italic;
+        letter-spacing: 0.3px;
+        user-select: none; /* Prevents easy text selection */
+        font-family: 'Open Sans', sans-serif !important;
+    }
+
+    /* Even more subtle for sub-modals */
+    .pergaminho-bento .modal-signature {
+        font-size: 9px !important;
+        opacity: 0.75 !important; /* Um pouco mais subtil, mas ainda legível */
+        margin-top: 20px !important;
+    }
+
+    /* In print, the signature becomes fully visible */
+    @media print {
+        .modal-signature {
+            opacity: 1 !important; /* Na impressão queremos que se veja a 100% */
+            color: #8B6508 !important; /* Dourado ainda mais escuro para papel */
+            font-size: 9pt !important;
+        }
+    }
+    </style>
 </head>
 <body>
 
@@ -275,6 +320,8 @@
                             <img src="${data.imagem}" class="bento-img-content" style="width: 100%; height: auto;" loading="lazy" decoding="async" alt="Adamastor Concept">
                         </div>
                     </div>
+                    <!-- SIGNATURE -->
+                    <div class="modal-signature">© 2026 Vera Antunes | Concept & Design</div>
                 `;
             }
             else if (id === 'monstro' || id === 'svs') {
@@ -306,6 +353,8 @@
                             <img src="foto_gaming/deusa.png" alt="Goddess Action Button" loading="lazy" decoding="async">
                         </button>
                     </div>
+                    <!-- SIGNATURE -->
+                    <div class="modal-signature">© 2026 Vera Antunes | Concept & Design</div>
                 `;
             }
             else if (id === 'passe') {
@@ -347,6 +396,8 @@
                             <div style="margin-top: 15px; color: #b99b11; font-size: 13px; font-weight: 700;">⭐ View Project</div>
                         </div>
                     </div>
+                    <!-- SIGNATURE -->
+                    <div class="modal-signature">© 2026 Vera Antunes | Concept & Design</div>
                 `;
             }
             else if (id === 'ticket-evony') {
@@ -370,6 +421,8 @@
                     <div class="modal-conclusao-bento">
                         ${data.conclusao}
                     </div>
+                    <!-- SIGNATURE -->
+                    <div class="modal-signature">© 2026 Vera Antunes | Concept & Design</div>
                 `;
             }
             
@@ -425,6 +478,8 @@
                         ← Back to Menu
                     </button>
                 </div>
+                <!-- SIGNATURE -->
+                <div class="modal-signature">© 2026 Vera Antunes | Concept & Design</div>
             `;
 
             body.innerHTML = conteudoHTML;
@@ -482,6 +537,8 @@
                         <img src="${caminhoImagem}" class="bento-img-content" style="width: 100%; height: auto;" loading="lazy" decoding="async" alt="Full Storyboard">
                     </div>
                 </div>
+                <!-- SIGNATURE -->
+                <div class="modal-signature">© 2026 Vera Antunes | Concept & Design</div>
             `;
         }
 
